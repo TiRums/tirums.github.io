@@ -1,0 +1,382 @@
+* {padding: 0; margin: 0;box-sizing: border-box;}	
+
+/* BODY */
+
+body {	
+	background: #222;
+	background-image: radial-gradient(closest-side, transparent 98%, rgba(0, 0, 0, 0.3) 99%), radial-gradient(closest-side, transparent 98%, rgba(0, 0, 0, 0.3) 99%); 
+	background-size: 20px 20px; 
+	background-position: 0px 0px, 10px 10px;
+	background-attachment: fixed;
+	font-size: 13px;	
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+.wrap {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+div {
+	box-sizing: border-box;
+}
+
+/* HEADER */
+
+.header {
+	height: 91px;
+	background:  linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(80, 80, 80, 0.3)), radial-gradient(at 100% 0, rgba(15, 15, 15, 0.8), rgba(0, 0, 0, 0.8));
+	background-size: 100% 100%, 7px 7px;
+	border-top: 4px solid #000000;
+	border-bottom: 3px solid #000000;
+	font-family: 'Oswald', sans-serif;
+}
+
+.hdr {
+	display: flex;
+	flex-direction:row;
+	justify-content: space-between;
+}
+
+/* HEADER LOGO */
+
+.logo {
+	flex-basis: 30%;
+	text-align: center;
+	line-height: 67px;
+	font-weight: 700;
+}
+
+.logo a {
+	text-decoration: none;
+	font-size:240%;
+	color:#a21414;
+	
+}
+
+darken {
+	opacity: 0.8;
+}
+
+.logo span {
+	line-height: 1.3em;
+	background:linear-gradient(to top, #385F0E, #518618);
+	font-size:50%;
+	color:#fff;
+	font-variant:uppercase;
+	text-shadow: 1px 1px 3px #000;	
+	padding: 5px 8px;
+	border-radius: 110px/55px;
+	transform: rotate(-25deg);
+	position: absolute;
+	margin-left: -6px;
+	margin-top: 28px;
+}
+
+.logo a:hover {
+	color:#E22424;
+	text-shadow: 1px 1px 2px #000, 1px 1px 20px #fff;
+	transition: 0.3s;
+}
+
+.logo a:hover span {	
+	transition: 0.5s;
+	transform: rotate(695deg) scaleY(1.1) scaleX(1.1);
+}
+
+/* HEADER MENU */
+
+.viva {
+	flex-basis: 70%;
+	margin: 0 auto;
+	position: relative;
+	background: url(../img/symbol.svg) no-repeat;
+	background-size: 65px 60px;
+	background-position: center right 10%;
+}
+
+.viva h1 {
+	text-align: center;	
+	line-height: 80px;
+	text-transform: uppercase;
+	font-size: 200%;
+	font-weight: bold;
+	color: #B7651C;
+	letter-spacing: 1px;
+}
+
+/* CONTENT */
+
+.content {
+	min-height: calc(100vh - 133px);
+	padding: 20px 0;
+	position: relative;	
+}
+
+.content .wrap>div {
+	box-sizing: border-box;
+	padding: 10px;
+	margin: 10px 0 20px;
+	background: rgba(17,17,17,0.7);
+	border:1px solid #232323;
+	box-shadow: 1px 1px 5px #111;
+	color:#d6d6d6;
+	text-shadow: 1px 1px 1px #000;
+}
+
+.content h1 {
+	text-align: center;	
+	line-height: 1.3em;
+	text-transform: uppercase;
+	font-size: 250%;
+	font-weight: bold;
+	color: #a21414;
+	letter-spacing: 1px;
+	margin-bottom: 20px;
+	background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
+}
+
+
+
+
+
+
+.content p {
+	text-align: center;
+	padding: 0 40px;	
+	line-height: 1.3em;	
+	font-size: 130%;
+	margin-bottom: 0.6em;
+}
+
+/* CONTENT - SKILLS */
+
+.skills {
+	opacity:0; /*Элемент полностью прозрачный (невидимый)*/
+	animation: show 1s 1; /* Указываем название анимации, её время и количество повторов*/
+	animation-fill-mode: forwards; /* Чтобы элемент оставался в конечном состоянии анимации */
+	animation-delay: 0.5s; /* Задержка перед началом */
+}
+
+.skills-list {
+	display: flex;
+	justify-content: space-around;
+	margin: 20px 0;
+	font-size: 120%;
+}
+
+.skills-list ul {
+	width: 17%;
+	letter-spacing: 1px;	
+	opacity:0; /*Элемент полностью прозрачный (невидимый)*/
+	animation: show 1s 1; /* Указываем название анимации, её время и количество повторов*/
+	animation-fill-mode: forwards; /* Чтобы элемент оставался в конечном состоянии анимации */
+	animation-delay: 1s; /* Задержка перед началом */
+}
+
+.skills-list ul:nth-of-type(1) {
+	width: 22%;
+}
+
+.skills-list ul li {
+	list-style-type: none;
+}
+
+.skills-list ul li:before {
+	content: '◈';
+	color: #B7651C;	
+	padding-right: 4px;
+}
+
+/* CONTENT - PORTFOLIO */
+
+.portfolio {
+	opacity:0; /*Элемент полностью прозрачный (невидимый)*/
+	animation: show 1s 1; /* Указываем название анимации, её время и количество повторов*/
+	animation-fill-mode: forwards; /* Чтобы элемент оставался в конечном состоянии анимации */
+	animation-delay: 1.5s; /* Задержка перед началом */
+}
+
+.content h2 {
+	margin:30px 0 20px;
+	text-align: center;
+	font-size: 200%;
+	line-height: 1.5em;
+	font-weight: bold;
+	color: #845328;		
+	border-bottom: 2px solid #000;
+	opacity:0; /*Элемент полностью прозрачный (невидимый)*/
+	animation: show 1s 1; /* Указываем название анимации, её время и количество повторов*/
+	animation-fill-mode: forwards; /* Чтобы элемент оставался в конечном состоянии анимации */
+	animation-delay: 1.8s; /* Задержка перед началом */
+}
+
+.promo-cat {
+	display: flex;	
+	justify-content: space-around;
+	animation: ball 3.2s linear 1;
+}
+
+@keyframes ball {
+	0% {
+		margin-left: 100%;
+	}
+	100% {
+		margin-left: 0;
+	}
+}
+
+.promo-cat img {
+	display: inline-block;	
+	width: 20%;
+	border-radius: 8px;
+	border: 1px solid #171717;
+	opacity: 0.8;
+	transition: 0.3s;
+	opacity:0; /*Элемент полностью прозрачный (невидимый)*/
+	animation: show 1s 1; /* Указываем название анимации, её время и количество повторов*/
+	animation-fill-mode: forwards; /* Чтобы элемент оставался в конечном состоянии анимации */
+
+}
+
+.promo-cat img:hover {	
+	outline: none;
+	border: 1px solid darkorange;
+	box-shadow: 0 0 5px darkorange;
+	opacity: 1;
+	transform: scaleY(1.1) scaleX(1.1);
+}
+
+.portfolio div:last-child {
+	margin-bottom: 20px;
+}
+
+.promo-cat img:nth-of-type(1) {	
+	animation-delay: 2.2s; /* Задержка перед началом */
+}
+.promo-cat img:nth-of-type(2) {	
+	animation-delay: 2.4s; /* Задержка перед началом */
+}
+.promo-cat img:nth-of-type(3) {	
+	animation-delay: 2.8s; /* Задержка перед началом */
+}
+.promo-cat img:nth-of-type(4) {	
+	animation-delay: 3.0s; /* Задержка перед началом */
+}
+
+/* CONTENT - CONTACTS */
+
+.contacts {
+	opacity:0; /*Элемент полностью прозрачный (невидимый)*/
+	animation: show 1s 1; /* Указываем название анимации, её время и количество повторов*/
+	animation-fill-mode: forwards; /* Чтобы элемент оставался в конечном состоянии анимации */
+	animation-delay: 3.3s; /* Задержка перед началом */
+}
+
+.contacts ul {
+	display:flex;
+	margin: 20px 0 10px;
+	justify-content: space-around;
+}
+
+.contacts ul li {
+	width: 20%;
+	list-style-type: none;
+	text-align: center;	
+}
+
+.contacts ul li a {
+	display: inline-block;	
+	text-decoration: none;
+	font-size: 120%;
+	line-height: 1.6em;
+	width: 100%;
+	border: 1px solid #333;
+	box-shadow: 1px 1px 2px #000;
+	background: rgba(15,15,15,0.8);	
+	color:darkorange;
+	transition: 0.3s;
+	border-radius: 16px;
+}
+
+.contacts ul li a:hover {
+	background: rgba(10,10,10,0.8);	
+	color:#FF6600;
+	transform: scaleY(1.1) scaleX(1.1);
+}
+
+[data-tooltip] {
+	position: relative;
+}
+[data-tooltip]::after {
+	content: attr(data-tooltip);
+	box-sizing: border-box;
+	position: absolute;
+	width:100%;
+	left: 0; top: 0;
+	background:  rgba(10,10,10,0.8);
+	color: #fff;
+	font-size: 0.9em;
+	line-height: 1.2em;
+	padding: 0.2em 0.3em;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+	pointer-events: none;
+	opacity: 0;
+	transition: 0.3s;
+	border-radius: 8px;
+} 
+[data-tooltip]:hover::after {
+	opacity: 1;
+	top: 2.3em;
+}
+
+/* FOOTER */
+
+.footer {
+	height: 42px;
+	line-height: 35px;
+	text-align: center;
+	background: radial-gradient(at 100% 0, rgba(15,15,15,0.9), rgba(08,08,08,0.9));
+	background-size: 7px 7px, 7px 7px, 100% 100%;	
+	border-top: 3px solid #000;
+	border-bottom: 4px solid #000;
+	font-family: 'Oswald', sans-serif;;
+	color: #8e8e8e;
+	text-shadow: 1px 1px 1px #000;
+	text-transform: uppercase;
+	opacity:0; /*Элемент полностью прозрачный (невидимый)*/
+	animation: show 1s 1; /* Указываем название анимации, её время и количество повторов*/
+	animation-fill-mode: forwards; /* Чтобы элемент оставался в конечном состоянии анимации */
+	animation-delay: 3s; /* Задержка перед началом */
+}
+
+@keyframes show{
+	0%{
+		opacity:0;
+	}
+	100% {
+		opacity:1;
+	}
+}
+
+/* Adaptive */
+
+@media screen and (max-width: 480px) {
+.viva h1 {
+	font-size: 160%;
+}
+
+.skills-list {
+	margin: 20px 0;
+	font-size: 100%;
+}
+
+.skills-list ul {
+	width: 26%;
+}
+
+.skills-list ul:nth-of-type(1) {
+	width: 36%;
+}
+
+}
