@@ -1,1 +1,0 @@
-# tirums.github.io
