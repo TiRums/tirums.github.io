@@ -1,0 +1,564 @@
+/* IMPORTS */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
+
+/* BODY */
+
+* {margin: 0;padding: 0;box-sizing: border-box;}
+a, img {display: block; text-decoration: none; transition: 0.3s;}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.06em;
+}
+
+/* ------------------------------------------------------------------------ */
+
+/* WRAP */
+
+.wrap {
+    display: flex;
+    width:1200px;
+    min-width: 600px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 5rem;
+    font-family: 'Caveat', cursive;
+}
+
+nav, header, section, footer {
+    overflow: hidden;
+}
+
+/* ------------------------------------------------------------------------ */
+/* NAV */
+
+nav {
+    background: #131313;
+    width: 100%;
+    height: 60px;
+}
+
+.wrap_nav {
+    height: 60px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* NAV - LOGO */
+
+.nav__logo { 
+    font-family: 'Caveat', cursive;
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+.nav__logo a {    
+    color: #f1f1f1;
+}
+
+.nav__logo a span {
+    color: #ff8400;
+}
+
+.nav__logo a:hover {    
+    text-shadow: 
+    0 1px 2px #131313,
+    1px 0 2px #131313,
+    0 -1px 2px #131313,
+    -1px 0 2px #131313,
+    0 0 15px #fff;
+}
+
+/* NAV - LINKS */
+
+.nav__links { 
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap:20px;
+    text-transform: uppercase;
+}
+
+.nav__links a {
+    color: #f1f1f1;
+    font-size: 1rem;
+    padding: 2px 4px;
+    font-weight: 600;    
+    border-radius: 6px;
+}
+
+.nav__links a:hover {
+    color: #ff8400;
+    border-color: #ff8400;
+}
+
+.nav__links a.nav__links_selected {
+    background: #ff8400;
+    color: #131313;
+}
+
+/* ------------------------------------------------------------------------ */
+/* HEADER */
+
+header {
+    width: 100%;
+    height: calc(100vh - 60px);
+    min-height: 600px;
+    background: 
+        radial-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.65)),
+        url(../img/img_promo_4/header_bg.jpg) center center no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    color: #f1f1f1;
+}
+
+header h1 {
+    font-size: 6rem;
+    text-shadow: 1px 1px 5px #000;    
+}
+
+header h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    text-shadow: 1px 1px 5px #000; 
+}
+
+header a {
+    padding: 20px 26px;
+    border-radius: 8px;
+    background: #ff8400;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+header a:hover {
+    background: #ffc624;
+    color: #333;
+}
+
+
+/* ------------------------------------------------------------------------ */
+/* DISCOUNT */
+
+.discount {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrap_discount {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* DISCOUNT - IMG */
+
+.discount_img {
+    width: 50%;
+    height: 460px;
+    display: flex;
+}
+
+.discount_img_bg {
+    width: 100%;    
+    align-items: center;    
+    padding: 30px 0;
+    color: #f1f1f1;
+}
+
+.discount_pizza .discount_img_bg {background: rgba(255, 132, 0, 0.8);}
+.discount_day .discount_img_bg {background: rgba(52, 52, 52, 0.8);}
+
+.discount_img h5 {
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.discount_img h6 {
+    font-size: 1.25rem;    
+    font-weight: 400;
+}
+
+.discount_pizza {
+    width: 50%;
+    background: url(../img/img_promo_4/discount_pizza.jpg) center center no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+
+.discount_day {
+    width: 50%;
+    background: url(../img/img_promo_4/discount_day.jpg) center center no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+
+.discount_text {
+    width: 50%;
+}
+
+/* DISCOUNT - TEXT */
+
+.discount_text {
+    padding: 0 100px;
+    text-align: center;
+    color: #343434;
+}
+
+.discount_text h3 {
+    font-size: 3rem;
+    font-family: 'Caveat', cursive;
+}
+
+.discount_text p {
+    margin-top: 50px;
+    font-size: 1.2rem;
+    line-height: 1.6em;
+    letter-spacing: 0;
+}
+
+.discount_text a {
+    margin-top: 50px;
+    padding: 20px 26px;
+    border-radius: 8px;
+    background: #ff8400;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+.discount_text a:hover {
+    background: #ffc624;
+    color: #333;
+}
+
+/* ------------------------------------------------------------------------ */
+/* MENU */
+
+.menu h1 {
+    text-align: center;
+}
+
+.menu_list {
+    margin-top: 50px;
+    display: flex;    
+}
+
+/* MENU - ITEMS */
+.menu_list .menu_item {
+    width: 33.333%;
+    height: 350px;     
+    overflow: hidden;
+    background-size: cover;
+    position: relative;
+    background-size: cover;
+}
+
+.menu_item_1 {background: url(../img/img_promo_4/menu_1.jpg) center center no-repeat;}
+.menu_item_2 {background: url(../img/img_promo_4/menu_2.jpg) center center no-repeat;}
+.menu_item_3 {background: url(../img/img_promo_4/menu_3.jpg) center center no-repeat;}
+    
+/* MENU - ITEM - A */
+
+.menu_item a::before {
+    position: absolute; top:0; right:0; bottom:0; left:0;
+    content: '';    
+    background: rgba(0,0,0,0.65);
+    transition: 0.5s;
+    z-index: -1;
+}
+
+.menu_item a:hover::before {
+    background: rgba(0,0,0,0.0);
+}
+
+.menu_list .menu_item a {
+    position: absolute;  top:0; right:0; bottom:0; left:0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 1;
+}
+
+.menu_list .menu_item a span {
+    display: block;    
+    width:65%;
+    margin: 10px;
+    padding: 20px 0;
+    background: #ff8400;
+    text-align: center;
+    color: #f1f1f1;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.menu_list .menu_item:hover a span {
+    width:100%;
+}
+
+.menu_list .menu_item a span:hover {
+    background: #ffc624;
+    color: #131313;
+}
+
+/* ------------------------------------------------------------------------ */
+/* COMMENTS */
+
+.comments {
+    background: #F7F7F7;
+    width: 100%;
+    padding: 80px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.comments h1 {    
+    text-align: center;
+    font-size: 3.5rem;
+}
+
+.wrap_comments {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 100px;
+}
+
+.comments_item {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.comments_item p {
+    text-align: center;
+    font-size: 1rem;
+    letter-spacing: 0;
+    color: #777777;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.07);
+    padding: 30px 20px 80px 20px;
+}
+
+.comments_item img {
+    width: 110px;
+    border-radius: 50%;
+    margin-top: -55px;
+}
+
+.comments_item strong {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    color: #151515;
+}
+
+.comments_item em {
+    margin-top: 6px;
+    font-size: 1rem;
+    color: #6046b6;
+}
+
+
+/* ------------------------------------------------------------------------ */
+/* CHEF */
+
+.chef {
+    padding-top: 80px;
+}
+
+.chef h1 {
+    text-align: center;
+}
+
+.chef_list {
+    margin-top: 80px;
+    width: 100%;
+    display: flex;    
+    gap: 2px;
+}
+
+.chef_item {
+    flex-grow: 1;
+    flex-basis:25%;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.chef_item:hover {
+    flex-grow: 2;
+    flex-basis:40%;
+}
+
+.chef_item_about {
+    margin-top: 20px;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.chef_item_about div {
+    line-height: 1.3rem;
+    text-shadow: 
+        0 0 1px rgba(0, 0, 0,314),
+        0 0 2px rgba(0, 0, 0,314),
+        0 0 3px rgba(0, 0, 0,314),
+        0 0 5px rgba(0, 0, 0,314);
+}
+
+.chef_item_dots {    
+    flex-grow: 1;
+    border-bottom: 2px dotted #F7F7F7;
+    transform: translateY(-1px);
+}
+
+.chef_item_name {
+    font-size: 2rem;
+    color: #F7F7F7;    
+}
+
+.chef_item_price {
+    font-size: 2rem;
+    color: #ffc624;
+}
+
+/* CHEF - ITEMS BG */
+
+.chef_item:nth-child(1) {
+    background: 
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), 
+        url(../img/img_promo_4/chef_1.jpg) center center no-repeat; background-size: cover;
+    }
+.chef_item:nth-child(2) {
+    background: 
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), 
+        url(../img/img_promo_4/chef_2.jpg) center center no-repeat; background-size: cover;
+    }
+.chef_item:nth-child(3) {
+    background: 
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), 
+        url(../img/img_promo_4/chef_3.jpg) center center no-repeat; background-size: cover;
+    }
+.chef_item:nth-child(4) {
+    background: 
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), 
+        url(../img/img_promo_4/chef_4.jpg) center center no-repeat; background-size: cover;
+    }
+
+/* CHEF - ITEMS BG:HOVER */    
+
+.chef_item:nth-child(1):hover {
+    background: 
+        linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05)), 
+        url(../img/img_promo_4/chef_1.jpg) center center no-repeat; background-size: cover;
+    }
+.chef_item:nth-child(2):hover {
+    background: 
+        linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05)), 
+        url(../img/img_promo_4/chef_2.jpg) center center no-repeat; background-size: cover;
+    }
+.chef_item:nth-child(3):hover {
+    background: 
+        linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05)), 
+        url(../img/img_promo_4/chef_3.jpg) center center no-repeat; background-size: cover;
+    }
+.chef_item:nth-child(4):hover {
+    background: 
+        linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05)), 
+        url(../img/img_promo_4/chef_4.jpg) center center no-repeat; background-size: cover;
+    }
+
+.chef_item a {
+    margin-bottom: -50px;
+    text-align: center;
+    width: 60%;
+    padding: 10px 0;
+    border-radius: 8px;
+    background: #ff8400;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    opacity: 0;
+    transition: 0.35s;
+}
+
+.chef_item a:hover {
+    background: #ffc624;
+    color: #333;
+}
+
+.chef_item:hover a {
+    opacity: 1;
+    transform: translateY(-60px);
+}
+
+/* ------------------------------------------------------------------------ */
+/* POSTER */
+
+.poster {
+    margin-top: 160px;    
+    background: url(../img/img_promo_4/poster_bg.jpg) right bottom no-repeat;
+    background-size: cover;
+}
+
+.wrap_poster {
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap:30px;
+}
+
+.wrap_poster h1 {
+    font-size: 2.6rem;
+    color: #ff8400;
+}
+
+.wrap_poster p {
+    width: 45%;
+    font-size: 1rem;
+    line-height: 1.6em;
+    letter-spacing: 0;
+}
+
+.wrap_poster a {
+    padding: 20px 26px;
+    border-radius: 8px;
+    background: #ff8400;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+.wrap_poster a:hover {
+    background: #ffc624;
+    color: #333;
+}
