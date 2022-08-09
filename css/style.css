@@ -87,7 +87,7 @@ nav {
 }
 
 nav a {
-	color: #F1F1F1;
+	color: #dbb021;
 	font-weight: 700;
 	font-size: 1.5rem;
 	text-decoration: none;
@@ -95,7 +95,7 @@ nav a {
 
 nav a span {
 	display: inline-block;
-	color: #dbb021;
+	color: #fd2525;
 	transition: 0.5s;
 }
 
@@ -110,7 +110,6 @@ nav a:hover span {
 	text-align: center;
 	margin-top: 0;
 	margin-left: 30px;
-	padding-top: 26px;
 	display: flex;
 	width: 190px;
 	height: 100px;
@@ -126,11 +125,12 @@ nav a:hover span {
 	border-bottom: 2px solid #333;
 }
 
-.logo a {
-	color: #dbb021;
+.logo a {	
 	text-decoration: none;
-	font-size: 2.4rem;
-	line-height: 1.6rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;	
 	font-weight: 700;
 	text-shadow: 0 1px 1px #000,
 		1px 0 1px #000,
@@ -138,16 +138,19 @@ nav a:hover span {
 		-1px 0 1px #000;
 }
 
-/* ------------------------------------------------------------------------ */
-/* HEADER - LOGO - Promo */
+.logo a div {line-height: 1em;}
 
-#promo {
+#blinker {
+	color: #dbb021;
+	font-size: 2.4rem;
+
+}
+
+#forge {
 	color: #fd2525;
 	opacity: 0.85;
 	font-size: 1.8rem;
-	position: absolute;
-	margin-top: 5px;
-	margin-left: 40px;
+	text-align: center;
 }
 
 /* ------------------------------------------------------------------------ */
@@ -171,7 +174,7 @@ nav a:hover span {
 	}
 }
 
-.logo:hover #promo {
+.logo:hover #forge {
 	transition: 0.5s;
 	transform: rotate(720deg);
 	opacity: 1;
