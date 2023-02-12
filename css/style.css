@@ -16,8 +16,7 @@
 }
 
 body {
-	background-color: #333;
-	background: url(../img/body_bg.jpg) left top repeat;
+	background: url(../img/body_bg.jpg) left top repeat #333;
 	background-attachment: fixed;
 	font-family: 'Roboto Condensed', sans-serif;
 }
@@ -52,7 +51,7 @@ header {
 		url(../img/logo_bg_bolt.png) right 6px bottom 6px no-repeat,
 		url(../img/logo_bg.png) center center no-repeat;
 	background-size: 8px,8px,8px,8px,cover;
-	background-color: gold;
+	background-color: #b4964a;
 	margin: 10px 0;
 	padding: 2px;	
 	display: flex;
