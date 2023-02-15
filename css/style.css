@@ -179,6 +179,7 @@ h1::after {
 	margin: 16px 0px;
 	border: 1px solid #000;
 	box-shadow: 0 0 10px 3px #666;
+	position: relative;
 }
 
 .portfolio img {
@@ -186,11 +187,36 @@ h1::after {
 	width: 100%;
 	/* 300x186*/
 	transform: scale(1);
+	position: relative;
 }
 
-.portfolio img:hover {
+.portfolio a:hover img {
 	transform: scale(1.2);
 	box-shadow: 0 0 15px 5px #666;
+}
+
+.portfolio span { 
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	left: 0;
+	bottom: -50px;	
+	width: calc(100% - 6px);
+	padding: 8px;
+	margin: 3px;
+	background: rgba(0, 0, 0, 0.65); 
+	color: #dbb021;
+	font-size: 20px;
+}
+
+.portfolio a:hover span {
+	bottom:0;
+}
+
+.portfolio a span:hover {
+	color: #000;
+	background: rgba(219, 176, 33, 0.85);
 }
 
 /* ------------------------------------------------------------------------ */
