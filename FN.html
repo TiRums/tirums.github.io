@@ -116,6 +116,29 @@
 		font-family: Calibri, serif;
 		font-size: 14px;
 	}
+	.ta_wrap {position: relative;}
+	.ta_buttons {
+		position: absolute;
+		top:2px;
+		right:4px;
+		display: flex;
+		gap:4px;
+	}
+	.ta_buttons button {
+		width: 36px;
+		height: 16px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: #ccc;
+		border: 1px solid #ccc;
+		outline: none;
+		cursor: pointer;
+		opacity: 0.65;
+	}
+	.ta_buttons button:hover {
+		opacity: 1;
+	}
 	/*** BLOCK - END ***/
 
 	/*** BLOCK - START ***/
@@ -227,31 +250,32 @@
 	<!-- GROUP1 -->
 		<div id="page1">
 			<div class="sub_pages">
-				<textarea id="input01" placeholder="01"></textarea>
-				<textarea id="input02" placeholder="02"></textarea>
-				<textarea id="input03" placeholder="03"></textarea>
-				<textarea id="input04" placeholder="04"></textarea>
-				<textarea id="input05" placeholder="05"></textarea>
-				<textarea id="input06" placeholder="06"></textarea>
-				<textarea id="input07" placeholder="07"></textarea>
-				<textarea id="input08" placeholder="08"></textarea>
-				<textarea id="input09" placeholder="09"></textarea>
-				<textarea id="input10" placeholder="10"></textarea>
-				<textarea id="input11" placeholder="11"></textarea>
-				<textarea id="input12" placeholder="12"></textarea>
-				<textarea id="input13" placeholder="13"></textarea>
-				<textarea id="input14" placeholder="14"></textarea>
-				<textarea id="input15" placeholder="15"></textarea>
-				<textarea id="input16" placeholder="16"></textarea>
-				<textarea id="input17" placeholder="17"></textarea>
-				<textarea id="input18" placeholder="18"></textarea>
-				<textarea id="input19" placeholder="19"></textarea>
-				<textarea id="input20" placeholder="20"></textarea>
-				<textarea id="input21" placeholder="21"></textarea>
-				<textarea id="input22" placeholder="22"></textarea>
-				<textarea id="input23" placeholder="23"></textarea>
-				<textarea id="input24" placeholder="24"></textarea>
-				<textarea id="input25" placeholder="25"></textarea>
+				<div class="ta_wrap"><textarea id="input01" placeholder="01"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input02" placeholder="02"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input03" placeholder="03"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input04" placeholder="04"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input05" placeholder="05"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input06" placeholder="06"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input07" placeholder="07"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input08" placeholder="08"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input09" placeholder="09"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input10" placeholder="10"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input11" placeholder="11"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input12" placeholder="12"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input13" placeholder="13"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input14" placeholder="14"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input15" placeholder="15"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input16" placeholder="16"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input17" placeholder="17"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input18" placeholder="18"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input19" placeholder="19"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input20" placeholder="20"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input21" placeholder="21"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input22" placeholder="22"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input23" placeholder="23"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input24" placeholder="24"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input25" placeholder="25"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				
 			</div>
 			<ul class="links">
 				<li  id="output01" onclick="location.href='#input01'"></li>
@@ -300,10 +324,11 @@
 
 
 <script>
+	/*** INPUTS-LI - START ***/
 	// Получаем все textarea и li элементы на странице по их id
 	const inputs = document.querySelectorAll('textarea[id^="input"]');
 	const outputs = document.querySelectorAll('li[id^="output"]');
-
+	
 	// Проходимся по каждому textarea и устанавливаем его значение в соответствующий li элемент
 	for (let i = 0; i < inputs.length; i++) {
 		const input = inputs[i];
@@ -313,9 +338,29 @@
 		
 		// Добавляем обработчик события input для каждого textarea
 		input.addEventListener("input", () => {
-		output.textContent = input.value;
+			output.textContent = input.value;
 		});
 	}
+	/*** INPUTS-LI - END ***/
+
+
+	/*** CopyClearButtons - START ***/
+	// Для каждой кнопки копирования добавляем обработчик события нажатия
+	document.querySelectorAll('.sub_pages .ta_buttons #btn_copy').forEach(function(button) {
+		button.addEventListener('click', function() {
+			var textarea = this.parentNode.parentNode.querySelector('textarea');
+			textarea.select();
+			document.execCommand('copy');
+		});
+	});
+
+	// Для каждой кнопки очистки добавляем обработчик события нажатия
+	document.querySelectorAll('.sub_pages .ta_buttons #btn_clear').forEach(function(button) {
+		button.addEventListener('click', function() {
+			this.parentNode.parentNode.querySelector('textarea').value = '';
+		});
+	});
+	/*** CopyClearButtons - END ***/
 </script>
 </body>
 </html>
