@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FN</title>
+<link rel="icon" type="image/ico" href="favicon.ico">
+
+<style type="text/css">
+  /*** BASE - START ***/
+  * {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	body {
+		background: #333;
+		font-family: Calibri, serif;
+		font-size: 13px;
+	}
+	textarea {		
+		padding: 20px 30px;
+	}
+	/*** BASE - END ***/
+
+	/*** MENU - START ***/
+	.nav      {display: flex; justify-content:center; align-items: center; height: 40px;background:#222;}
+	.nav ul   {display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1300px;}
+	.nav span {display: flex; justify-content:center; align-items: center; gap:10px;}
+	.menu {display: flex; justify-content: center; align-items: center; height: 38px; flex-grow: 1;}
+	.nav ul li {list-style-type: none;}
+	.nav ul li a {
+		display: inline-block;
+		width: 38px;
+		height: 12px;
+		background: linear-gradient(to top, #353535, #656565);
+		border: 1px solid #000;
+	}
+	.nav ul li a:hover {background: linear-gradient(to top, #622101, #76300d);}
+	/*** MENU - END ***/
+	
+	/*** BUTTONS - START ***/
+	.main_buttons {
+		width: 15%;
+		min-width: 180px;
+	}
+	.main_buttons button {
+		display: flex; 
+		justify-content:center; 
+		align-items: center; 
+		width: 38px;height: 16px; 
+		background: #888; 
+		border: 1px solid #888; 
+		color: #333;
+		border-radius: 3px;
+		font-family: Calibri, serif;
+		font-size: 14px;
+		font-weight: bold;
+	}
+	.main_buttons button:hover {
+		cursor: pointer;
+	}
+	#but_save:hover {
+		background: #0e5984;
+		color: #46aee9;
+		box-shadow: 0 0 20px #1e8bc9;
+		border: 1px solid #1e8bc9;
+	}
+	#but_input:hover {
+		background: #49680d;
+		color: #b4ea4b;
+		box-shadow: 0 0 20px #8fc91e;
+		border: 1px solid #8fc91e;
+	}
+	#but_clear:hover {
+		background: #7a1e0e;
+		color: #e95942;
+		box-shadow: 0 0 20px #c9361e;
+		border: 1px solid #c9361e;
+	}
+	/*** BUTTONS - END ***/
+
+	/*** CONTENT - START ***/
+	.content {
+		border: 1px solid #222;
+		width: calc(100% - 20px);
+		height: calc(100vh - 60px);
+		margin: 10px auto;
+		overflow: hidden;
+	}
+	.content>div {
+		width: 100%;
+		max-width: 1300px;
+		height: calc(100vh - 62px);
+		margin: 0 auto;		
+		box-sizing: border-box;
+		display: flex;
+		justify-content: space-between;
+		
+	}
+	/*** CONTENT - END ***/
+
+	/*** BLOCK - START ***/
+	.sub_pages {
+		width: 85%;
+		overflow: hidden;
+	}
+	.sub_pages textarea {
+		border: 1px solid #222;
+		background: #fefefe;
+		width: 100%;
+		max-width: 100%;
+		height: calc(100vh - 60px);
+		outline: none;
+		resize: horizontal;
+		font-family: Calibri, serif;
+		font-size: 14px;
+	}
+	/*** BLOCK - END ***/
+
+	/*** BLOCK - START ***/
+	.links {
+		width: 15%;
+		min-width: 180px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap:10px;
+	}
+	.links li {
+		list-style-type: none;		
+		width: 90%;
+		height: 20px;
+		padding: 0 4px;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		border: 1px solid #222;
+		background: #222;
+		color: #999;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+	.links li:hover {
+		cursor: pointer;
+	}
+	/*** BLOCK - END ***/
+
+	/*** BLOCK - START ***/
+	#page2, #page3 {		
+		width: 90%;
+		max-width: 90%;
+		display: flex;
+		justify-content: center;
+	}
+	#ta_duo, #ta_trio {
+		display: flex;
+		border: 1px solid #222;
+		background: #ccc;
+		width: 100%;
+		max-width: 100%;
+		height: calc(100vh - 60px);
+		outline: none;
+		resize: none;
+		font-family: Calibri, serif;
+		font-size: 14px;
+	}
+	#ta_duo:hover, #ta_trio:hover {
+		background: #fefefe;
+	}
+	#ta_duo:focus, #ta_trio:focus {
+		background: #fefefe;
+	}
+	/*** BLOCK - END ***/
+
+	/*** BLOCK - START ***/
+	#page4 {
+		max-width: 100%;
+	}
+	#clear_field {
+		width: 100%;
+		height: calc(100vh - 60px);
+		background: #333;
+	}
+	/*** BLOCK - END ***/
+	/*** BLOCK - START ***/
+	/*** BLOCK - END ***/
+</style>
+
+<script language="JavaScript">
+	function SaveDesc(form)  {document.querySelectorAll("textarea").forEach((el,i) => (localStorage.setItem(i, el.value)));}
+	function ClearDesc(form) {
+		document.querySelectorAll("textarea").forEach((el) => (el.value = ""));
+		document.querySelectorAll('li[id^="output"]').forEach((el) => (el.innerHTML = ""));
+	}	
+	function InputDesc(form) {
+		document.querySelectorAll("textarea").forEach((el,i) => (el.value = localStorage.getItem(i)));
+		document.querySelectorAll('li[id^="output"]').forEach((el,i) => (el.innerHTML = localStorage.getItem(i)));
+	}
+
+	
+</script>
+</head>
+
+<body>
+
+	<!-- NAVIGATION -->
+	<div class="nav">
+		<ul>
+		<span class="menu">
+			<li><a href="#page1"></a></li>
+			<li><a href="#page2"></a></li>
+			<li><a href="#page3"></a></li>
+			<li><a href="#page4"></a></li>
+		</span>
+		<span class="main_buttons">
+			<button id="but_save"  title="Save" onClick="SaveDesc(this.form)">S</button>
+			<button id="but_input" title="Input" onClick="InputDesc(this.form)">I</button>
+			<button id="but_clear" title="Delete" onClick="ClearDesc(this.form)">X</button>
+		</span>
+		</ul>
+	</div>
+	<!-- NAVIGATION END -->
+
+	<!-- CONTENT -->
+	<div class="content">
+	<!-- GROUP1 -->
+		<div id="page1">
+			<div class="sub_pages">
+				<textarea id="input01" placeholder="01"></textarea>
+				<textarea id="input02" placeholder="02"></textarea>
+				<textarea id="input03" placeholder="03"></textarea>
+				<textarea id="input04" placeholder="04"></textarea>
+				<textarea id="input05" placeholder="05"></textarea>
+				<textarea id="input06" placeholder="06"></textarea>
+				<textarea id="input07" placeholder="07"></textarea>
+				<textarea id="input08" placeholder="08"></textarea>
+				<textarea id="input09" placeholder="09"></textarea>
+				<textarea id="input10" placeholder="10"></textarea>
+				<textarea id="input11" placeholder="11"></textarea>
+				<textarea id="input12" placeholder="12"></textarea>
+				<textarea id="input13" placeholder="13"></textarea>
+				<textarea id="input14" placeholder="14"></textarea>
+				<textarea id="input15" placeholder="15"></textarea>
+				<textarea id="input16" placeholder="16"></textarea>
+				<textarea id="input17" placeholder="17"></textarea>
+				<textarea id="input18" placeholder="18"></textarea>
+				<textarea id="input19" placeholder="19"></textarea>
+				<textarea id="input20" placeholder="20"></textarea>
+				<textarea id="input21" placeholder="21"></textarea>
+				<textarea id="input22" placeholder="22"></textarea>
+				<textarea id="input23" placeholder="23"></textarea>
+				<textarea id="input24" placeholder="24"></textarea>
+				<textarea id="input25" placeholder="25"></textarea>
+			</div>
+			<ul class="links">
+				<li  id="output01" onclick="location.href='#input01'"></li>
+				<li  id="output02" onclick="location.href='#input02'"></li>
+				<li  id="output03" onclick="location.href='#input03'"></li>
+				<li  id="output04" onclick="location.href='#input04'"></li>
+				<li  id="output05" onclick="location.href='#input05'"></li>
+				<li  id="output06" onclick="location.href='#input06'"></li>
+				<li  id="output07" onclick="location.href='#input07'"></li>
+				<li  id="output08" onclick="location.href='#input08'"></li>
+				<li  id="output09" onclick="location.href='#input09'"></li>
+				<li  id="output10" onclick="location.href='#input10'"></li>
+				<li  id="output11" onclick="location.href='#input11'"></li>
+				<li  id="output12" onclick="location.href='#input12'"></li>
+				<li  id="output13" onclick="location.href='#input13'"></li>
+				<li  id="output14" onclick="location.href='#input14'"></li>
+				<li  id="output15" onclick="location.href='#input15'"></li>
+				<li  id="output16" onclick="location.href='#input16'"></li>
+				<li  id="output17" onclick="location.href='#input17'"></li>
+				<li  id="output18" onclick="location.href='#input18'"></li>
+				<li  id="output19" onclick="location.href='#input19'"></li>
+				<li  id="output20" onclick="location.href='#input20'"></li>
+				<li  id="output21" onclick="location.href='#input21'"></li>
+				<li  id="output22" onclick="location.href='#input22'"></li>
+				<li  id="output23" onclick="location.href='#input23'"></li>
+				<li  id="output24" onclick="location.href='#input24'"></li>
+				<li  id="output25" onclick="location.href='#input25'"></li>
+			</ul>
+		</div>
+
+		<div id="page2">
+			<textarea id="ta_duo"></textarea>
+			<textarea id="ta_duo"></textarea>
+		</div>
+		<div id="page3">
+			<textarea id="ta_trio"></textarea>
+			<textarea id="ta_trio"></textarea>
+			<textarea id="ta_trio"></textarea>			
+		</div>
+		<div id="page4">
+			<div id="clear_field"></div>
+		</div>
+		
+	</div>
+<!-- CONTENT END -->
+
+
+<script>
+	// Получаем все textarea и li элементы на странице по их id
+	const inputs = document.querySelectorAll('textarea[id^="input"]');
+	const outputs = document.querySelectorAll('li[id^="output"]');
+
+	// Проходимся по каждому textarea и устанавливаем его значение в соответствующий li элемент
+	for (let i = 0; i < inputs.length; i++) {
+		const input = inputs[i];
+		const output = outputs[i];
+		
+		output.textContent = input.value;
+		
+		// Добавляем обработчик события input для каждого textarea
+		input.addEventListener("input", () => {
+		output.textContent = input.value;
+		});
+	}
+</script>
+</body>
+</html>
