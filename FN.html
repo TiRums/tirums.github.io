@@ -184,6 +184,9 @@
 		display: flex;
 		justify-content: center;
 	}
+	#page2>div, #page3>div {
+		width: 100%;
+	}
 	#ta_duo, #ta_trio {
 		display: flex;
 		border: 1px solid #222;
@@ -212,6 +215,8 @@
 		width: 100%;
 		height: calc(100vh - 60px);
 		background: #333;
+		position: relative;
+		z-index: 1000;
 	}
 	/*** BLOCK - END ***/
 	/*** BLOCK - START ***/
@@ -315,13 +320,13 @@
 		</div>
 
 		<div id="page2">
-			<textarea id="ta_duo"></textarea>
-			<textarea id="ta_duo"></textarea>
+			<div class="ta_wrap"><textarea id="ta_duo"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+			<div class="ta_wrap"><textarea id="ta_duo"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
 		</div>
 		<div id="page3">
-			<textarea id="ta_trio"></textarea>
-			<textarea id="ta_trio"></textarea>
-			<textarea id="ta_trio"></textarea>			
+			<div class="ta_wrap"><textarea id="ta_trio"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+			<div class="ta_wrap"><textarea id="ta_trio"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+			<div class="ta_wrap"><textarea id="ta_trio"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
 		</div>
 		<div id="page4">
 			<div id="clear_field"></div>
@@ -354,7 +359,7 @@
 
 	/*** CopyClearButtons - START ***/
 	// Для каждой кнопки копирования добавляем обработчик события нажатия
-	document.querySelectorAll('.sub_pages .ta_buttons #btn_copy').forEach(function(button) {
+	document.querySelectorAll('.ta_buttons #btn_copy').forEach(function(button) {
 		button.addEventListener('click', function() {
 			var textarea = this.parentNode.parentNode.querySelector('textarea');
 			textarea.select();
@@ -363,10 +368,14 @@
 	});
 
 	// Для каждой кнопки очистки добавляем обработчик события нажатия
-	document.querySelectorAll('.sub_pages .ta_buttons #btn_clear').forEach(function(button) {
-		button.addEventListener('click', function() {
-			this.parentNode.parentNode.querySelector('textarea').value = '';
-		});
+	document.querySelectorAll('.ta_buttons #btn_clear').forEach(function(button) {
+	button.addEventListener('click', function() {
+		const textArea = this.parentNode.parentNode.querySelector('textarea');
+		const listItem = document.querySelector(`#output${textArea.id.slice(-2)}`);
+		
+		textArea.value = '';
+		listItem.textContent = '';
+	});
 	});
 	/*** CopyClearButtons - END ***/
 </script>
