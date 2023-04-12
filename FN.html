@@ -210,13 +210,49 @@
 	/*** BLOCK - START ***/
 	#page4 {
 		max-width: 100%;
-	}
+		height: calc(100vh - 60px);
+		background: #333;
+		position: relative;
+		z-index: 1000;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;		
+	}	
 	#clear_field {
 		width: 100%;
 		height: calc(100vh - 60px);
 		background: #333;
 		position: relative;
 		z-index: 1000;
+	}
+	#ta_fast {
+		min-width: 500px;
+		overflow: hidden;
+	}
+	#ta_fast textarea {
+		border: 1px solid #222;
+		background: #fefefe;
+		width: 650px;
+		min-width: 500px;
+		overflow: hidden;
+		height: calc(100vh - 60px);
+		outline: none;
+		resize: horizontal;
+		font-family: Calibri, serif;
+		font-size: 14px;
+	}
+	#btn_fast {
+		width: 10%;
+		min-width: 180px;
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+	}
+	#btn_fast button {
+		height: 50px;
+		border: 0;
+		border-radius: 0;
+
 	}
 	/*** BLOCK - END ***/
 	/*** BLOCK - START ***/
@@ -329,7 +365,16 @@
 			<div class="ta_wrap"><textarea id="ta_trio"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
 		</div>
 		<div id="page4">
-			<div id="clear_field"></div>
+			<!--<div id="clear_field"></div>-->
+			<div id="ta_fast">
+				<div class="ta_wrap"><textarea id="input31" placeholder="31"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+			</div>
+			<div id="btn_fast">
+				<button  onclick="replaceTabs()">Описание</button>
+				<button  onclick="replaceComplectation()">Комплектация</button>
+				<button  onclick="replaceParams()">Характеристики</button>
+				<button  onclick="replaceTrim()">Trim</button>
+			</div>
 		</div>
 		
 	</div>
@@ -369,15 +414,54 @@
 
 	// Для каждой кнопки очистки добавляем обработчик события нажатия
 	document.querySelectorAll('.ta_buttons #btn_clear').forEach(function(button) {
-	button.addEventListener('click', function() {
-		const textArea = this.parentNode.parentNode.querySelector('textarea');
-		const listItem = document.querySelector(`#output${textArea.id.slice(-2)}`);
-		
-		textArea.value = '';
-		listItem.textContent = '';
-	});
+		button.addEventListener('click', function() {
+			const textArea = this.parentNode.parentNode.querySelector('textarea');
+			const listItem = document.querySelector(`#output${textArea.id.slice(-2)}`);
+			
+			textArea.value = '';
+			listItem.textContent = '';
+		});
 	});
 	/*** CopyClearButtons - END ***/
+
+	function replaceTabs() {
+		let input = document.getElementById("input31");
+		let content = input.value.trim();
+		content = content.replace(/\t/g, "");
+		content = content.replace(/\s{2,}/g, "\n");
+		input.value = content;
+	}
+	function replaceComplectation() {
+		let input = document.getElementById("input31");
+		let content = input.value.trim();
+		content = content.replace(/\t/g, "");
+		content = content.replace(/\s{2,}/g, "\n");
+		content = content.replace(/[\n]+/g, "; ");
+		input.value = content;
+	}
+	function replaceParams() {
+		let input = document.getElementById("input31");
+		let content = input.value.trim();
+		content = content.replace(/\t/g, "");
+		content = content.replace(/\s{2,}/g, "\n");
+
+		
+		var lines = content.split("\n");
+		for (var i = 0; i < lines.length; i++) {
+			if (i % 2 == 0) {
+				lines[i] += ":";
+			}
+		}
+		content = lines.join("\n");
+		content = content.replace(/:\n/g, ': ');
+		input.value = content;
+	}
+	function replaceTrim() {
+		let input = document.getElementById("input31");
+		let content = input.value.trim();
+		input.value = content;
+	}
+	
 </script>
 </body>
 </html>
