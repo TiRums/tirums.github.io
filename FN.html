@@ -367,7 +367,7 @@
 		<div id="page4">
 			<!--<div id="clear_field"></div>-->
 			<div id="ta_fast">
-				<div class="ta_wrap"><textarea id="input31" placeholder="31"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class=""><textarea id="txt_fast" placeholder="31"></textarea></div>
 			</div>
 			<div id="btn_fast">
 				<button  onclick="replaceTabs()">Описание</button>
@@ -425,14 +425,14 @@
 	/*** CopyClearButtons - END ***/
 
 	function replaceTabs() {
-		let input = document.getElementById("input31");
+		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
 		content = content.replace(/\t/g, "");
 		content = content.replace(/\s{2,}/g, "\n");
 		input.value = content;
 	}
 	function replaceComplectation() {
-		let input = document.getElementById("input31");
+		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
 		content = content.replace(/\t/g, "");
 		content = content.replace(/\s{2,}/g, "\n");
@@ -440,11 +440,11 @@
 		input.value = content;
 	}
 	function replaceParams() {
-		let input = document.getElementById("input31");
+		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
+		content = content.replace(/(Вібрація|Звукова емісія)/g, '');
 		content = content.replace(/\t/g, "");
 		content = content.replace(/\s{2,}/g, "\n");
-
 		
 		var lines = content.split("\n");
 		for (var i = 0; i < lines.length; i++) {
@@ -457,7 +457,7 @@
 		input.value = content;
 	}
 	function replaceTrim() {
-		let input = document.getElementById("input31");
+		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
 		input.value = content;
 	}
