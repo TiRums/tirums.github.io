@@ -371,8 +371,10 @@
 			</div>
 			<div id="btn_fast">
 				<button  onclick="replaceTabs()">Описание</button>
+				<button  onclick="replaceTabsA()">Описание Абзацы</button>
 				<button  onclick="replaceComplectation()">Комплектация</button>
-				<button  onclick="replaceParams()">Характеристики</button>
+				<button  onclick="replaceParams()">Харак-тики попарно</button>				
+				<button  onclick="replaceDivide()">Дробить по ";"</button>
 				<button  onclick="replaceTrim()">Trim</button>
 			</div>
 		</div>
@@ -428,15 +430,36 @@
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
 		content = content.replace(/\t/g, "");
+		content = content.replace(/\n- /g, "\n");
 		content = content.replace(/\s{2,}/g, "\n");
+		input.value = content;
+	}
+	function replaceTabsA() {
+		let input = document.getElementById("txt_fast");
+		let content = input.value.trim();
+		content = content.replace(/\t/g, "");
+		content = content.replace(/\n- /g, "\n");
+		content = content.replace(/\s{2,}/g, "\n");
+		content = content.replace(/\n/g, "\n\n");
 		input.value = content;
 	}
 	function replaceComplectation() {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
+		content = content.replace(/;{2,}/g, ";");
+		content = content.replace(/\t/g, "");
+		content = content.replace(/\n- /g, "\n");
+		content = content.replace(/\s{2,}/g, "\n");
+		content = content.replace(/[\n]+/g, "; ");	
+		content = content.replace(/;{2,}/g, ";");	
+		input.value = content;
+	}
+	function replaceDivide() {
+		let input = document.getElementById("txt_fast");
+		let content = input.value.trim();
+		content = content.replace(/;/g, "\n");
 		content = content.replace(/\t/g, "");
 		content = content.replace(/\s{2,}/g, "\n");
-		content = content.replace(/[\n]+/g, "; ");
 		input.value = content;
 	}
 	function replaceParams() {
