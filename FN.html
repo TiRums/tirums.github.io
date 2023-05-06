@@ -466,7 +466,7 @@
 		content = content.replace(/\t/g, "");
 		content = content.replace(/\n- /g, "\n");
 		content = content.replace(/\s{2,}/g, "\n");
-		content = content.replace(/• /g, "");
+		content = content.replace(/(• |•)/g, "");
 		input.value = content;
 	}
 	function replaceTabsA() {
@@ -476,7 +476,7 @@
 		content = content.replace(/\n- /g, "\n");
 		content = content.replace(/\s{2,}/g, "\n");
 		content = content.replace(/\n/g, "\n\n");
-		content = content.replace(/• /g, "");
+		content = content.replace(/(• |•)/g, "");
 		input.value = content;
 	}
 	function replaceTabsList() {
