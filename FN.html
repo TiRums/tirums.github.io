@@ -38,6 +38,7 @@
 		border: 1px solid #000;
 	}
 	.nav ul li a:hover {background: linear-gradient(to top, #622101, #76300d);}
+	#hdr_input {width:300px;outline: none;}
 	/*** MENU - END ***/
 	
 	/*** BUTTONS - START ***/
@@ -256,6 +257,26 @@
 	}
 	/*** BLOCK - END ***/
 	/*** BLOCK - START ***/
+	div.gen_lines {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+	}
+	#gen_input {
+		display: block;
+		width:65%;
+		height: 30px;
+		outline:none;
+	}
+	#gen_button {
+		display:block;
+		width:35%;
+		height:28px !important;
+		padding: 0;
+		margin: 0;
+	}
+
+
 	/*** BLOCK - END ***/
 </style>
 
@@ -280,6 +301,7 @@
 	<div class="nav">
 		<ul>
 		<span class="menu">
+			<li><input type="text" id="hdr_input" onclick="this.select();"></li>
 			<li><a href="#page1"></a></li>
 			<li><a href="#page2"></a></li>
 			<li><a href="#page3"></a></li>
@@ -299,31 +321,31 @@
 	<!-- GROUP1 -->
 		<div id="page1">
 			<div class="sub_pages">
-				<div class="ta_wrap"><textarea id="input01" placeholder="01"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input02" placeholder="02"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input03" placeholder="03"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input04" placeholder="04"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input05" placeholder="05"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input06" placeholder="06"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input07" placeholder="07"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input08" placeholder="08"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input09" placeholder="09"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input10" placeholder="10"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input11" placeholder="11"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input12" placeholder="12"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input13" placeholder="13"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input14" placeholder="14"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input15" placeholder="15"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input16" placeholder="16"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input17" placeholder="17"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input18" placeholder="18"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input19" placeholder="19"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input20" placeholder="20"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input21" placeholder="21"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input22" placeholder="22"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input23" placeholder="23"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input24" placeholder="24"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
-				<div class="ta_wrap"><textarea id="input25" placeholder="25"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input01" placeholder="01"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input02" placeholder="02"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input03" placeholder="03"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input04" placeholder="04"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input05" placeholder="05"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input06" placeholder="06"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input07" placeholder="07"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input08" placeholder="08"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input09" placeholder="09"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input10" placeholder="10"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input11" placeholder="11"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input12" placeholder="12"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input13" placeholder="13"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input14" placeholder="14"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input15" placeholder="15"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input16" placeholder="16"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input17" placeholder="17"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input18" placeholder="18"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input19" placeholder="19"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input20" placeholder="20"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input21" placeholder="21"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input22" placeholder="22"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input23" placeholder="23"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input24" placeholder="24"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
+				<div class="ta_wrap"><textarea id="input25" placeholder="25"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
 				
 			</div>
 			<ul class="links">
@@ -372,10 +394,21 @@
 			<div id="btn_fast">
 				<button  onclick="replaceTabs()">Описание</button>
 				<button  onclick="replaceTabsA()">Описание Абзацы</button>
+				<button  onclick="replaceTabsList()">Описание Список</button>
+				<hr>
 				<button  onclick="replaceComplectation()">Комплектация</button>
+				<button  onclick="replaceComplectation2()">Комплектация ", и"</button>
+				<button  onclick="replaceComplectation3()">Комплектация ","</button>
+				<hr>
 				<button  onclick="replaceParams()">Харак-тики попарно</button>				
 				<button  onclick="replaceDivide()">Дробить по ";"</button>
+				<button  onclick="replaceDivide2()">Дробить по ","</button>
+				<hr>
 				<button  onclick="replaceTrim()">Trim</button>
+				<div class="gen_lines">
+					<input id='gen_input' type="text" placeholder="кол-во линий">
+					<button id='gen_button' onclick="genLines()">Gen</button>
+				</div>
 			</div>
 		</div>
 		
@@ -429,9 +462,11 @@
 	function replaceTabs() {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
+		content = content.replace(/(Рабочие параметры|Конструктивные и функциональные особенности|Дополнительная информация|Характеристики двигателя и устройства|Дополнительная информация|ABAC |КОПИЯ )/g, '');
 		content = content.replace(/\t/g, "");
 		content = content.replace(/\n- /g, "\n");
 		content = content.replace(/\s{2,}/g, "\n");
+		content = content.replace(/• /g, "");
 		input.value = content;
 	}
 	function replaceTabsA() {
@@ -441,7 +476,20 @@
 		content = content.replace(/\n- /g, "\n");
 		content = content.replace(/\s{2,}/g, "\n");
 		content = content.replace(/\n/g, "\n\n");
+		content = content.replace(/• /g, "");
 		input.value = content;
+	}
+	function replaceTabsList() {
+		let input = document.getElementById("txt_fast");
+		let content = input.value.trim();
+		content = content.replace(/(Рабочие параметры|Конструктивные и функциональные особенности|Дополнительная информация|Характеристики двигателя и устройства|Дополнительная информация|ABAC |КОПИЯ )/g, '');
+		content = content.replace(/•/g, "\n");
+		content = content.replace(/\t/g, "");		
+		content = content.replace(/\n- /g, "\n");
+		content = content.replace(/\s{2,}/g, "\n");		
+		input.value = content.trim();
+		content = content.replace(/\n/g, "\n• ");
+		input.value = content.startsWith("\n•") ? content.trim() : "• " + content;
 	}
 	function replaceComplectation() {
 		let input = document.getElementById("txt_fast");
@@ -454,6 +502,18 @@
 		content = content.replace(/;{2,}/g, ";");	
 		input.value = content;
 	}
+	function replaceComplectation2() {
+		let input = document.getElementById("txt_fast");
+		let content = input.value.trim();
+		content = content.replace(/(, | и)/g, '; ');	
+		input.value = content;
+	}
+	function replaceComplectation3() {
+		let input = document.getElementById("txt_fast");
+		let content = input.value.trim();
+		content = content.replace(/(,|, )/g, '; ');	
+		input.value = content;
+	}
 	function replaceDivide() {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
@@ -462,21 +522,31 @@
 		content = content.replace(/\s{2,}/g, "\n");
 		input.value = content;
 	}
+	function replaceDivide2() {
+		let input = document.getElementById("txt_fast");
+		let content = input.value.trim();
+		content = content.replace(/,/g, "\n");
+		content = content.replace(/\t/g, "");
+		content = content.replace(/\s{2,}/g, "\n");
+		input.value = content;
+	}
 	function replaceParams() {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
-		content = content.replace(/(Вібрація|Звукова емісія)/g, '');
+		content = content.replace(/(Рабочие параметры|Конструктивные и функциональные особенности|Дополнительная информация|Дополнительная информация|Характеристики двигателя и устройства)/g, '\n');
 		content = content.replace(/\t/g, "");
 		content = content.replace(/\s{2,}/g, "\n");
-		
-		var lines = content.split("\n");
-		for (var i = 0; i < lines.length; i++) {
+		content = content.trim();
+
+		let lines = content.split("\n");
+		for (let i = 0; i < lines.length; i++) {
 			if (i % 2 == 0) {
 				lines[i] += ":";
 			}
 		}
 		content = lines.join("\n");
 		content = content.replace(/:\n/g, ': ');
+		content = content.replace(/:{2,}/g, ":");
 		input.value = content;
 	}
 	function replaceTrim() {
@@ -484,6 +554,28 @@
 		let content = input.value.trim();
 		input.value = content;
 	}
+	function genLines() {
+  // Получаем элементы DOM
+		const input = document.getElementById('gen_input');
+		const textarea = document.getElementById('txt_fast');
+
+		// Получаем максимальное число из input
+		const maxNumber = parseInt(input.value);
+
+		// Создаем массив для хранения прогрессии
+		const progression = [];
+
+		// Заполняем массив числами от 1 до maxNumber
+		for (let i = 1; i <= maxNumber; i++) {
+			progression.push(i);
+		}
+
+		// Преобразуем массив в строку, разделяя элементы переводом строки
+		const result = progression.join('\n');
+
+		// Выводим результат в textarea
+		textarea.value = result;
+		}
 	
 </script>
 </body>
