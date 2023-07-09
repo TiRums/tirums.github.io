@@ -38,7 +38,8 @@
 		border: 1px solid #000;
 	}
 	.nav ul li a:hover {background: linear-gradient(to top, #622101, #76300d);}
-	#hdr_input {width:300px;outline: none;}
+	#hdr_input {width:160px;outline: none;}
+	#hdr_input2 {width:256px;outline: none;}
 	/*** MENU - END ***/
 	
 	/*** BUTTONS - START ***/
@@ -209,6 +210,16 @@
 	/*** BLOCK - END ***/
 
 	/*** BLOCK - START ***/
+	#txt_fast {
+		overflow: auto !important;
+	} 
+
+	#txt_fast::-webkit-scrollbar,
+	#txt_fast::-moz-scrollbar,
+	#txt_fast::-ms-scrollbar {
+		width: 5px; /* Ширина полосы прокрутки в браузерах на основе WebKit (например, Chrome, Safari) */
+	}
+
 	#page4 {
 		max-width: 100%;
 		height: calc(100vh - 60px);
@@ -233,14 +244,14 @@
 	#ta_fast textarea {
 		border: 1px solid #222;
 		background: #fefefe;
-		width: 650px;
+		width: 700px;
 		min-width: 500px;
 		overflow: hidden;
 		height: calc(100vh - 60px);
 		outline: none;
 		resize: horizontal;
 		font-family: Calibri, serif;
-		font-size: 14px;
+		font-size: 13px;
 	}
 	#btn_fast {
 		width: 10%;
@@ -250,7 +261,7 @@
 		gap: 3px;
 	}
 	#btn_fast button {
-		height: 50px;
+		height: 30px;
 		border: 0;
 		border-radius: 0;
 
@@ -275,9 +286,23 @@
 		padding: 0;
 		margin: 0;
 	}
-
-
 	/*** BLOCK - END ***/
+	#wrap_txt {
+		display: flex;
+	}
+	#nums {
+		padding: 9px 3px 0 0 !important;
+		color: #ccc;
+		font-size: 12px !important;
+		line-height: 1.2 !important;
+		
+	}
+	#txt_fast {
+		padding: 8px !important;
+		font-size: 12px !important;
+		line-height: 1.2 !important;
+	} 
+
 </style>
 
 <script language="JavaScript">
@@ -302,6 +327,7 @@
 		<ul>
 		<span class="menu">
 			<li><input type="text" id="hdr_input" onclick="this.select();"></li>
+			<li><input type="text" id="hdr_input2"></li>
 			<li><a href="#page1"></a></li>
 			<li><a href="#page2"></a></li>
 			<li><a href="#page3"></a></li>
@@ -389,20 +415,32 @@
 		<div id="page4">
 			<!--<div id="clear_field"></div>-->
 			<div id="ta_fast">
-				<div class=""><textarea id="txt_fast" placeholder="31"></textarea></div>
+				<div id='wrap_txt'>
+					<div id='nums'></div>
+					<textarea id="txt_fast" placeholder="31" scrolling="auto"></textarea>
+				</div>
 			</div>
 			<div id="btn_fast">
 				<button  onclick="replaceTabs()">Описание</button>
 				<button  onclick="replaceTabsA()">Описание Абзацы</button>
 				<button  onclick="replaceTabsList()">Описание Список</button>
+				<button  onclick="replaceExclamationMarks1()">СписокЗаголовки-1</button>
+				<button  onclick="replaceExclamationMarks2()">СписокЗаголовки-2</button>
+				<button  onclick="replaceExclamationMarks3()">СписокЗаголовки-3</button>  
+				<button  onclick="replaceTabsList1()">Описание Список ": ;"</button>
+				<button  onclick="replaceTabsList2()">Описание Список ":"</button>
+				<button  onclick="noMore()">Подробнее</button>
 				<hr>
 				<button  onclick="replaceComplectation()">Комплектация</button>
+				<button  onclick="replaceComplectationS()">Комплектация "/"</button>
+				<button  onclick="replaceComplectation1()">Комплектация ": ;"</button>
 				<button  onclick="replaceComplectation2()">Комплектация ", и"</button>
-				<button  onclick="replaceComplectation3()">Комплектация ","</button>
+				<button  onclick="replaceComplectation3()">Комплектация ","</button>				
 				<hr>
-				<button  onclick="replaceParams()">Харак-тики попарно</button>				
+				<button  onclick="replaceParams()">Харак-тики попарно</button>	
 				<button  onclick="replaceDivide()">Дробить по ";"</button>
 				<button  onclick="replaceDivide2()">Дробить по ","</button>
+				<button  onclick="replaceDivide3()">Дробить по "."</button>
 				<hr>
 				<button  onclick="replaceTrim()">Trim</button>
 				<div class="gen_lines">
@@ -463,18 +501,29 @@
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
 		content = content.replace(/(Рабочие параметры|Конструктивные и функциональные особенности|Дополнительная информация|Характеристики двигателя и устройства|Дополнительная информация|ABAC |КОПИЯ )/g, '');
-		content = content.replace(/\t/g, "");
-		content = content.replace(/\n- /g, "\n");
+		content = content.replace(/(\t|\t\t)/g, " ");
 		content = content.replace(/\s{2,}/g, "\n");
+		content = content.replace(/\n- /g, "\n");
+		content = content.replace(/- /g, "");
+		content = content.replace(/— /g, "");
+		content = content.replace(/– /g, "");
+		content = content.replace(/\n{2,}/g, "\n");
+		//content = content.replace(/\s{2,}/g, "\n");
 		content = content.replace(/(• |•)/g, "");
+		content = content.replace(/(^|\.\s+)([a-zа-яё])/g, function(match, p1, p2) {
+				return p1 + p2.toUpperCase();
+		});
 		input.value = content;
 	}
 	function replaceTabsA() {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
-		content = content.replace(/\t/g, "");
-		content = content.replace(/\n- /g, "\n");
+		content = content.replace(/(\t|\t\t)/g, " ");
 		content = content.replace(/\s{2,}/g, "\n");
+		content = content.replace(/\n- /g, "\n");
+		content = content.replace(/- /g, "");
+		//content = content.replace(/\s{2,}/g, "\n");
+		content = content.replace(/\n{2,}/g, "\n");
 		content = content.replace(/\n/g, "\n\n");
 		content = content.replace(/(• |•)/g, "");
 		input.value = content;
@@ -486,6 +535,102 @@
 		content = content.replace(/•/g, "\n");
 		content = content.replace(/\t/g, "");		
 		content = content.replace(/\n- /g, "\n");
+		content = content.replace(/- /g, "");
+		content = content.replace(/\s{2,}/g, "\n");		
+		input.value = content.trim();
+		content = content.replace(/\n/g, "\n• ");
+		input.value = content.startsWith("\n•") ? content.trim() : "• " + content;
+	}
+	function replaceExclamationMarks1() {
+		let input = document.getElementById("txt_fast");
+		let content = input.value.trim();
+		content = content.replace(/(Рабочие параметры|Конструктивные и функциональные особенности|Дополнительная информация|Характеристики двигателя и устройства|Дополнительная информация|ABAC |КОПИЯ )/g, '');
+		content = content.replace(/•/g, "\n");
+		content = content.replace(/\t/g, "");		
+		content = content.replace(/\n- /g, "\n");
+		content = content.replace(/- /g, "");
+		content = content.replace(/\s{2,}/g, "\n");		
+		input.value = content.trim();
+		content = content.replace(/\n/g, "\n• ");
+		input.value = content.startsWith("\n•") ? content.trim() : "• " + content;
+		var count = 1;
+			content = content.replace(/• /g, function(match) {
+			count++;
+			return count <= 1 ? '\n' : match;
+		});
+		input.value = content.trim();
+	}
+	function replaceExclamationMarks2() {
+		let input = document.getElementById("txt_fast");
+		let content = input.value.trim();
+		content = content.replace(/(Рабочие параметры|Конструктивные и функциональные особенности|Дополнительная информация|Характеристики двигателя и устройства|Дополнительная информация|ABAC |КОПИЯ )/g, '');
+		content = content.replace(/•/g, "\n");
+		content = content.replace(/\t/g, "");		
+		content = content.replace(/\n- /g, "\n");
+		content = content.replace(/- /g, "");
+		content = content.replace(/\s{2,}/g, "\n");		
+		input.value = content.trim();
+		content = content.replace(/\n/g, "\n• ");
+		content = content.replace(/(• Особенности)/g, '\nОсобенности');
+		content = content.replace(/(• Комплектация)/g, '\nКомплектация');
+		content = content.replace(/(• Комплект поставки)/g, '\nКомплект поставки');
+		var count = 1;
+			content = content.replace(/• /g, function(match) {
+			count++;
+			return count <= 2 ? '\n' : match;
+		});
+		input.value = content.trim();
+	}
+	function replaceExclamationMarks3() {
+		let input = document.getElementById("txt_fast");
+		let content = input.value.trim();
+		content = content.replace(/(Рабочие параметры|Конструктивные и функциональные особенности|Дополнительная информация|Характеристики двигателя и устройства|Дополнительная информация|ABAC |КОПИЯ )/g, '');
+		content = content.replace(/•/g, "\n");
+		content = content.replace(/\t/g, "");		
+		content = content.replace(/\n- /g, "\n");
+		content = content.replace(/- /g, "");
+		content = content.replace(/\s{2,}/g, "\n");		
+		input.value = content.trim();
+		content = content.replace(/\n/g, "\n• ");
+		content = content.replace(/(• Особенности)/g, '\nОсобенности');
+		content = content.replace(/(• Комплектация)/g, '\nКомплектация');
+		content = content.replace(/(• Комплект поставки)/g, '\nКомплект поставки');
+		var count = 1;
+			content = content.replace(/• /g, function(match) {
+			count++;
+			return count <= 3 ? '\n' : match;
+		});
+		input.value = content.trim();
+	}
+	function replaceTabsList1() {
+		let input = document.getElementById("txt_fast");
+		let content = input.value.trim();
+		content = content.replace(/(Рабочие параметры|Конструктивные и функциональные особенности|Дополнительная информация|Дополнительная информация|Характеристики двигателя и устройства)/g, '\n');
+		content = content.replace(/\t/g, "");
+		content = content.replace(/\s{2,}/g, "\n");
+		content = content.trim();
+
+		let lines = content.split("\n");
+		for (let i = 0; i < lines.length; i++) {
+			if (i % 2 == 0) {
+				lines[i] += ":";
+			}
+		}
+		content = lines.join("\n");
+		content = content.replace(/:\n/g, ': ');
+		content = content.replace(/:{2,}/g, ":");		
+		input.value = content.trim();
+		content = content.replace(/\n/g, "\n• ");
+		input.value = content.startsWith("\n•") ? content.trim() : "• " + content;
+	}
+	function replaceTabsList2() {
+		let input = document.getElementById("txt_fast");
+		let content = input.value.trim();
+		content = content.replace(/(Рабочие параметры|Конструктивные и функциональные особенности|Дополнительная информация|Характеристики двигателя и устройства|Дополнительная информация|ABAC |КОПИЯ )/g, '');
+		content = content.replace(/•/g, "\n");
+		content = content.replace(/\t/g, ": ");		
+		content = content.replace(/\n- /g, "\n");
+		content = content.replace(/- /g, "");
 		content = content.replace(/\s{2,}/g, "\n");		
 		input.value = content.trim();
 		content = content.replace(/\n/g, "\n• ");
@@ -497,10 +642,36 @@
 		content = content.replace(/;{2,}/g, ";");
 		content = content.replace(/\t/g, "");
 		content = content.replace(/\n- /g, "\n");
+		content = content.replace(/- /g, "");
 		content = content.replace(/\s{2,}/g, "\n");
 		content = content.replace(/[\n]+/g, "; ");	
 		content = content.replace(/;{2,}/g, ";");	
 		input.value = content;
+	}
+	function replaceComplectationS() {
+		let input = document.getElementById("txt_fast");
+		let content = input.value.trim();
+		content = content.replace(/;{2,}/g, " / ");
+		content = content.replace(/\t/g, "");
+		content = content.replace(/\n- /g, "\n");
+		content = content.replace(/- /g, "");
+		content = content.replace(/\s{2,}/g, "\n");
+		content = content.replace(/[\n]+/g, " / ");	
+		content = content.replace(/;{2,}/g, " / ");	
+		input.value = content;
+	}
+	function replaceComplectation1() {
+		let input = document.getElementById("txt_fast");
+		let content = input.value.trim();
+		content = content.replace(/;{2,}/g, ";");
+		content = content.replace(/\t/g, "");
+		content = content.replace(/\n- /g, "\n");
+		content = content.replace(/- /g, "");
+		content = content.replace(/\s{2,}/g, "\n");
+		content = content.replace(/[\n]+/g, "; ");	
+		content = content.replace(/;{2,}/g, ";");	
+		content = content.replace(/;/, ":");
+		input.value = "• " + content;
 	}
 	function replaceComplectation2() {
 		let input = document.getElementById("txt_fast");
@@ -526,6 +697,14 @@
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
 		content = content.replace(/,/g, "\n");
+		content = content.replace(/\t/g, "");
+		content = content.replace(/\s{2,}/g, "\n");
+		input.value = content;
+	}
+	function replaceDivide3() {
+		let input = document.getElementById("txt_fast");
+		let content = input.value.trim();
+		content = content.replace(/\./g, "\n");
 		content = content.replace(/\t/g, "");
 		content = content.replace(/\s{2,}/g, "\n");
 		input.value = content;
@@ -576,7 +755,51 @@
 		// Выводим результат в textarea
 		textarea.value = result;
 		}
+
+		function noMore() {
+			var textarea = document.getElementById('txt_fast');
+			var text = textarea.value;
+
+			// Удаление фрагментов текста
+			var newText = text.replace(/Подробнее: https.*|Подробнее http.*/g, '');
+
+			// Преобразование первой буквы каждого предложения в заглавную
+			newText = newText.replace(/(^|\.\s+)([a-zа-яё])/g, function(match, p1, p2) {
+				return p1 + p2.toUpperCase();
+			});
+
+			textarea.value = newText;
+		}
+
+
 	
+
+	// Получаем ссылки на элементы
+var textarea = document.getElementById('txt_fast');
+var numsContainer = document.getElementById('nums');
+
+// Обработчик события ввода в textarea
+textarea.addEventListener('input', updateLineNumbers);
+
+// Инициализация номеров строк при загрузке страницы
+updateLineNumbers();
+
+// Функция обновления номеров строк
+function updateLineNumbers() {
+  // Получаем содержимое textarea и разбиваем его на строки
+  var text = textarea.value;
+  var lines = text.split('\n');
+
+  // Очищаем элемент с id='nums'
+  numsContainer.innerHTML = '';
+
+  // Добавляем номера строк в элемент с id='nums'
+  for (var i = 1; i <= lines.length; i++) {
+    var lineNum = document.createElement('div');
+    lineNum.textContent = i;
+    numsContainer.appendChild(lineNum);
+  }
+}
 </script>
 </body>
 </html>
