@@ -266,6 +266,13 @@
 		border-radius: 0;
 
 	}
+	#btn_fast h2 {
+		color: #aaa;
+		font-size: 15px;
+		margin: 0;
+		text-align: center;
+
+	}
 	/*** BLOCK - END ***/
 	/*** BLOCK - START ***/
 	div.gen_lines {
@@ -296,14 +303,10 @@
 		padding: 0;
 		margin: 0;
 	}
-	#replace_button31,
-	#replace_button32,
-	#replace_button33,
-	#replace_button34,
-	#replace_button35 {
+	.gen_lines button {
 		display:block;
 		flex: 1;
-		height:22px !important;
+		height:25px !important;
 		padding: 0;
 		margin: 0;
 	}
@@ -458,34 +461,46 @@
 					<button id='replace_button34' onclick="replaceTxt34()">мм</button>
 					<button id='replace_button35' onclick="replaceTxt35()">,</button>
 				</div>
-				<hr>
-				<button  onclick="replaceTabs()">Описание</button>
-				<button  onclick="replaceTabsA()">Описание Абзацы</button>
-				<button  onclick="replaceTabsList()">Описание Список</button>
-				<button  onclick="replaceExclamationMarks1()">СписокЗаголовки-1</button>
-				<button  onclick="replaceExclamationMarks2()">СписокЗаголовки-2</button>
-				<button  onclick="replaceExclamationMarks3()">СписокЗаголовки-3</button>  
-				<button  onclick="replaceTabsList1()">Описание Список ": ;"</button>
-				<button  onclick="replaceTabsList2()">Описание Список ":"</button>
-				<button  onclick="noMore()">Подробнее</button>
-				<hr>
-				<button  onclick="replaceComplectation()">Комплектация</button>
-				<button  onclick="replaceComplectationS()">Комплектация "/"</button>
-				<button  onclick="replaceComplectation1()">Комплектация ": ;"</button>
-				<button  onclick="replaceComplectation2()">Комплектация ", и"</button>
-				<button  onclick="replaceComplectation3()">Комплектация ","</button>				
-				<hr>
-				<button  onclick="replaceParams()">Харак-тики попарно</button>	
-				<button  onclick="replaceDivide()">Дробить по ";"</button>
-				<button  onclick="replaceDivide2()">Дробить по ","</button>
-				<button  onclick="replaceDivide3()">Дробить по "."</button>
-				<hr>
-				<button  onclick="replaceTrim()">Trim</button>
+				<h2>Текст</h2>
+				<div class="gen_lines">					
+					<button  onclick="replaceTabs()">Text</button>
+					<button  onclick="replaceTabsA()">Text <b>P</b></button>
+					<button  onclick="replaceTrim()">Trim</button>
+				</div>
+				<h2>Список</h2>
+				<div class="gen_lines">
+					<button  onclick="replaceTabsList()">TL</button>
+					<button  onclick="replaceExclamationMarks1()">TL1</button>
+					<button  onclick="replaceExclamationMarks2()">TL2</button>
+					<button  onclick="replaceExclamationMarks3()">TL3</button>  
+					<button  onclick="replaceTabsList1()">:;</button>
+					<button  onclick="replaceTabsList2()">":"</button>
+				</div>
+				<h2>Комплектация</h2>
+				<div class="gen_lines">
+					<button  onclick="replaceComplectation()">;</button>
+					<button  onclick="replaceComplectationS()">/</button>
+					<button  onclick="replaceComplectation1()">: ;</button>
+					<button  onclick="replaceComplectation2()">, и</button>
+					<button  onclick="replaceComplectation3()">,</button>	
+				</div>
+				<h2>Дробить</h2>
+				<div class="gen_lines">
+					<button  onclick="replaceDivide()">";"</button>
+					<button  onclick="replaceDivide2()">","</button>
+					<button  onclick="replaceDivide3()">"."</button>
+					<button  onclick="replaceDivide4()">"/"</button>
+				</div>
+
+				<h2>Разное</h2>
+				<div class="gen_lines">
+					<button  onclick="noMore()">Подробнее</button>
+					<button id="txt_midline" onclick="copyMidLine()">---</button>
+				</div>				
 				<div class="gen_lines">
 					<input id='gen_input' type="text" placeholder="кол-во линий">
 					<button id='gen_button' onclick="genLines()">Gen</button>
 				</div>
-				<button id="txt_midline" onclick="copyMidLine()">---</button>
 			</div>
 		</div>
 		
@@ -748,23 +763,12 @@
 		content = content.replace(/\s{2,}/g, "\n");
 		input.value = content;
 	}
-	function replaceParams() {
+	function replaceDivide4() {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
-		content = content.replace(/(Рабочие параметры|Конструктивные и функциональные особенности|Дополнительная информация|Дополнительная информация|Характеристики двигателя и устройства)/g, '\n');
+		content = content.replace(/\//g, "\n");
 		content = content.replace(/\t/g, "");
 		content = content.replace(/\s{2,}/g, "\n");
-		content = content.trim();
-
-		let lines = content.split("\n");
-		for (let i = 0; i < lines.length; i++) {
-			if (i % 2 == 0) {
-				lines[i] += ":";
-			}
-		}
-		content = lines.join("\n");
-		content = content.replace(/:\n/g, ': ');
-		content = content.replace(/:{2,}/g, ":");
 		input.value = content;
 	}
 	function replaceTrim() {
