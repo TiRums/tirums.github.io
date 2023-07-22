@@ -914,6 +914,24 @@ function replaceTxt2() {
   // Обновляем значение в textarea
   textarea.value = replacedText;
 }
+function replaceTxt33() {
+	let input = document.getElementById("txt_fast");
+	let content = input.value
+	content = content.replace(/\t{1,}/g, " ");
+	input.value = content;
+}
+function replaceTxt34() {
+	let input = document.getElementById("txt_fast");
+	let content = input.value
+	content = content.replace(/мм/g, " мм");
+	input.value = content;
+}
+function replaceTxt35() {
+	let input = document.getElementById("txt_fast");
+	let content = input.value
+	content = content.replace(/,/g, "");
+	input.value = content;
+}
 
 
 
