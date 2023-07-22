@@ -38,8 +38,8 @@
 		border: 1px solid #000;
 	}
 	.nav ul li a:hover {background: linear-gradient(to top, #622101, #76300d);}
-	#hdr_input {width:160px;outline: none;}
-	#hdr_input2 {width:256px;outline: none;}
+	#hdr_input {width:120px;outline: none;}
+	#hdr_input2 {width:360px;outline: none;}
 	/*** MENU - END ***/
 	
 	/*** BUTTONS - START ***/
@@ -272,22 +272,37 @@
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
+		gap:1px;
 	}
 	#gen_input, #replace_input {
 		display: block;
 		width:80%;
 		height: 24px;
 		outline:none;
+		flex-shrink: 0;
 	}
 	#replace_input21, #replace_input22 {
 		display: block;
 		width:40%;
 		height: 24px;
 		outline:none;
+		margin:0;
+		flex-shrink: 0;
 	}
 	#gen_button, #replace_button, #replace_button2 {
 		display:block;
 		width:20%;
+		height:22px !important;
+		padding: 0;
+		margin: 0;
+	}
+	#replace_button31,
+	#replace_button32,
+	#replace_button33,
+	#replace_button34,
+	#replace_button35 {
+		display:block;
+		flex: 1;
 		height:22px !important;
 		padding: 0;
 		margin: 0;
@@ -429,12 +444,19 @@
 			<div id="btn_fast">
 				<div class="gen_lines">
 					<input id='replace_input' type="text" placeholder="удалить текст">
-					<button id='replace_button' onclick="replaceTxt()">Выр</button>
+					<button id='replace_button' onclick="replaceTxt()">Del</button>
 				</div>
 				<div class="gen_lines">
 					<input id='replace_input21' type="text" placeholder="Цель">
 					<input id='replace_input22' type="text" placeholder="Замена">
-					<button id='replace_button2' onclick="replaceTxt2()">Зам</button>
+					<button id='replace_button2' onclick="replaceTxt2()">Rep</button>
+				</div>
+				<div class="gen_lines">					
+					<button id='replace_button31' onclick="replaceTxt31()">L55</button>
+					<button id='replace_button32' onclick="replaceTxt32()">aA</button>
+					<button id='replace_button33' onclick="replaceTxt33()">Tab</button>
+					<button id='replace_button34' onclick="replaceTxt34()">мм</button>
+					<button id='replace_button35' onclick="replaceTxt35()">,</button>
 				</div>
 				<hr>
 				<button  onclick="replaceTabs()">Описание</button>
