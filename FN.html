@@ -914,6 +914,13 @@ function replaceTxt2() {
   // Обновляем значение в textarea
   textarea.value = replacedText;
 }
+function replaceTxt32() {
+	var textArea = document.getElementById('txt_fast');
+	textArea.value = textArea.value.replace(/(^|\n)(\S)/g, function(match, p1, p2) {
+		return p1 + p2.toUpperCase();
+	});
+}
+
 function replaceTxt33() {
 	let input = document.getElementById("txt_fast");
 	let content = input.value
