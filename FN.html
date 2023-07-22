@@ -261,7 +261,7 @@
 		gap: 3px;
 	}
 	#btn_fast button {
-		height: 30px;
+		height: 24px;
 		border: 0;
 		border-radius: 0;
 
@@ -273,16 +273,22 @@
 		justify-content: flex-start;
 		align-items: center;
 	}
-	#gen_input {
+	#gen_input, #replace_input {
 		display: block;
-		width:65%;
-		height: 30px;
+		width:80%;
+		height: 24px;
 		outline:none;
 	}
-	#gen_button {
+	#replace_input21, #replace_input22 {
+		display: block;
+		width:40%;
+		height: 24px;
+		outline:none;
+	}
+	#gen_button, #replace_button, #replace_button2 {
 		display:block;
-		width:35%;
-		height:28px !important;
+		width:20%;
+		height:22px !important;
 		padding: 0;
 		margin: 0;
 	}
@@ -421,6 +427,16 @@
 				</div>
 			</div>
 			<div id="btn_fast">
+				<div class="gen_lines">
+					<input id='replace_input' type="text" placeholder="удалить текст">
+					<button id='replace_button' onclick="replaceTxt()">Выр</button>
+				</div>
+				<div class="gen_lines">
+					<input id='replace_input21' type="text" placeholder="Цель">
+					<input id='replace_input22' type="text" placeholder="Замена">
+					<button id='replace_button2' onclick="replaceTxt2()">Зам</button>
+				</div>
+				<hr>
 				<button  onclick="replaceTabs()">Описание</button>
 				<button  onclick="replaceTabsA()">Описание Абзацы</button>
 				<button  onclick="replaceTabsList()">Описание Список</button>
@@ -447,6 +463,7 @@
 					<input id='gen_input' type="text" placeholder="кол-во линий">
 					<button id='gen_button' onclick="genLines()">Gen</button>
 				</div>
+				<button id="txt_midline" onclick="copyMidLine()">---</button>
 			</div>
 		</div>
 		
@@ -800,6 +817,53 @@ function updateLineNumbers() {
     numsContainer.appendChild(lineNum);
   }
 }
+
+function copyMidLine() {
+  const dashCount = 169; // Количество дефисов для копирования
+  const textToCopy = '-'.repeat(dashCount); // Генерируем строку с нужным количеством дефисов
+  navigator.clipboard.writeText(textToCopy)
+    .then(() => {
+      console.log('Текст скопирован в буфер обмена: ' + textToCopy);
+      // Здесь можно добавить дополнительные действия после копирования
+    })
+    .catch((error) => {
+      console.error('Не удалось скопировать текст: ', error);
+      // Здесь можно добавить обработку ошибки, если не удалось скопировать текст
+    });
+}
+
+function replaceTxt() {
+  var inputText = document.getElementById('replace_input').value;  // Получаем значение из поля input
+  var textarea = document.getElementById('txt_fast');  // Получаем элемент textarea
+  var text = textarea.value;  // Получаем текст из textarea
+  var escapedInputText = inputText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');  // Экранируем специальные символы для поиска
+
+  var regex = new RegExp(escapedInputText, 'g');  // Создаем регулярное выражение для поиска совпадений
+
+  // Заменяем все совпадения на пустую строку
+  var replacedText = text.replace(regex, '');
+
+  // Обновляем значение в textarea
+  textarea.value = replacedText;
+}
+function replaceTxt2() {
+  var inputText21 = document.getElementById('replace_input21').value;  // Получаем значение из поля input
+  var inputText22 = document.getElementById('replace_input22').value;  // Получаем значение из поля input
+  var textarea = document.getElementById('txt_fast');  // Получаем элемент textarea
+  var text = textarea.value;  // Получаем текст из textarea
+  var escapedInputText = inputText21.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');  // Экранируем специальные символы для поиска
+
+  var regex = new RegExp(escapedInputText, 'g');  // Создаем регулярное выражение для поиска совпадений
+
+  // Заменяем все совпадения на пустую строку
+  var replacedText = text.replace(regex, inputText22);
+
+  // Обновляем значение в textarea
+  textarea.value = replacedText;
+}
+
+
+
 </script>
 </body>
 </html>
