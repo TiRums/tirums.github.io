@@ -281,21 +281,27 @@
 		align-items: center;
 		gap:1px;
 	}
-	#gen_input, #replace_input {
+	div.gen_lines input {
+		background: #f0dfc0;
+		border:0;
+		margin:0; padding: 0 2px;
 		display: block;
-		width:80%;
-		height: 24px;
+		height: 22px;
 		outline:none;
 		flex-shrink: 0;
 	}
-	#replace_input21, #replace_input22 {
+	div.gen_lines input:focus {
+		background: #f0e9dd;
+		border:0;
+		margin:0; padding: 0 2px;
 		display: block;
-		width:40%;
-		height: 24px;
+		height: 22px;
 		outline:none;
-		margin:0;
 		flex-shrink: 0;
 	}
+	#gen_input, #replace_input {width:80%;}
+	#replace_input21, #replace_input22 {width:40%;}
+
 	#gen_button, #replace_button, #replace_button2 {
 		display:block;
 		width:20%;
@@ -309,7 +315,19 @@
 		height:25px !important;
 		padding: 0;
 		margin: 0;
+		cursor: pointer;
 	}
+
+	.geLi_1 button {background-color: #d3ab61;}
+	.geLi_2 button {background-color: #a8c47f;}
+	.geLi_3 button {background-color: #6d98c9;}
+	.geLi_4 button {background-color: #c980c9;}
+	.geLi_5 button {background-color: #222;color:#888;}
+	.geLi_1 button:hover {background-color: #aa894a;}
+	.geLi_2 button:hover {background-color: #789153;}
+	.geLi_3 button:hover {background-color: #486f9b;}
+	.geLi_4 button:hover {background-color: #965696;}
+	.geLi_5 button:hover {background-color: #111;color:#888;}
 	/*** BLOCK - END ***/
 	#wrap_txt {
 		display: flex;
@@ -445,30 +463,31 @@
 				</div>
 			</div>
 			<div id="btn_fast">
-				<div class="gen_lines">
+				<div class="gen_lines geLi_1">
 					<input id='replace_input' type="text" placeholder="удалить текст">
 					<button id='replace_button' onclick="replaceTxt()">Del</button>
 				</div>
-				<div class="gen_lines">
+				<div class="gen_lines geLi_1">
 					<input id='replace_input21' type="text" placeholder="Цель">
 					<input id='replace_input22' type="text" placeholder="Замена">
 					<button id='replace_button2' onclick="replaceTxt2()">Rep</button>
 				</div>
-				<div class="gen_lines">					
+				<div class="gen_lines geLi_1">					
 					<button id='replace_button31' onclick="replaceTxt31()">L55</button>
 					<button id='replace_button32' onclick="replaceTxt32()">aA</button>
 					<button id='replace_button33' onclick="replaceTxt33()">Tab</button>
 					<button id='replace_button34' onclick="replaceTxt34()">мм</button>
 					<button id='replace_button35' onclick="replaceTxt35()">,</button>
+					<button id='replace_button36' onclick="replaceTxtClear()">X</button>
 				</div>
 				<h2>Текст</h2>
-				<div class="gen_lines">					
+				<div class="gen_lines geLi_2">					
 					<button  onclick="replaceTabs()">Text</button>
 					<button  onclick="replaceTabsA()">Text <b>P</b></button>
 					<button  onclick="replaceTrim()">Trim</button>
 				</div>
 				<h2>Список</h2>
-				<div class="gen_lines">
+				<div class="gen_lines geLi_2">
 					<button  onclick="replaceTabsList()">TL</button>
 					<button  onclick="replaceExclamationMarks1()">TL1</button>
 					<button  onclick="replaceExclamationMarks2()">TL2</button>
@@ -477,7 +496,7 @@
 					<button  onclick="replaceTabsList2()">":"</button>
 				</div>
 				<h2>Комплектация</h2>
-				<div class="gen_lines">
+				<div class="gen_lines geLi_3">
 					<button  onclick="replaceComplectation()">;</button>
 					<button  onclick="replaceComplectationS()">/</button>
 					<button  onclick="replaceComplectation1()">: ;</button>
@@ -485,7 +504,7 @@
 					<button  onclick="replaceComplectation3()">,</button>	
 				</div>
 				<h2>Дробить</h2>
-				<div class="gen_lines">
+				<div class="gen_lines geLi_4">
 					<button  onclick="replaceDivide()">";"</button>
 					<button  onclick="replaceDivide2()">","</button>
 					<button  onclick="replaceDivide3()">"."</button>
@@ -493,11 +512,11 @@
 				</div>
 
 				<h2>Разное</h2>
-				<div class="gen_lines">
+				<div class="gen_lines geLi_5">
 					<button  onclick="noMore()">Подробнее</button>
 					<button id="txt_midline" onclick="copyMidLine()">---</button>
 				</div>				
-				<div class="gen_lines">
+				<div class="gen_lines geLi_1">
 					<input id='gen_input' type="text" placeholder="кол-во линий">
 					<button id='gen_button' onclick="genLines()">Gen</button>
 				</div>
@@ -798,21 +817,29 @@
 		// Выводим результат в textarea
 		textarea.value = result;
 		}
+	function replaceTxt31() {
+  // Получаем элементы DOM
+		const input = 54;
+		const textarea = document.getElementById('txt_fast');
 
-		function noMore() {
-			var textarea = document.getElementById('txt_fast');
-			var text = textarea.value;
+		// Создаем массив для хранения прогрессии
+		const progression = [];
 
-			// Удаление фрагментов текста
-			var newText = text.replace(/Подробнее: https.*|Подробнее http.*/g, '');
-
-			// Преобразование первой буквы каждого предложения в заглавную
-			newText = newText.replace(/(^|\.\s+)([a-zа-яё])/g, function(match, p1, p2) {
-				return p1 + p2.toUpperCase();
-			});
-
-			textarea.value = newText;
+		// Заполняем массив числами от 1 до maxNumber
+		for (let i = 1; i <= input; i++) {
+			progression.push(' ');
 		}
+
+		// Преобразуем массив в строку, разделяя элементы переводом строки
+		const result = progression.join('\n');
+
+		// Выводим результат в textarea
+		textarea.value += result;
+		}
+	function replaceTxtClear() {
+		const textarea = document.getElementById('txt_fast');
+		textarea.value = '';
+	}
 
 
 	
