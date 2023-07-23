@@ -940,7 +940,16 @@ function replaceTxt35() {
 	input.value = content;
 }
 
+function noMore() {
+		var textarea = document.getElementById("txt_fast");
+		var text = textarea.value;
 
+		// Используем регулярное выражение для поиска и удаления текста, начиная со слова "подробнее" независимо от регистра
+		var regex = /подробнее[\s\S]*/i;
+		var cleanedText = text.replace(regex, "");
+
+		textarea.value = cleanedText;
+}
 
 </script>
 </body>
