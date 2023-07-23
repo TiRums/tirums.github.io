@@ -319,15 +319,22 @@
 	}
 
 	.geLi_1 button {background-color: #d3ab61;}
-	.geLi_2 button {background-color: #a8c47f;}
-	.geLi_3 button {background-color: #6d98c9;}
-	.geLi_4 button {background-color: #c980c9;}
-	.geLi_5 button {background-color: #222;color:#888;}
 	.geLi_1 button:hover {background-color: #aa894a;}
+
+	.geLi_2 button {background-color: #a8c47f;}
 	.geLi_2 button:hover {background-color: #789153;}
+
+	.geLi_3 button {background-color: #6d98c9;}
 	.geLi_3 button:hover {background-color: #486f9b;}
+
+	.geLi_4 button {background-color: #c980c9;}
 	.geLi_4 button:hover {background-color: #965696;}
+
+	.geLi_5 button {background-color: #222;color:#888;}
 	.geLi_5 button:hover {background-color: #111;color:#888;}
+
+	.geLi_6 button {background-color: #5f3a3a;}
+	.geLi_6 button:hover {background-color: #a15353;}
 	/*** BLOCK - END ***/
 	#wrap_txt {
 		display: flex;
@@ -477,7 +484,7 @@
 					<button  onclick="replaceTabs()">Text</button>
 					<button  onclick="replaceTabsA()">Text <b>P</b></button>
 					<button  onclick="replaceTrim()">Trim</button>
-					<button id='replace_button35' onclick="replaceTxt35()">,</button>
+					<button id='replace_comma' onclick="replaceComma()">,</button>
 				</div>
 				<h2>Список</h2>
 				<div class="gen_lines geLi_2">
@@ -508,8 +515,7 @@
 					<button id='replace_button31' onclick="replaceTxt31()">L55</button>
 					<button id='replace_button32' onclick="replaceTxt32()">aA</button>
 					<button id='replace_button33' onclick="replaceTxt33()">Tab</button>
-					<button id='replace_button34' onclick="replaceTxt34()">мм</button>					
-					<button id='replace_button36' onclick="replaceTxtClear()">X</button>
+					<button id='replace_button34' onclick="replaceTxt34()">мм</button>
 				</div>
 				<div class="gen_lines geLi_5">
 					<button  onclick="noMore()">Подробнее</button>
@@ -518,6 +524,10 @@
 				<div class="gen_lines geLi_1">
 					<input id='gen_input' type="text" placeholder="кол-во линий">
 					<button id='gen_button' onclick="genLines()">Gen</button>
+				</div>
+				<hr>
+				<div class="gen_lines geLi_6">					
+					<button id='replace_buttonClear' onclick="replaceTxtClear()">Очистить</button>
 				</div>
 			</div>
 		</div>
@@ -919,7 +929,7 @@ function replaceTxt34() {
 	content = content.replace(/мм/g, " мм");
 	input.value = content;
 }
-function replaceTxt35() {
+function replaceComma() {
 	let input = document.getElementById("txt_fast");
 	let content = input.value
 	content = content.replace(/,/g, "");
