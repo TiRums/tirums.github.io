@@ -472,19 +472,12 @@
 					<input id='replace_input22' type="text" placeholder="Замена">
 					<button id='replace_button2' onclick="replaceTxt2()">Rep</button>
 				</div>
-				<div class="gen_lines geLi_1">					
-					<button id='replace_button31' onclick="replaceTxt31()">L55</button>
-					<button id='replace_button32' onclick="replaceTxt32()">aA</button>
-					<button id='replace_button33' onclick="replaceTxt33()">Tab</button>
-					<button id='replace_button34' onclick="replaceTxt34()">мм</button>
-					<button id='replace_button35' onclick="replaceTxt35()">,</button>
-					<button id='replace_button36' onclick="replaceTxtClear()">X</button>
-				</div>
 				<h2>Текст</h2>
 				<div class="gen_lines geLi_2">					
 					<button  onclick="replaceTabs()">Text</button>
 					<button  onclick="replaceTabsA()">Text <b>P</b></button>
 					<button  onclick="replaceTrim()">Trim</button>
+					<button id='replace_button35' onclick="replaceTxt35()">,</button>
 				</div>
 				<h2>Список</h2>
 				<div class="gen_lines geLi_2">
@@ -493,7 +486,6 @@
 					<button  onclick="replaceExclamationMarks2()">TL2</button>
 					<button  onclick="replaceExclamationMarks3()">TL3</button>  
 					<button  onclick="replaceTabsList1()">:;</button>
-					<button  onclick="replaceTabsList2()">":"</button>
 				</div>
 				<h2>Комплектация</h2>
 				<div class="gen_lines geLi_3">
@@ -510,8 +502,15 @@
 					<button  onclick="replaceDivide3()">"."</button>
 					<button  onclick="replaceDivide4()">"/"</button>
 				</div>
-
+				
 				<h2>Разное</h2>
+				<div class="gen_lines geLi_5">					
+					<button id='replace_button31' onclick="replaceTxt31()">L55</button>
+					<button id='replace_button32' onclick="replaceTxt32()">aA</button>
+					<button id='replace_button33' onclick="replaceTxt33()">Tab</button>
+					<button id='replace_button34' onclick="replaceTxt34()">мм</button>					
+					<button id='replace_button36' onclick="replaceTxtClear()">X</button>
+				</div>
 				<div class="gen_lines geLi_5">
 					<button  onclick="noMore()">Подробнее</button>
 					<button id="txt_midline" onclick="copyMidLine()">---</button>
@@ -692,19 +691,6 @@
 		content = lines.join("\n");
 		content = content.replace(/:\n/g, ': ');
 		content = content.replace(/:{2,}/g, ":");		
-		input.value = content.trim();
-		content = content.replace(/\n/g, "\n• ");
-		input.value = content.startsWith("\n•") ? content.trim() : "• " + content;
-	}
-	function replaceTabsList2() {
-		let input = document.getElementById("txt_fast");
-		let content = input.value.trim();
-		content = content.replace(/(Рабочие параметры|Конструктивные и функциональные особенности|Дополнительная информация|Характеристики двигателя и устройства|Дополнительная информация|ABAC |КОПИЯ )/g, '');
-		content = content.replace(/•/g, "\n");
-		content = content.replace(/\t/g, ": ");		
-		content = content.replace(/\n- /g, "\n");
-		content = content.replace(/- /g, "");
-		content = content.replace(/\s{2,}/g, "\n");		
 		input.value = content.trim();
 		content = content.replace(/\n/g, "\n• ");
 		input.value = content.startsWith("\n•") ? content.trim() : "• " + content;
