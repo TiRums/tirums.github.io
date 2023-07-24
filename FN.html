@@ -360,6 +360,21 @@
 	border:0;
 	border-top:1px solid #131313;
 }
+
+div.gen_symbols {
+	margin: 20px 0 0 0;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 1px;
+}
+div.gen_symbols input {
+	margin: 0; outline: none; border: 0;
+	width:9%;
+	text-align: center;
+	background: #555;
+}
+
 </style>
 
 <script language="JavaScript">
@@ -372,8 +387,6 @@
 		document.querySelectorAll("textarea").forEach((el,i) => (el.value = localStorage.getItem(i)));
 		document.querySelectorAll('li[id^="output"]').forEach((el,i) => (el.innerHTML = localStorage.getItem(i)));
 	}
-
-	
 </script>
 </head>
 
@@ -503,7 +516,8 @@
 					<button id='replace_button34' onclick="replaceTxt35()">mm</button>
 					<button id='replace_button34' onclick="replaceTxt36()">Вт</button>
 					<button id='replace_button34' onclick="replaceTxt37()">*</button>
-					<button id='replace_button34' onclick="replaceTxt38()">_</button>
+					<button id='replace_button34' onclick="replaceTxt38()">"</button>
+					<button id='replace_button34' onclick="replaceTxt39()">_</button>
 				</div>
 				<h2>Текст</h2>
 				<div class="gen_lines geLi_2">					
@@ -552,6 +566,11 @@
 				<div class="gen_lines geLi_6">					
 					<button id='replace_buttonClear' onclick="replaceTxtClear()">Очистить</button>
 				</div>
+				<div class="gen_symbols">
+					<input type="text" id="GS_input" onclick="this.select();" value="°">
+					<input type="text" id="GS_input" onclick="this.select();" value="±">
+					<input type="text" id="GS_input" onclick="this.select();" value="…">
+				</div>				
 			</div>
 		</div>
 		
@@ -1002,6 +1021,12 @@ function replaceTxt37() {
 	input.value = content;
 }
 function replaceTxt38() {
+	let input = document.getElementById("txt_fast");
+	let content = input.value
+	content = content.replace(/"{1,}/g, "''");
+	input.value = content;
+}
+function replaceTxt39() {
 	let input = document.getElementById("txt_fast");
 	let content = input.value
 	content = content.replace(/_{1,}/g, " ");
