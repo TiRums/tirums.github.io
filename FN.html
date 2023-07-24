@@ -502,9 +502,9 @@
 					<button id='replace_button34' onclick="replaceTxt34()">мм</button>
 					<button id='replace_button34' onclick="replaceTxt35()">mm</button>
 					<button id='replace_button34' onclick="replaceTxt36()">Вт</button>
-					<button id='replace_button34' onclick="replaceTxt37()">_</button>
+					<button id='replace_button34' onclick="replaceTxt37()">*</button>
+					<button id='replace_button34' onclick="replaceTxt38()">_</button>
 				</div>
-				<hr>
 				<h2>Текст</h2>
 				<div class="gen_lines geLi_2">					
 					<button  onclick="replaceTabs()">Text</button>
@@ -995,6 +995,13 @@ function replaceTxt36() {
 	input.value = content;
 }
 function replaceTxt37() {
+	let input = document.getElementById("txt_fast");
+	let content = input.value	
+	content = content.replace(/\*{1,}/g, "x");
+	content = content.replace(/\s{1,}x{1,}\s{1,}/g, "x");
+	input.value = content;
+}
+function replaceTxt38() {
 	let input = document.getElementById("txt_fast");
 	let content = input.value
 	content = content.replace(/_{1,}/g, " ");
