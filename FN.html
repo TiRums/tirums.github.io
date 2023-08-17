@@ -364,7 +364,7 @@
 div.gen_symbols {
 	margin: 20px 0 0 0;
 	display: flex;
-	justify-content: flex-start;
+	justify-content: center;
 	align-items: center;
 	gap: 1px;
 }
@@ -492,10 +492,6 @@ div.gen_symbols input {
 			</div>
 			<div id="btn_fast">
 				<div class="gen_lines geLi_1">
-					<input id='replace_input' type="text" placeholder="удалить текст">
-					<button id='replace_button' onclick="replaceTxt()">Del</button>
-				</div>
-				<div class="gen_lines geLi_1">
 					<input id='replace_input11' type="text" placeholder="Цель">
 					<input id='replace_input12' type="text" placeholder="Замена">
 					<button id='replace_button1' onclick="replaceTxt1()">Rep</button>
@@ -511,34 +507,39 @@ div.gen_symbols input {
 					<button id='replace_button3' onclick="replaceTxt3()">Rep</button>
 				</div>
 				<div class="gen_lines geLi_5">
+					<button id='replace_button32' onclick="replaceTxt32()">aA</button>
 					<button id='replace_button33' onclick="replaceTxt33()">Tab</button>
+					<button id='replace_button34' onclick="replaceTxt39()">_</button>
+					<button  onclick="noMore()">More</button>
+				</div>
+				<div class="gen_lines geLi_5">
 					<button id='replace_button34' onclick="replaceTxt34()">мм</button>
 					<button id='replace_button34' onclick="replaceTxt35()">mm</button>
 					<button id='replace_button34' onclick="replaceTxt36()">Вт</button>
 					<button id='replace_button34' onclick="replaceTxt37()">*</button>
 					<button id='replace_button34' onclick="replaceTxt38()">"</button>
-					<button id='replace_button34' onclick="replaceTxt39()">_</button>
 				</div>
 				<h2>Текст</h2>
 				<div class="gen_lines geLi_2">					
-					<button  onclick="replaceTabs()">Text</button>
-					<button  onclick="replaceTabsA()">Text <b>P</b></button>
+					<button  onclick="repTxtBase()">Text</button>
+					<button  onclick="repTxtBaseP()">Text<b>P</b></button>
 					<button  onclick="replaceTrim()">Trim</button>
 					<button id='replace_comma' onclick="replaceComma()">,</button>
+					<button id='replace_comma2' onclick="replaceComma2()">;</button>
 				</div>
 				<h2>Список</h2>
 				<div class="gen_lines geLi_2">
-					<button  onclick="replaceTabsList()">TL</button>
-					<button  onclick="replaceExclamationMarks1()">TL1</button>
-					<button  onclick="replaceExclamationMarks2()">TL2</button>
-					<button  onclick="replaceExclamationMarks3()">TL3</button>  
+					<button  onclick="repTxtBaseList()">TL</button>
+					<button  onclick="repTxtBaseList1()">TL1</button>
+					<button  onclick="repTxtBaseList2()">TL2</button>
+					<button  onclick="repTxtBaseList3()">TL3</button>  
 					<button  onclick="replaceTabsList1()">:;</button>
 				</div>
 				<h2>Комплектация</h2>
 				<div class="gen_lines geLi_3">
 					<button  onclick="replaceComplectation()">;</button>
 					<button  onclick="replaceComplectationS()">/</button>
-					<button  onclick="replaceComplectation1()">: ;</button>
+					<button  onclick="replaceComplectation1()">: ;;</button>
 					<button  onclick="replaceComplectation2()">, и</button>
 					<button  onclick="replaceComplectation3()">,</button>	
 				</div>
@@ -552,9 +553,7 @@ div.gen_symbols input {
 				
 				<h2>Разное</h2>
 				<div class="gen_lines geLi_5">
-					<button id='replace_button31' onclick="replaceTxt31()">L55</button>
-					<button id='replace_button32' onclick="replaceTxt32()">aA</button>
-					<button  onclick="noMore()">More</button>
+					<button id='replace_button31' onclick="replaceTxt31()">L55</button>					
 					<button id="txt_midline" onclick="copyMidLine()">---</button>
 				</div>	
 				<hr>			
@@ -621,111 +620,88 @@ div.gen_symbols input {
 	});
 	/*** CopyClearButtons - END ***/
 
-	function replaceTabs() {
+	function repTxtBase() {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
-		content = content.replace(/(Рабочие параметры|Конструктивные и функциональные особенности|Дополнительная информация|Характеристики двигателя и устройства|Дополнительная информация|ABAC |КОПИЯ )/g, '');
-		content = content.replace(/(\t|\t\t)/g, " ");
-		content = content.replace(/\s{2,}/g, "\n");
-		content = content.replace(/\n- /g, "\n");
-		content = content.replace(/- /g, "");
-		content = content.replace(/— /g, "");
-		content = content.replace(/– /g, "");
-		content = content.replace(/\n{2,}/g, "\n");
-		//content = content.replace(/\s{2,}/g, "\n");
-		content = content.replace(/(• |•)/g, "");
-		content = content.replace(/(^|\.\s+)([a-zа-яё])/g, function(match, p1, p2) {
-				return p1 + p2.toUpperCase();
-		});
+		content = content.replace(/\n+/g, "\n");			
+		content = content.replace(/\n\s+/g, "\n");			
+		content = content.replace(/\t+|\s{2,}/g, " ");
+		content = content.replace(/(•\s{1,}|•)/g, "");
+		content = content.replace(/–|—/g, "-");			
+		content = content.replace(/\n- |\n– |\n— /g, "\n");						
+
+		//content = content.replace(/(^|\.\s+)([a-zа-яё])/g, function(match, p1, p2) {
+			//	return p1 + p2.toUpperCase();
+		//});
 		input.value = content;
+		repTxtAa();
 	}
-	function replaceTabsA() {
+	function repTxtAa() {
+		const textarea = document.getElementById("txt_fast");
+		const text = textarea.value;
+		const lines = text.split(/\r?\n/); // Разделяем текст на строки
+
+		// Обрабатываем каждую строку
+		for (let i = 0; i < lines.length; i++) {
+		const line = lines[i];
+		const firstLetterIndex = line.search(/[а-яa-z]/i); // Ищем индекс первой буквы в строке
+		if (firstLetterIndex >= 0) {
+		// Делаем первую букву заглавной
+		lines[i] = line.substring(0, firstLetterIndex) +
+				line.charAt(firstLetterIndex).toUpperCase() +
+				line.substring(firstLetterIndex + 1);
+		}
+		}
+
+		// Объединяем строки обратно в текст и выводим его в текстовое поле
+		textarea.value = lines.join("\n");
+	}
+
+
+	function repTxtBaseP() {
+		repTxtBase();
 		let input = document.getElementById("txt_fast");
-		let content = input.value.trim();
-		content = content.replace(/(\t|\t\t)/g, " ");
-		content = content.replace(/\s{2,}/g, "\n");
-		content = content.replace(/\n- /g, "\n");
-		content = content.replace(/- /g, "");
-		//content = content.replace(/\s{2,}/g, "\n");
-		content = content.replace(/\n{2,}/g, "\n");
+		let content = input.value.trim();		
 		content = content.replace(/\n/g, "\n\n");
-		content = content.replace(/(• |•)/g, "");
 		input.value = content;
 	}
-	function replaceTabsList() {
+	function repTxtBaseList() {
+		repTxtBase();
 		let input = document.getElementById("txt_fast");
-		let content = input.value.trim();
-		content = content.replace(/(Рабочие параметры|Конструктивные и функциональные особенности|Дополнительная информация|Характеристики двигателя и устройства|Дополнительная информация|ABAC |КОПИЯ )/g, '');
-		content = content.replace(/•/g, "\n");
-		content = content.replace(/\t/g, "");		
-		content = content.replace(/\n- /g, "\n");
-		content = content.replace(/- /g, "");
-		content = content.replace(/\s{2,}/g, "\n");		
-		input.value = content.trim();
+		let content = input.value.trim();		
 		content = content.replace(/\n/g, "\n• ");
 		input.value = content.startsWith("\n•") ? content.trim() : "• " + content;
 	}
-	function replaceExclamationMarks1() {
+	function repTxtBaseList1() {
+		repTxtBase();
 		let input = document.getElementById("txt_fast");
-		let content = input.value.trim();
-		content = content.replace(/(Рабочие параметры|Конструктивные и функциональные особенности|Дополнительная информация|Характеристики двигателя и устройства|Дополнительная информация|ABAC |КОПИЯ )/g, '');
-		content = content.replace(/•/g, "\n");
-		content = content.replace(/\t/g, "");		
-		content = content.replace(/\n- /g, "\n");
-		content = content.replace(/- /g, "");
-		content = content.replace(/\s{2,}/g, "\n");		
-		input.value = content.trim();
+		let content = input.value.trim();		
 		content = content.replace(/\n/g, "\n• ");
 		input.value = content.startsWith("\n•") ? content.trim() : "• " + content;
-		var count = 1;
-			content = content.replace(/• /g, function(match) {
-			count++;
-			return count <= 1 ? '\n' : match;
-		});
-		input.value = content.trim();
+		content = input.value.replace(/•/, "");
+		input.value = content;
 	}
-	function replaceExclamationMarks2() {
+	function repTxtBaseList2() {
+		repTxtBase();
 		let input = document.getElementById("txt_fast");
-		let content = input.value.trim();
-		content = content.replace(/(Рабочие параметры|Конструктивные и функциональные особенности|Дополнительная информация|Характеристики двигателя и устройства|Дополнительная информация|ABAC |КОПИЯ )/g, '');
-		content = content.replace(/•/g, "\n");
-		content = content.replace(/\t/g, "");		
-		content = content.replace(/\n- /g, "\n");
-		content = content.replace(/- /g, "");
-		content = content.replace(/\s{2,}/g, "\n");		
-		input.value = content.trim();
+		let content = input.value.trim();		
 		content = content.replace(/\n/g, "\n• ");
-		content = content.replace(/(• Особенности)/g, '\nОсобенности');
-		content = content.replace(/(• Комплектация)/g, '\nКомплектация');
-		content = content.replace(/(• Комплект поставки)/g, '\nКомплект поставки');
-		var count = 1;
-			content = content.replace(/• /g, function(match) {
-			count++;
-			return count <= 2 ? '\n' : match;
-		});
-		input.value = content.trim();
+		input.value = content.startsWith("\n•") ? content.trim() : "• " + content;
+		content = input.value.replace(/•/, "");
+		content = content.replace(/•/, "\n");
+		input.value = content;
 	}
-	function replaceExclamationMarks3() {
+	function repTxtBaseList3() {
+		repTxtBase();
 		let input = document.getElementById("txt_fast");
-		let content = input.value.trim();
-		content = content.replace(/(Рабочие параметры|Конструктивные и функциональные особенности|Дополнительная информация|Характеристики двигателя и устройства|Дополнительная информация|ABAC |КОПИЯ )/g, '');
-		content = content.replace(/•/g, "\n");
-		content = content.replace(/\t/g, "");		
-		content = content.replace(/\n- /g, "\n");
-		content = content.replace(/- /g, "");
-		content = content.replace(/\s{2,}/g, "\n");		
-		input.value = content.trim();
+		let content = input.value.trim();		
 		content = content.replace(/\n/g, "\n• ");
-		content = content.replace(/(• Особенности)/g, '\nОсобенности');
-		content = content.replace(/(• Комплектация)/g, '\nКомплектация');
-		content = content.replace(/(• Комплект поставки)/g, '\nКомплект поставки');
-		var count = 1;
-			content = content.replace(/• /g, function(match) {
-			count++;
-			return count <= 3 ? '\n' : match;
-		});
-		input.value = content.trim();
-	}
+		input.value = content.startsWith("\n•") ? content.trim() : "• " + content;
+		content = input.value.replace(/•/, "");
+		content = content.replace(/•/, "\n");
+		content = content.replace(/•/, "\n");
+		input.value = content;
+	}	
 	function replaceTabsList1() {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
@@ -923,20 +899,6 @@ function copyMidLine() {
     });
 }
 
-function replaceTxt() {
-  var inputText = document.getElementById('replace_input').value;  // Получаем значение из поля input
-  var textarea = document.getElementById('txt_fast');  // Получаем элемент textarea
-  var text = textarea.value;  // Получаем текст из textarea
-  var escapedInputText = inputText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');  // Экранируем специальные символы для поиска
-
-  var regex = new RegExp(escapedInputText, 'g');  // Создаем регулярное выражение для поиска совпадений
-
-  // Заменяем все совпадения на пустую строку
-  var replacedText = text.replace(regex, '');
-
-  // Обновляем значение в textarea
-  textarea.value = replacedText;
-}
 function replaceTxt1() {
   var inputText11 = document.getElementById('replace_input11').value;  // Получаем значение из поля input
   var inputText12 = document.getElementById('replace_input12').value;  // Получаем значение из поля input
@@ -982,12 +944,7 @@ function replaceTxt3() {
   // Обновляем значение в textarea
   textarea.value = replacedText;
 }
-function replaceTxt32() {
-	var textArea = document.getElementById('txt_fast');
-	textArea.value = textArea.value.replace(/(^|\n)(\S)/g, function(match, p1, p2) {
-		return p1 + p2.toUpperCase();
-	});
-}
+
 
 function replaceTxt33() {
 	let input = document.getElementById("txt_fast");
@@ -1041,7 +998,13 @@ function replaceTxt34() {
 function replaceComma() {
 	let input = document.getElementById("txt_fast");
 	let content = input.value
-	content = content.replace(/,/g, "");
+	content = content.replace(/, /g, " ");
+	input.value = content;
+}
+function replaceComma2() {
+	let input = document.getElementById("txt_fast");
+	let content = input.value
+	content = content.replace(/;/g, "");
 	input.value = content;
 }
 
