@@ -626,8 +626,8 @@ div.gen_symbols input {
 		content = content.replace(/\n+/g, "\n");			
 		content = content.replace(/\n\s+/g, "\n");			
 		content = content.replace(/\t+|\s{2,}/g, " ");
-		content = content.replace(/(•\s{1,}|•)/g, "");
-		content = content.replace(/–|—/g, "-");			
+		content = content.replace(/(•\s+|•)/g, "");
+		content = content.replace(/-+|–+|—+/g, "-");			
 		content = content.replace(/\n- |\n– |\n— /g, "\n");						
 
 		//content = content.replace(/(^|\.\s+)([a-zа-яё])/g, function(match, p1, p2) {
