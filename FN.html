@@ -275,6 +275,13 @@
 	}
 	/*** BLOCK - END ***/
 	/*** BLOCK - START ***/
+	.fast_replace {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		gap:1px;
+	}
 	div.gen_lines {
 		display: flex;
 		justify-content: flex-start;
@@ -302,10 +309,12 @@
 	#gen_input, #replace_input {width:80%;}
 	#replace_input11, #replace_input12,
 	#replace_input21, #replace_input22,
-	#replace_input31, #replace_input32 {width:40%;}
+	#replace_input31, #replace_input32,
+	#replace_input41, #replace_input42,
+	#replace_input51, #replace_input52 {width:40%;}
 
 	#gen_button, #replace_button, 
-	#replace_button1, #replace_button2, #replace_button3 {
+	#replace_button1, #replace_button2, #replace_button3, #replace_button4, #replace_button5 {
 		display:block;
 		width:20%;
 		height:22px !important;
@@ -491,21 +500,34 @@ div.gen_symbols input {
 				</div>
 			</div>
 			<div id="btn_fast">
-				<div class="gen_lines geLi_1">
-					<input id='replace_input11' type="text" placeholder="Цель">
-					<input id='replace_input12' type="text" placeholder="Замена">
-					<button id='replace_button1' onclick="replaceTxt1()">Rep</button>
+				<div class="fast_replace">
+					<div class="gen_lines geLi_1">
+						<input id='replace_input11' type="text" placeholder="Цель">
+						<input id='replace_input12' type="text" placeholder="Замена">
+						<button id='replace_button1' onclick="replaceTxt()">Rep</button>
+					</div>
+					<div class="gen_lines geLi_1">
+						<input id='replace_input21' type="text" placeholder="Цель">
+						<input id='replace_input22' type="text" placeholder="Замена">
+						<button id='replace_button2' onclick="replaceTxt()">Rep</button>
+					</div>
+					<div class="gen_lines geLi_1">
+						<input id='replace_input31' type="text" placeholder="Цель">
+						<input id='replace_input32' type="text" placeholder="Замена">
+						<button id='replace_button3' onclick="replaceTxt()">Rep</button>
+					</div>
+					<div class="gen_lines geLi_1">
+						<input id='replace_input41' type="text" placeholder="Цель">
+						<input id='replace_input42' type="text" placeholder="Замена">
+						<button id='replace_button4' onclick="replaceTxt()">Rep</button>
+					</div>
+					<div class="gen_lines geLi_1">
+						<input id='replace_input51' type="text" placeholder="Цель">
+						<input id='replace_input52' type="text" placeholder="Замена">
+						<button id='replace_button5' onclick="replaceTxt()">Rep</button>
+					</div>
 				</div>
-				<div class="gen_lines geLi_1">
-					<input id='replace_input21' type="text" placeholder="Цель">
-					<input id='replace_input22' type="text" placeholder="Замена">
-					<button id='replace_button2' onclick="replaceTxt2()">Rep</button>
-				</div>
-				<div class="gen_lines geLi_1">
-					<input id='replace_input31' type="text" placeholder="Цель">
-					<input id='replace_input32' type="text" placeholder="Замена">
-					<button id='replace_button3' onclick="replaceTxt3()">Rep</button>
-				</div>
+
 				<div class="gen_lines geLi_5">
 					<button id='replace_button32' onclick="replaceTxt32()">aA</button>
 					<button id='replace_button33' onclick="replaceTxt33()">Tab</button>
@@ -519,6 +541,7 @@ div.gen_symbols input {
 					<button id='replace_button34' onclick="replaceTxt37()">*</button>
 					<button id='replace_button34' onclick="replaceTxt38()">"</button>
 				</div>
+				
 				<h2>Текст</h2>
 				<div class="gen_lines geLi_2">					
 					<button  onclick="repTxtBase()">Text</button>
@@ -624,8 +647,8 @@ div.gen_symbols input {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
 		content = content.replace(/\n+/g, "\n");			
-		content = content.replace(/\n\s+/g, "\n");			
-		content = content.replace(/\t+|\s{2,}/g, " ");
+		content = content.replace(/\n\ +/g, "\n");			
+		content = content.replace(/\t+|\ {2,}/g, " ");
 		content = content.replace(/(•\s+|•)/g, "");
 		content = content.replace(/-+|–+|—+/g, "-");			
 		content = content.replace(/\n- |\n– |\n— /g, "\n");						
@@ -899,51 +922,33 @@ function copyMidLine() {
     });
 }
 
-function replaceTxt1() {
-  var inputText11 = document.getElementById('replace_input11').value;  // Получаем значение из поля input
-  var inputText12 = document.getElementById('replace_input12').value;  // Получаем значение из поля input
-  var textarea = document.getElementById('txt_fast');  // Получаем элемент textarea
-  var text = textarea.value;  // Получаем текст из textarea
-  var escapedInputText = inputText11.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');  // Экранируем специальные символы для поиска
+function replaceTxt() {
+	var clickedButton = event.target; // Получаем нажатую кнопку
 
-  var regex = new RegExp(escapedInputText, 'g');  // Создаем регулярное выражение для поиска совпадений
+	// Находим родительский блок (gen_lines) для нажатой кнопки
+	var genLine = clickedButton.closest(".gen_lines");
 
-  // Заменяем все совпадения на пустую строку
-  var replacedText = text.replace(regex, inputText12);
+	// Находим поля ввода внутри этого блока
+	var targetInput = genLine.querySelector("input[type='text'][placeholder='Цель']");
+	var replacementInput = genLine.querySelector("input[type='text'][placeholder='Замена']");
 
-  // Обновляем значение в textarea
-  textarea.value = replacedText;
+	// Находим textarea
+	var textarea = document.getElementById("txt_fast");
+
+	// Получаем значение из полей ввода
+	var targetText = targetInput.value;
+	var replacementText = replacementInput.value;
+
+	// Экранируем специальные символы в целевом тексте
+	var escapedTargetText = targetText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+	// Создаем регулярное выражение для замены всех совпадений
+	var regex = new RegExp(escapedTargetText, "g");
+
+	// Заменяем текст в textarea
+	textarea.value = textarea.value.replace(regex, replacementText);
 }
-function replaceTxt2() {
-  var inputText21 = document.getElementById('replace_input21').value;  // Получаем значение из поля input
-  var inputText22 = document.getElementById('replace_input22').value;  // Получаем значение из поля input
-  var textarea = document.getElementById('txt_fast');  // Получаем элемент textarea
-  var text = textarea.value;  // Получаем текст из textarea
-  var escapedInputText = inputText21.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');  // Экранируем специальные символы для поиска
 
-  var regex = new RegExp(escapedInputText, 'g');  // Создаем регулярное выражение для поиска совпадений
-
-  // Заменяем все совпадения на пустую строку
-  var replacedText = text.replace(regex, inputText22);
-
-  // Обновляем значение в textarea
-  textarea.value = replacedText;
-}
-function replaceTxt3() {
-  var inputText31 = document.getElementById('replace_input31').value;  // Получаем значение из поля input
-  var inputText32 = document.getElementById('replace_input32').value;  // Получаем значение из поля input
-  var textarea = document.getElementById('txt_fast');  // Получаем элемент textarea
-  var text = textarea.value;  // Получаем текст из textarea
-  var escapedInputText = inputText31.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');  // Экранируем специальные символы для поиска
-
-  var regex = new RegExp(escapedInputText, 'g');  // Создаем регулярное выражение для поиска совпадений
-
-  // Заменяем все совпадения на пустую строку
-  var replacedText = text.replace(regex, inputText32);
-
-  // Обновляем значение в textarea
-  textarea.value = replacedText;
-}
 
 
 function replaceTxt33() {
