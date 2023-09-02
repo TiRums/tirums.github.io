@@ -384,6 +384,9 @@ div.gen_symbols input {
 	background: #555;
 }
 
+button[onclick="fastRepInpClear()"] {background: #752626; color: #f0b7b7}
+button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
+
 </style>
 
 <script language="JavaScript">
@@ -533,6 +536,7 @@ div.gen_symbols input {
 					<button id='replace_button33' onclick="replaceTxt33()">Tab</button>
 					<button id='replace_button34' onclick="replaceTxt39()">_</button>
 					<button  onclick="noMore()">More</button>
+					<button  onclick="fastRepInpClear()">Х</button>
 				</div>
 				<div class="gen_lines geLi_5">
 					<button id='replace_button34' onclick="replaceTxt34()">мм</button>
@@ -572,6 +576,7 @@ div.gen_symbols input {
 					<button  onclick="replaceDivide2()">","</button>
 					<button  onclick="replaceDivide3()">"."</button>
 					<button  onclick="replaceDivide4()">"/"</button>
+					<button  onclick="replaceDivide5()">"Tab"</button>
 				</div>
 				
 				<h2>Разное</h2>
@@ -823,7 +828,14 @@ div.gen_symbols input {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
 		content = content.replace(/\//g, "\n");
-		content = content.replace(/\t/g, "");
+		content = content.replace(/\t+/g, "");
+		content = content.replace(/\s{2,}/g, "\n");
+		input.value = content;
+	}
+	function replaceDivide5() {
+		let input = document.getElementById("txt_fast");
+		let content = input.value.trim();
+		content = content.replace(/\t/g, "\n");
 		content = content.replace(/\s{2,}/g, "\n");
 		input.value = content;
 	}
@@ -1022,6 +1034,16 @@ function noMore() {
 		var cleanedText = text.replace(regex, "");
 
 		textarea.value = cleanedText;
+}
+
+function fastRepInpClear() {
+	// Получаем все input-поля в блоке "fast_replace"
+	var inputs = document.querySelectorAll('.fast_replace input[type="text"]');
+	
+	// Проходим по каждому input-полю и очищаем его значение
+	inputs.forEach(function(input) {
+		input.value = '';
+	});
 }
 
 </script>
