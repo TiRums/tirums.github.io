@@ -261,7 +261,7 @@
 		gap: 3px;
 	}
 	#btn_fast button {
-		height: 24px;
+		height: 18px;
 		border: 0;
 		border-radius: 0;
 
@@ -293,7 +293,7 @@
 		border:0;
 		margin:0; padding: 0 2px;
 		display: block;
-		height: 22px;
+		height: 18px;
 		outline:none;
 		flex-shrink: 0;
 	}
@@ -302,7 +302,6 @@
 		border:0;
 		margin:0; padding: 0 2px;
 		display: block;
-		height: 22px;
 		outline:none;
 		flex-shrink: 0;
 	}
@@ -317,14 +316,14 @@
 	#replace_button1, #replace_button2, #replace_button3, #replace_button4, #replace_button5 {
 		display:block;
 		width:20%;
-		height:22px !important;
+		height:18px !important;
 		padding: 0;
 		margin: 0;
 	}
 	.gen_lines button {
 		display:block;
 		flex: 1;
-		height:25px !important;
+		height:18px !important;
 		padding: 0;
 		margin: 0;
 		cursor: pointer;
@@ -347,10 +346,14 @@
 
 	.geLi_6 button {background-color: #5f3a3a;}
 	.geLi_6 button:hover {background-color: #a15353;}
+
+	.geLi_7 button {width:100% !important;height:18px !important;background-color: #5f3a3a;}
+	.geLi_7 button:hover {background-color: #a15353;}
 	/*** BLOCK - END ***/
 	#wrap_txt {
 		display: flex;
 	}
+	
 	#nums {
 		padding: 9px 3px 0 0 !important;
 		color: #ccc;
@@ -371,7 +374,7 @@
 }
 
 div.gen_symbols {
-	margin: 20px 0 0 0;
+	margin: 10px 0 0 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -384,7 +387,33 @@ div.gen_symbols input {
 	background: #555;
 }
 
-button[onclick="fastRepInpClear()"] {background: #752626; color: #f0b7b7}
+div.free_inputs {
+	margin: 10px 0 0;
+	display: flex;
+	flex-direction: column;
+	gap: 1px;
+}
+
+div.free_inputs input {
+	width: 100%;
+	height: 18px;
+	line-height: 18px;
+	padding: 0 4px;
+	font-size: 12px;
+	margin: 0 0px;
+	border:0;
+	border-radius: 0;
+}
+div.free_inputs input:nth-child(6) {
+	margin-bottom: 5px;
+}
+div.free_inputs input:focus {
+	border: 0;
+	outline: none;
+	background: #cfcfcf;
+}
+
+button[onclick="fastRepInpClear()"] {background: #7a2727; color: #f0b7b7}
 button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 
 </style>
@@ -556,11 +585,18 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 				</div>
 				<h2>Список</h2>
 				<div class="gen_lines geLi_2">
-					<button  onclick="repTxtBaseList()">TL</button>
-					<button  onclick="repTxtBaseList1()">TL1</button>
-					<button  onclick="repTxtBaseList2()">TL2</button>
-					<button  onclick="repTxtBaseList3()">TL3</button>  
-					<button  onclick="replaceTabsList1()">:;</button>
+					<button  onclick="repTxtBaseList()">TL</button>					
+					<button  onclick="repTxtBaseListPlus1()">TL1</button>
+					<button  onclick="repTxtBaseListPlus2()">TL2</button>
+					<button  onclick="repTxtBaseListPlus3()">TL3</button>
+					<button  onclick="repTxtBaseListPlus()">TL+</button>
+				</div>
+				<div class="gen_lines geLi_2">
+					<button  onclick="repTxtBaseListPair()">:;</button>					
+					<button  onclick="repTxtBaseListMinus1()">TL-1</button>
+					<button  onclick="repTxtBaseListMinus2()">TL-2</button>
+					<button  onclick="repTxtBaseListMinus3()">TL-3</button>
+					
 				</div>
 				<h2>Комплектация</h2>
 				<div class="gen_lines geLi_3">
@@ -597,7 +633,24 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<input type="text" id="GS_input" onclick="this.select();" value="°">
 					<input type="text" id="GS_input" onclick="this.select();" value="±">
 					<input type="text" id="GS_input" onclick="this.select();" value="…">
-				</div>				
+				</div>	
+				<div class="free_inputs">
+					<input type="text" onclick="this.select();">
+					<input type="text" onclick="this.select();">
+					<input type="text" onclick="this.select();">
+					<input type="text" onclick="this.select();">
+					<input type="text" onclick="this.select();">
+					<input type="text" onclick="this.select();">
+					<input type="text" onclick="this.select();">
+					<input type="text" onclick="this.select();">
+					<input type="text" onclick="this.select();">
+					<input type="text" onclick="this.select();">
+					<input type="text" onclick="this.select();">
+					<input type="text" onclick="this.select();">
+				</div>
+				<div class="gen_lines geLi_7">	
+					<button id='freeInputs_buttonClear' onclick="fastFreeInpClear()">Х</button>	
+				</div>
 			</div>
 		</div>
 		
@@ -698,39 +751,48 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();		
 		content = content.replace(/\n/g, "\n• ");
-		input.value = content.startsWith("\n•") ? content.trim() : "• " + content;
+		input.value = content.startsWith("\n•") ? content.trim() : "• " + content.trim();
 	}
-	function repTxtBaseList1() {
-		repTxtBase();
+	function repTxtBaseListPlus() {
 		let input = document.getElementById("txt_fast");
-		let content = input.value.trim();		
-		content = content.replace(/\n/g, "\n• ");
-		input.value = content.startsWith("\n•") ? content.trim() : "• " + content;
-		content = input.value.replace(/•/, "");
-		input.value = content;
+		let content = input.value.trim();
+		content = content.replace(/• /, "\n");
+		input.value = content.trim();
 	}
-	function repTxtBaseList2() {
-		repTxtBase();
-		let input = document.getElementById("txt_fast");
-		let content = input.value.trim();		
-		content = content.replace(/\n/g, "\n• ");
-		input.value = content.startsWith("\n•") ? content.trim() : "• " + content;
-		content = input.value.replace(/•/, "");
-		content = content.replace(/•/, "\n");
-		input.value = content;
+	function repTxtBaseListPlus1() {
+		repTxtBaseList();
+		repTxtBaseListPlus();
 	}
-	function repTxtBaseList3() {
-		repTxtBase();
+	function repTxtBaseListPlus2() {
+		repTxtBaseList();
+		repTxtBaseListPlus();
+		repTxtBaseListPlus();
+	}
+	function repTxtBaseListPlus3() {
+		repTxtBaseList();
+		repTxtBaseListPlus();
+		repTxtBaseListPlus();
+		repTxtBaseListPlus();
+	}
+	function repTxtBaseListMinus() {
 		let input = document.getElementById("txt_fast");
-		let content = input.value.trim();		
-		content = content.replace(/\n/g, "\n• ");
-		input.value = content.startsWith("\n•") ? content.trim() : "• " + content;
-		content = input.value.replace(/•/, "");
-		content = content.replace(/•/, "\n");
-		content = content.replace(/•/, "\n");
-		input.value = content;
-	}	
-	function replaceTabsList1() {
+		let content = input.value.trim();
+		content = content.split('').reverse().join('').replace(/ •/, '\n').split('').reverse().join('');
+		input.value = content.trim();
+	}
+	function repTxtBaseListMinus1() {
+		repTxtBaseListMinus();
+	}
+	function repTxtBaseListMinus2() {
+		repTxtBaseListMinus();
+		repTxtBaseListMinus();
+	}
+	function repTxtBaseListMinus3() {
+		repTxtBaseListMinus();
+		repTxtBaseListMinus();
+		repTxtBaseListMinus();
+	}
+	function repTxtBaseListPair() {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
 		content = content.replace(/(Рабочие параметры|Конструктивные и функциональные особенности|Дополнительная информация|Дополнительная информация|Характеристики двигателя и устройства)/g, '\n');
@@ -819,7 +881,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 	function replaceDivide3() {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
-		content = content.replace(/\./g, "\n");
+		content = content.replace(/\. /g, "\n");
 		content = content.replace(/\t/g, "");
 		content = content.replace(/\s{2,}/g, "\n");
 		input.value = content;
@@ -1039,6 +1101,16 @@ function noMore() {
 function fastRepInpClear() {
 	// Получаем все input-поля в блоке "fast_replace"
 	var inputs = document.querySelectorAll('.fast_replace input[type="text"]');
+	
+	// Проходим по каждому input-полю и очищаем его значение
+	inputs.forEach(function(input) {
+		input.value = '';
+	});
+}
+
+function fastFreeInpClear() {
+	// Получаем все input-поля в блоке "fast_replace"
+	var inputs = document.querySelectorAll('.free_inputs input[type="text"]');
 	
 	// Проходим по каждому input-полю и очищаем его значение
 	inputs.forEach(function(input) {
