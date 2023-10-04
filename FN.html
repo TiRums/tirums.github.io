@@ -577,11 +577,12 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 				
 				<h2>Текст</h2>
 				<div class="gen_lines geLi_2">					
-					<button  onclick="repTxtBase()">Text</button>
-					<button  onclick="repTxtBaseP()">Text<b>P</b></button>
+					<button  onclick="repTxtBase()">Txt</button>
+					<button  onclick="repTxtBaseP()">Txt<b>P</b></button>
 					<button  onclick="replaceTrim()">Trim</button>
 					<button id='replace_comma' onclick="replaceComma()">,</button>
 					<button id='replace_comma2' onclick="replaceComma2()">;</button>
+					<button  onclick="txtFastHtmlClear()">html</button>
 				</div>
 				<h2>Список</h2>
 				<div class="gen_lines geLi_2">
@@ -905,6 +906,28 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
 		input.value = content;
+	}
+	
+	function txtFastHtmlClear() {
+		var textarea = document.getElementById("txt_fast");
+		var text = textarea.value;
+
+		// Заменяем закрывающие теги (кроме определенных) на перенос строки
+		text = text.replace(/<\/(?!span|b|strong|i|italic|u|td)[^>]+>/gi, '\n');
+
+		// Удаляем все остальные HTML-теги
+		text = text.replace(/<[^>]+>/gi, '');
+
+		// Заменяем спец.символы
+		text = text.replace(/&nbsp;/gi, ' ');
+		text = text.replace(/&deg;/gi, '°');
+		text = text.replace(/&laquo;|&raquo;/gi, "''");
+		text = text.replace(/&frac14;/gi, '1/4');
+		text = text.replace(/&ndash;/gi, '-');
+
+		// Обновляем текст в textarea
+		textarea.value = text;
+		repTxtBaseP();
 	}
 	function genLines() {
   // Получаем элементы DOM
