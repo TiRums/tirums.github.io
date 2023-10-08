@@ -1078,6 +1078,7 @@ function replaceTxt33() {
 	let input = document.getElementById("txt_fast");
 	let content = input.value
 	content = content.replace(/\t{1,}/g, " ");
+	content = content.replace(/  +/g, " ");	
 	input.value = content;
 }
 function replaceTxt34() {
