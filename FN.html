@@ -561,7 +561,8 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 				</div>
 
 				<div class="gen_lines geLi_5">
-					<button id='replace_button32' onclick="replaceTxt32()">aA</button>
+					<button id='replace_button32' onclick="repTxtAa()">aA</button>
+					<button id='replace_button32' onclick="replaceTxtDuplicate()">D</button>
 					<button id='replace_button33' onclick="replaceTxt33()">Tab</button>
 					<button id='replace_button34' onclick="replaceTxt39()">_</button>
 					<button  onclick="noMore()">More</button>
@@ -572,6 +573,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button id='replace_button34' onclick="replaceTxt35()">mm</button>
 					<button id='replace_button34' onclick="replaceTxt36()">Вт</button>
 					<button id='replace_button34' onclick="replaceTxt37()">*</button>
+					<button id='replace_button34' onclick="replaceTxt372()">x</button>
 					<button id='replace_button34' onclick="replaceTxt38()">"</button>
 				</div>
 				
@@ -1046,7 +1048,31 @@ function replaceTxt() {
 	textarea.value = textarea.value.replace(regex, replacementText);
 }
 
+function replaceTxtDuplicate() {
+	var textarea = document.getElementById("txt_fast");
+            var text = textarea.value;
+            var lines = text.split('\n');
 
+            for (var i = 0; i < lines.length; i++) {
+                var line = lines[i];
+                var firstSpaceIndex = line.indexOf(' ');
+
+                if (firstSpaceIndex !== -1) {
+                    var firstWord = line.substring(0, firstSpaceIndex);
+                    var restOfLine = line.substring(firstSpaceIndex + 1);
+
+                    // Ищем и удаляем первое совпадение с первым словом в строке
+                    var regex = new RegExp(firstWord);
+                    restOfLine = restOfLine.replace(regex, '');
+
+                    // Обновляем строку
+                    lines[i] = firstWord + ' ' + restOfLine;
+                }
+            }
+
+            var updatedText = lines.join('\n');
+            textarea.value = updatedText;
+}
 
 function replaceTxt33() {
 	let input = document.getElementById("txt_fast");
@@ -1076,7 +1102,16 @@ function replaceTxt37() {
 	let input = document.getElementById("txt_fast");
 	let content = input.value	
 	content = content.replace(/\*{1,}/g, "x");
-	content = content.replace(/\s{1,}x{1,}\s{1,}/g, "x");
+	content = content.replace(/\s{1,}(х|x){1,}\s{1,}/gi, "x");
+	content = content.replace(/(\s{1,}|)(х|x){1,}(?=\d+)/gi, "x");
+	input.value = content;
+}
+function replaceTxt372() {
+	replaceTxt37();
+	let input = document.getElementById("txt_fast");
+	let content = input.value;			
+	content = content.replace(/x(?=\d+)/gi, " x ");
+	content = content.replace(/  +/gi, " ");
 	input.value = content;
 }
 function replaceTxt38() {
