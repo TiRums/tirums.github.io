@@ -310,10 +310,23 @@
 	#replace_input21, #replace_input22,
 	#replace_input31, #replace_input32,
 	#replace_input41, #replace_input42,
-	#replace_input51, #replace_input52 {width:40%;}
+	#replace_input51, #replace_input52,
+	#replace_input61, #replace_input62,
+	#replace_input71, #replace_input72,
+	#replace_input81, #replace_input82 {width:40%;}
+
+	#replace_input61, #replace_input62,
+	#replace_input71, #replace_input72,
+	#replace_input81, #replace_input82 {background: #dbb08d;}
+	#replace_input61:focus, #replace_input62:focus,
+	#replace_input71:focus, #replace_input72:focus,
+	#replace_input81:focus, #replace_input82:focus {background: #ebc9ae;}
+	#replace_button6, #replace_button7, #replace_button8 {background: #bd885d;}
+	#replace_button6:hover, #replace_button7:hover, #replace_button8:hover {background: #996d49;}
 
 	#gen_button, #replace_button, 
-	#replace_button1, #replace_button2, #replace_button3, #replace_button4, #replace_button5 {
+	#replace_button1, #replace_button2, #replace_button3,
+	#replace_button4, #replace_button5, #replace_button6 {
 		display:block;
 		width:20%;
 		height:18px !important;
@@ -558,23 +571,42 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 						<input id='replace_input52' type="text" placeholder="Замена">
 						<button id='replace_button5' onclick="replaceTxt()">Rep</button>
 					</div>
+					<div class="gen_lines geLi_1">
+						<input id='replace_input61' type="text" placeholder="До">
+						<input id='replace_input62' type="text" placeholder="После">
+						<button id='replace_button6' onclick="replaceTxtLineBreaks()">List</button>
+					</div>
+					<div class="gen_lines geLi_1">
+						<input id='replace_input71' type="text" placeholder="До">
+						<input id='replace_input72' type="text" placeholder="После">
+						<button id='replace_button7' onclick="replaceTxtLineBreaks()">List</button>
+					</div>
+					<div class="gen_lines geLi_1">
+						<input id='replace_input81' type="text" placeholder="До">
+						<input id='replace_input82' type="text" placeholder="После">
+						<button id='replace_button8' onclick="replaceTxtLineBreaks()">List</button>
+					</div>
+					
 				</div>
 
 				<div class="gen_lines geLi_5">
+					<button id='replace_button33' onclick="replaceTxt33()">Tab</button>					
 					<button id='replace_button32' onclick="repTxtAa()">aA</button>
 					<button id='replace_button32' onclick="replaceTxtDuplicate()">D</button>
-					<button id='replace_button33' onclick="replaceTxt33()">Tab</button>
-					<button id='replace_button34' onclick="replaceTxt39()">_</button>
-					<button  onclick="noMore()">More</button>
+					<button id='replace_button32' onclick="repTxtEnRu()">t т</button>
 					<button  onclick="fastRepInpClear()">Х</button>
 				</div>
 				<div class="gen_lines geLi_5">
+					<button  onclick="noMore()">More</button>
 					<button id='replace_button34' onclick="replaceTxt34()">мм</button>
 					<button id='replace_button34' onclick="replaceTxt35()">mm</button>
-					<button id='replace_button34' onclick="replaceTxt36()">Вт</button>
+					<button id='replace_button34' onclick="replaceTxt36()">Вт</button>					
+				</div>
+				<div class="gen_lines geLi_5">
 					<button id='replace_button34' onclick="replaceTxt37()">*</button>
 					<button id='replace_button34' onclick="replaceTxt372()">x</button>
 					<button id='replace_button34' onclick="replaceTxt38()">"</button>
+					<button id='replace_button34' onclick="replaceTxt39()">_</button>
 				</div>
 				
 				<h2>Текст</h2>
@@ -601,14 +633,6 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button  onclick="repTxtBaseListMinus3()">TL-3</button>
 					
 				</div>
-				<h2>Комплектация</h2>
-				<div class="gen_lines geLi_3">
-					<button  onclick="replaceComplectation()">;</button>
-					<button  onclick="replaceComplectationS()">/</button>
-					<button  onclick="replaceComplectation1()">: ;;</button>
-					<button  onclick="replaceComplectation2()">, и</button>
-					<button  onclick="replaceComplectation3()">,</button>	
-				</div>
 				<h2>Дробить</h2>
 				<div class="gen_lines geLi_4">
 					<button  onclick="replaceDivide()">";"</button>
@@ -617,26 +641,26 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button  onclick="replaceDivide4()">"/"</button>
 					<button  onclick="replaceDivide5()">"Tab"</button>
 				</div>
+				<h2>Комплектация</h2>
+				<div class="gen_lines geLi_3">
+					<button  onclick="replaceComplectation()">;</button>
+					<button  onclick="replaceComplectationS()">/</button>
+					<button  onclick="replaceComplectation1()">: ;;</button>
+					<button  onclick="replaceComplectation2()">, и</button>
+					<button  onclick="replaceComplectation3()">,</button>	
+				</div>
 				
 				<h2>Разное</h2>
 				<div class="gen_lines geLi_5">
 					<button id='replace_button31' onclick="replaceTxt31()">L55</button>					
-					<button id="txt_midline" onclick="copyMidLine()">---</button>
+					<button id="txt_midline" onclick="copyMidLineDots()">…</button>
+					<button id="txt_midline" onclick="copyMidLine()">≡≡≡</button>
+					<button id="txt_midline" onclick="copyMidLineStars()">■■■</button>
 				</div>	
-				<hr>			
-				<div class="gen_lines geLi_1">
-					<input id='gen_input' type="text" placeholder="кол-во линий">
-					<button id='gen_button' onclick="genLines()">Gen</button>
-				</div>
 				<hr>
 				<div class="gen_lines geLi_6">					
 					<button id='replace_buttonClear' onclick="replaceTxtClear()">Очистить</button>
-				</div>
-				<div class="gen_symbols">
-					<input type="text" id="GS_input" onclick="this.select();" value="°">
-					<input type="text" id="GS_input" onclick="this.select();" value="±">
-					<input type="text" id="GS_input" onclick="this.select();" value="…">
-				</div>	
+				</div>					
 				<div class="free_inputs">
 					<input type="text" onclick="this.select();">
 					<input type="text" onclick="this.select();">
@@ -653,6 +677,11 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 				</div>
 				<div class="gen_lines geLi_7">	
 					<button id='freeInputs_buttonClear' onclick="fastFreeInpClear()">Х</button>	
+				</div>
+				<div class="gen_symbols">
+					<input type="text" id="GS_input" onclick="this.select();" value="°">
+					<input type="text" id="GS_input" onclick="this.select();" value="±">
+					<input type="text" id="GS_input" onclick="this.select();" value="…">
 				</div>
 			</div>
 		</div>
@@ -930,29 +959,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 		// Обновляем текст в textarea
 		textarea.value = text;
 		repTxtBaseP();
-	}
-	function genLines() {
-  // Получаем элементы DOM
-		const input = document.getElementById('gen_input');
-		const textarea = document.getElementById('txt_fast');
-
-		// Получаем максимальное число из input
-		const maxNumber = parseInt(input.value);
-
-		// Создаем массив для хранения прогрессии
-		const progression = [];
-
-		// Заполняем массив числами от 1 до maxNumber
-		for (let i = 1; i <= maxNumber; i++) {
-			progression.push(i);
-		}
-
-		// Преобразуем массив в строку, разделяя элементы переводом строки
-		const result = progression.join('\n');
-
-		// Выводим результат в textarea
-		textarea.value = result;
-		}
+	}	
 	function replaceTxt31() {
   // Получаем элементы DOM
 		const input = 54;
@@ -1008,8 +1015,34 @@ function updateLineNumbers() {
 }
 
 function copyMidLine() {
-  const dashCount = 169; // Количество дефисов для копирования
-  const textToCopy = '-'.repeat(dashCount); // Генерируем строку с нужным количеством дефисов
+  const dashCount = 104; // Количество дефисов для копирования
+  const textToCopy = '≡'.repeat(dashCount); // Генерируем строку с нужным количеством дефисов
+  navigator.clipboard.writeText(textToCopy)
+    .then(() => {
+      console.log('Текст скопирован в буфер обмена: ' + textToCopy);
+      // Здесь можно добавить дополнительные действия после копирования
+    })
+    .catch((error) => {
+      console.error('Не удалось скопировать текст: ', error);
+      // Здесь можно добавить обработку ошибки, если не удалось скопировать текст
+    });
+}
+function copyMidLineStars() {
+  const dashCount = 87; // Количество дефисов для копирования
+  const textToCopy = '■'.repeat(dashCount); // Генерируем строку с нужным количеством дефисов
+  navigator.clipboard.writeText(textToCopy)
+    .then(() => {
+      console.log('Текст скопирован в буфер обмена: ' + textToCopy);
+      // Здесь можно добавить дополнительные действия после копирования
+    })
+    .catch((error) => {
+      console.error('Не удалось скопировать текст: ', error);
+      // Здесь можно добавить обработку ошибки, если не удалось скопировать текст
+    });
+}
+function copyMidLineDots() {
+  const dashCount = 75; // Количество дефисов для копирования
+  const textToCopy = '…'.repeat(dashCount); // Генерируем строку с нужным количеством дефисов
   navigator.clipboard.writeText(textToCopy)
     .then(() => {
       console.log('Текст скопирован в буфер обмена: ' + textToCopy);
@@ -1047,6 +1080,36 @@ function replaceTxt() {
 	// Заменяем текст в textarea
 	textarea.value = textarea.value.replace(regex, replacementText);
 }
+function replaceTxtLineBreaks() {
+    // Получаем нажатую кнопку
+    var clickedButton = event.target;
+
+    // Находим родительский блок (gen_lines) для нажатой кнопки
+    var genLine = clickedButton.closest(".gen_lines");
+
+    // Получаем значения из полей ввода
+    var beforeText = genLine.querySelector("input[placeholder='До']").value;
+    var afterText = genLine.querySelector("input[placeholder='После']").value;
+
+    // Получаем текст из текстового поля
+    var textArea = document.getElementById('txt_fast');
+    var text = textArea.value;
+
+    // Если поле "До" не пустое, выполняем замену
+    if (beforeText) {
+        var regex = new RegExp(beforeText, 'g');
+        text = text.replace(regex, '\n' + beforeText);
+    }
+
+    // Если поле "После" не пустое, выполняем замену
+    if (afterText) {
+        var regex = new RegExp(afterText, 'g');
+        text = text.replace(regex, afterText + '\n');
+    }
+
+    // Обновляем текст в текстовом поле
+    textArea.value = text;
+}
 
 function replaceTxtDuplicate() {
 	var textarea = document.getElementById("txt_fast");
@@ -1074,6 +1137,30 @@ function replaceTxtDuplicate() {
             textarea.value = updatedText;
 }
 
+function repTxtEnRu() {
+	let input = document.getElementById("txt_fast");
+	let content = input.value
+	content = content.replace(/e/g, "е");
+	content = content.replace(/E/g, "Е");
+	content = content.replace(/a/g, "а");
+	content = content.replace(/A/g, "А");	
+	content = content.replace(/o/g, "о");	
+	content = content.replace(/O/g, "О");	
+	content = content.replace(/p/g, "р");	
+	content = content.replace(/P/g, "Р");	
+	content = content.replace(/c/g, "с");	
+	content = content.replace(/C/g, "С");	
+	content = content.replace(/x/g, "х");	
+	content = content.replace(/X/g, "Х");	
+	content = content.replace(/K/g, "К");
+	content = content.replace(/I/g, "І");
+	content = content.replace(/i/g, "і");
+	content = content.replace(/y/g, "у");
+	content = content.replace(/H/g, "Н");
+	content = content.replace(/B/g, "В");
+	content = content.replace(/M/g, "М");
+	input.value = content;
+}
 function replaceTxt33() {
 	let input = document.getElementById("txt_fast");
 	let content = input.value
