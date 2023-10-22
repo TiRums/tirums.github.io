@@ -850,7 +850,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 		}
 
 		// Обновляем текст в текстовом поле
-		textarea.value = lines.join('\n');
+		textarea.value = lines.join('\n').trim();
 	}
 	function repTxtBaseListPlus() {
 		let input = document.getElementById("txt_fast");
