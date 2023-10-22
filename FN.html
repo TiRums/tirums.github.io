@@ -620,9 +620,10 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button id='replace_button34' onclick="replaceTxt37()">*</button>
 					<button id='replace_button34' onclick="replaceTxt372()">x</button>
 					<button id='replace_button34' onclick="replaceTxt38()">"</button>
-					<button id='replace_button32' onclick="repTxtAa()">aA</button>
+					<button id='replace_button32' onclick="repTxtDotComma()">.,</button>
 				</div>
 				<div class="gen_lines geLi_2">
+				<button id='replace_button32' onclick="repTxtAa()">aA</button>
 					<button id='replace_button34' onclick="replaceTxt34()">мм</button>
 					<button id='replace_button34' onclick="replaceTxt35()">mm</button>
 					<button id='replace_button34' onclick="replaceTxt36()">Вт</button>					
@@ -887,6 +888,41 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 		content = content.replace(/\n/g, "\n• ");
 		input.value = content.startsWith("\n•") ? content.trim() : "• " + content;
 	}
+	function repTxtDotComma() {
+  // Получаем содержимое текстового поля
+		var textarea = document.getElementById("txt_fast");
+		var text = textarea.value;
+
+		// Разделяем текст на строки
+		var lines = text.split('\n');
+
+		// Создаем регулярное выражение для поиска чисел с точкой
+		var regex = /(\d+\.\d+)/g;
+
+		// Проходим по каждой строке
+		for (var i = 0; i < lines.length; i++) {
+		// Находим первый пробел в строке
+		var firstSpaceIndex = lines[i].indexOf(' ');
+
+		// Если нашли пробел
+		if (firstSpaceIndex !== -1) {
+			// Получаем текст после первого пробела
+			var textAfterSpace = lines[i].substring(firstSpaceIndex + 1);
+
+			// Заменяем точки на запятые в числах с десятичными разрядами
+			var updatedText = textAfterSpace.replace(regex, function(match) {
+			return match.replace(/\./g, ',');
+			});
+
+			// Обновляем строку с заменой
+			lines[i] = lines[i].substring(0, firstSpaceIndex + 1) + updatedText;
+		}
+		}
+
+		// Обновляем текстовое поле с обновленными строками
+		textarea.value = lines.join('\n');
+	}
+
 	function replaceComplectation() {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
@@ -1004,7 +1040,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 	}	
 	function replaceTxt31() {
   // Получаем элементы DOM
-		const input = 54;
+		const input = 55;
 		const textarea = document.getElementById('txt_fast');
 
 		// Создаем массив для хранения прогрессии
