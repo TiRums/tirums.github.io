@@ -417,13 +417,22 @@ div.free_inputs input {
 	border:0;
 	border-radius: 0;
 }
-div.free_inputs input:nth-child(6) {
-	margin-bottom: 5px;
+div.free_inputs div:nth-child(5) {
+	margin-bottom: 3px;
 }
 div.free_inputs input:focus {
 	border: 0;
 	outline: none;
 	background: #cfcfcf;
+}
+
+div.free_inputs_duo {
+	display: flex;
+	gap:1px;
+}
+
+div.free_inputs_duo>input:nth-child(1) {
+	flex: 135%;
 }
 
 button[onclick="fastRepInpClear()"] {background: #7a2727; color: #f0b7b7}
@@ -585,38 +594,39 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 						<input id='replace_input81' type="text" placeholder="До">
 						<input id='replace_input82' type="text" placeholder="После">
 						<button id='replace_button8' onclick="replaceTxtLineBreaks()">List</button>
-					</div>
-					
+					</div>					
 				</div>
 
 				<div class="gen_lines geLi_5">
-					<button id='replace_button33' onclick="replaceTxt33()">Tab</button>					
-					<button id='replace_button32' onclick="repTxtAa()">aA</button>
-					<button id='replace_button32' onclick="replaceTxtDuplicate()">D</button>
-					<button id='replace_button32' onclick="repTxtEnRu()">t т</button>
+					<button id='replace_button34' onclick="replaceTxt39()">_</button>
+					<button id='replace_comma' onclick="replaceComma()">,</button>
+					<button id='replace_comma2' onclick="replaceComma2()">;</button>
+					<button  onclick="noMore()">More</button>
 					<button  onclick="fastRepInpClear()">Х</button>
 				</div>
 				<div class="gen_lines geLi_5">
-					<button  onclick="noMore()">More</button>
-					<button id='replace_button34' onclick="replaceTxt34()">мм</button>
-					<button id='replace_button34' onclick="replaceTxt35()">mm</button>
-					<button id='replace_button34' onclick="replaceTxt36()">Вт</button>					
-				</div>
-				<div class="gen_lines geLi_5">
-					<button id='replace_button34' onclick="replaceTxt37()">*</button>
-					<button id='replace_button34' onclick="replaceTxt372()">x</button>
-					<button id='replace_button34' onclick="replaceTxt38()">"</button>
-					<button id='replace_button34' onclick="replaceTxt39()">_</button>
 				</div>
 				
 				<h2>Текст</h2>
 				<div class="gen_lines geLi_2">					
 					<button  onclick="repTxtBase()">Txt</button>
 					<button  onclick="repTxtBaseP()">Txt<b>P</b></button>
+					<button id='replace_button33' onclick="replaceTxt33()">Tab</button>					
 					<button  onclick="replaceTrim()">Trim</button>
-					<button id='replace_comma' onclick="replaceComma()">,</button>
-					<button id='replace_comma2' onclick="replaceComma2()">;</button>
 					<button  onclick="txtFastHtmlClear()">html</button>
+				</div>
+				<div class="gen_lines geLi_2">
+					<button id='replace_button32' onclick="replaceTxtDuplicate()">D</button>
+					<button id='replace_button34' onclick="replaceTxt37()">*</button>
+					<button id='replace_button34' onclick="replaceTxt372()">x</button>
+					<button id='replace_button34' onclick="replaceTxt38()">"</button>
+					<button id='replace_button32' onclick="repTxtAa()">aA</button>
+				</div>
+				<div class="gen_lines geLi_2">
+					<button id='replace_button34' onclick="replaceTxt34()">мм</button>
+					<button id='replace_button34' onclick="replaceTxt35()">mm</button>
+					<button id='replace_button34' onclick="replaceTxt36()">Вт</button>					
+					<button id='replace_button32' onclick="repTxtEnRu()">t т</button>
 				</div>
 				<h2>Список</h2>
 				<div class="gen_lines geLi_2">
@@ -633,9 +643,9 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button  onclick="repTxtBaseListMinus3()">TL-3</button>
 					
 				</div>
-				<h2>Дробить</h2>
+				<h2>Дробить</h2>				
 				<div class="gen_lines geLi_4">
-					<button  onclick="replaceDivide()">";"</button>
+					<button  onclick="replaceDivide()">":;"</button>
 					<button  onclick="replaceDivide2()">","</button>
 					<button  onclick="replaceDivide3()">"."</button>
 					<button  onclick="replaceDivide4()">"/"</button>
@@ -663,17 +673,49 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 				</div>					
 				<div class="free_inputs">
 					<input type="text" onclick="this.select();">
-					<input type="text" onclick="this.select();">
-					<input type="text" onclick="this.select();">
-					<input type="text" onclick="this.select();">
-					<input type="text" onclick="this.select();">
-					<input type="text" onclick="this.select();">
-					<input type="text" onclick="this.select();">
-					<input type="text" onclick="this.select();">
-					<input type="text" onclick="this.select();">
-					<input type="text" onclick="this.select();">
-					<input type="text" onclick="this.select();">
-					<input type="text" onclick="this.select();">
+				</div>
+				<div class="free_inputs">
+					<div class="free_inputs_duo">
+						<input type="text" onclick="this.select();">
+						<input type="text" onclick="this.select();">
+					</div>
+					<div class="free_inputs_duo">
+						<input type="text" onclick="this.select();">
+						<input type="text" onclick="this.select();">
+					</div>
+					<div class="free_inputs_duo">
+						<input type="text" onclick="this.select();">
+						<input type="text" onclick="this.select();">
+					</div>
+					<div class="free_inputs_duo">
+						<input type="text" onclick="this.select();">
+						<input type="text" onclick="this.select();">
+					</div>
+					<div class="free_inputs_duo">
+						<input type="text" onclick="this.select();">
+						<input type="text" onclick="this.select();">
+					</div>
+					<div class="free_inputs_duo">
+						<input type="text" onclick="this.select();">
+						<input type="text" onclick="this.select();">
+					</div>
+					<div class="free_inputs_duo">
+						<input type="text" onclick="this.select();">
+						<input type="text" onclick="this.select();">
+					</div>
+					<div class="free_inputs_duo">
+						<input type="text" onclick="this.select();">
+						<input type="text" onclick="this.select();">
+					</div>
+					<div class="free_inputs_duo">
+						<input type="text" onclick="this.select();">
+						<input type="text" onclick="this.select();">
+					</div>
+					<div class="free_inputs_duo">
+						<input type="text" onclick="this.select();">
+						<input type="text" onclick="this.select();">
+					</div>
+					
 				</div>
 				<div class="gen_lines geLi_7">	
 					<button id='freeInputs_buttonClear' onclick="fastFreeInpClear()">Х</button>	
@@ -897,7 +939,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 	function replaceDivide() {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
-		content = content.replace(/;/g, "\n");
+		content = content.replace(/:|;/g, "\n");
 		content = content.replace(/\t/g, "");
 		content = content.replace(/\s{2,}/g, "\n");
 		input.value = content;
@@ -1159,6 +1201,7 @@ function repTxtEnRu() {
 	content = content.replace(/H/g, "Н");
 	content = content.replace(/B/g, "В");
 	content = content.replace(/M/g, "М");
+	content = content.replace(/T/g, "Т");
 	input.value = content;
 }
 function replaceTxt33() {
