@@ -620,7 +620,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button id='replace_button34' onclick="replaceTxt37()">*</button>
 					<button id='replace_button34' onclick="replaceTxt372()">x</button>
 					<button id='replace_button34' onclick="replaceTxt38()">"</button>
-					<button id='replace_button32' onclick="repTxtDotComma()">.,</button>
+					<button id='replace_button32' onclick="repTxtDotComma()">. ,</button>
 				</div>
 				<div class="gen_lines geLi_2">
 				<button id='replace_button32' onclick="repTxtAa()">aA</button>
@@ -638,10 +638,11 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button  onclick="repTxtBaseListPlus()">TL+</button>
 				</div>
 				<div class="gen_lines geLi_2">
-					<button  onclick="repTxtBaseListPair()">:;</button>					
+					<button  onclick="repTxtBaseListPro()">TLP</button>					
 					<button  onclick="repTxtBaseListMinus1()">TL-1</button>
 					<button  onclick="repTxtBaseListMinus2()">TL-2</button>
 					<button  onclick="repTxtBaseListMinus3()">TL-3</button>
+					<button  onclick="repTxtBaseListPair()">:;</button>					
 					
 				</div>
 				<h2>Дробить</h2>				
@@ -807,7 +808,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 				line.charAt(firstLetterIndex).toUpperCase() +
 				line.substring(firstLetterIndex + 1);
 		}
-		}
+	}
 
 		// Объединяем строки обратно в текст и выводим его в текстовое поле
 		textarea.value = lines.join("\n");
@@ -827,6 +828,29 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 		let content = input.value.trim();		
 		content = content.replace(/\n/g, "\n• ");
 		input.value = content.startsWith("\n•") ? content.trim() : "• " + content.trim();
+	}
+	function repTxtBaseListPro() {
+		repTxtBaseList();
+		// Получаем текст из текстового поля
+		var textarea = document.getElementById("txt_fast");
+		var text = textarea.value;
+
+		// Разделяем текст на строки
+		var lines = text.split('\n');
+
+		// Создаем регулярное выражение для поиска двоеточий или двоеточий с пробелами в конце строки
+		var regex = /:\s*$/;
+
+		// Проходимся по каждой строке
+		for (var i = 0; i < lines.length; i++) {
+		if (regex.test(lines[i])) {
+			// Если в конце строки есть двоеточие или двоеточие с пробелами, заменяем "• " на "\n\n"
+			lines[i] = lines[i].replace(/^• /, '\n');
+		}
+		}
+
+		// Обновляем текст в текстовом поле
+		textarea.value = lines.join('\n');
 	}
 	function repTxtBaseListPlus() {
 		let input = document.getElementById("txt_fast");
@@ -958,7 +982,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 		content = content.replace(/[\n]+/g, "; ");	
 		content = content.replace(/;{2,}/g, ";");	
 		content = content.replace(/;/, ":");
-		input.value = "• " + content;
+		input.value = content + ";";
 	}
 	function replaceComplectation2() {
 		let input = document.getElementById("txt_fast");
@@ -975,7 +999,8 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 	function replaceDivide() {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
-		content = content.replace(/:|;/g, "\n");
+		content = content.replace(/:/g, ":\n");
+		content = content.replace(/;/g, "\n");
 		content = content.replace(/\t/g, "");
 		content = content.replace(/\s{2,}/g, "\n");
 		input.value = content;
@@ -991,7 +1016,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 	function replaceDivide3() {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
-		content = content.replace(/\. /g, "\n");
+		content = content.replace(/\. /g, ".\n");
 		content = content.replace(/\t/g, "");
 		content = content.replace(/\s{2,}/g, "\n");
 		input.value = content;
