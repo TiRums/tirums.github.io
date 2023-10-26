@@ -617,17 +617,17 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 				</div>
 				<div class="gen_lines geLi_2">
 					<button id='replace_button32' onclick="replaceTxtDuplicate()">D</button>
+					<button id='replace_button32' onclick="replaceTxtDuplicateLines()">DL</button>
+					<button id='replace_button32' onclick="repTxtAa()">aA</button>
+					<button id='replace_button32' onclick="repTxtDotComma()">. ,</button>
+					<button id='replace_button32' onclick="repTxtEnRu()">t т</button>
+				</div>
+				<div class="gen_lines geLi_2">
 					<button id='replace_button34' onclick="replaceTxt37()">*</button>
 					<button id='replace_button34' onclick="replaceTxt372()">x</button>
 					<button id='replace_button34' onclick="replaceTxt38()">"</button>
-					<button id='replace_button32' onclick="repTxtDotComma()">. ,</button>
-				</div>
-				<div class="gen_lines geLi_2">
-				<button id='replace_button32' onclick="repTxtAa()">aA</button>
 					<button id='replace_button34' onclick="replaceTxt34()">мм</button>
 					<button id='replace_button34' onclick="replaceTxt35()">mm</button>
-					<button id='replace_button34' onclick="replaceTxt36()">Вт</button>					
-					<button id='replace_button32' onclick="repTxtEnRu()">t т</button>
 				</div>
 				<h2>Список</h2>
 				<div class="gen_lines geLi_2">
@@ -1216,21 +1216,21 @@ function replaceTxtLineBreaks() {
 
 function replaceTxtDuplicate() {
 	var textarea = document.getElementById("txt_fast");
-            var text = textarea.value;
-            var lines = text.split('\n');
+	var text = textarea.value;
+	var lines = text.split('\n');
 
             for (var i = 0; i < lines.length; i++) {
-                var line = lines[i];
+				var line = lines[i];
                 var firstSpaceIndex = line.indexOf(' ');
-
+				
                 if (firstSpaceIndex !== -1) {
-                    var firstWord = line.substring(0, firstSpaceIndex);
+					var firstWord = line.substring(0, firstSpaceIndex);
                     var restOfLine = line.substring(firstSpaceIndex + 1);
-
+					
                     // Ищем и удаляем первое совпадение с первым словом в строке
                     var regex = new RegExp(firstWord);
                     restOfLine = restOfLine.replace(regex, '');
-
+					
                     // Обновляем строку
                     lines[i] = firstWord + ' ' + restOfLine;
                 }
@@ -1238,8 +1238,25 @@ function replaceTxtDuplicate() {
 
             var updatedText = lines.join('\n');
             textarea.value = updatedText;
-}
+}		
+function replaceTxtDuplicateLines() {
+	// Получаем элементы textarea и кнопки
+	var textarea = document.getElementById("txt_fast");
 
+	// Разбиваем текст на строки и удаляем двойные пробелы и табуляции
+	var lines = textarea.value.split('\n').map(function(line) {
+	return line.replace(/\s+/g, ' ').trim();
+	});
+
+	// Создаем объект Set для уникальных строк
+	var uniqueLines = new Set(lines);
+
+	// Преобразуем Set обратно в массив
+	var uniqueLinesArray = Array.from(uniqueLines);
+
+	// Обновляем текст в textarea
+	textarea.value = uniqueLinesArray.join('\n');
+}
 function repTxtEnRu() {
 	let input = document.getElementById("txt_fast");
 	let content = input.value
