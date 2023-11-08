@@ -601,7 +601,8 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button id='replace_button34' onclick="replaceTxt39()">_</button>
 					<button id='replace_comma' onclick="replaceComma()">,</button>
 					<button id='replace_comma2' onclick="replaceComma2()">;</button>
-					<button  onclick="noMore()">More</button>
+					<button id='replace_comma' onclick="replaceBracket()">()</button>
+					<button  onclick="noMore()">…</button>
 					<button  onclick="fastRepInpClear()">Х</button>
 				</div>
 				<div class="gen_lines geLi_5">
@@ -653,6 +654,9 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button  onclick="replaceDivide4()">"/"</button>
 					<button  onclick="replaceDivide5()">"Tab"</button>
 				</div>
+				<div class="gen_lines geLi_4">
+					<button  onclick="replaceDivide6()">: шт.</button>	
+				</div>
 				<h2>Комплектация</h2>
 				<div class="gen_lines geLi_3">
 					<button  onclick="replaceComplectation()">;</button>
@@ -665,9 +669,9 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 				<h2>Разное</h2>
 				<div class="gen_lines geLi_5">
 					<button id='replace_button31' onclick="replaceTxt31()">L55</button>					
-					<button id="txt_midline" onclick="copyMidLineDots()">…</button>
-					<button id="txt_midline" onclick="copyMidLine()">≡≡≡</button>
-					<button id="txt_midline" onclick="copyMidLineStars()">■■■</button>
+					<button id="txt_midline" onclick="copyMidLineL1()">···</button>
+					<button id="txt_midline" onclick="copyMidLineL2()">▬</button>
+					<button id="txt_midline" onclick="copyMidLineL3()">■■■</button>
 				</div>	
 				<hr>
 				<div class="gen_lines geLi_6">					
@@ -780,7 +784,8 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 	function repTxtBase() {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
-		content = content.replace(/\n+/g, "\n");			
+		content = content.replace(/\"{2,}/g, "");
+		content = content.replace(/\n+/g, "\n");
 		content = content.replace(/\n\ +/g, "\n");			
 		content = content.replace(/\t+|\ {2,}/g, " ");
 		content = content.replace(/(•\s+|•)/g, "");
@@ -809,6 +814,10 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 				line.substring(firstLetterIndex + 1);
 		}
 	}
+		// Чистим от пробелов каждую строку
+		for (let i = 0; i < lines.length; i++) {
+			lines[i] = lines[i].trim();
+		}
 
 		// Объединяем строки обратно в текст и выводим его в текстовое поле
 		textarea.value = lines.join("\n");
@@ -1036,6 +1045,16 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 		content = content.replace(/\s{2,}/g, "\n");
 		input.value = content;
 	}
+	function replaceDivide6() {
+		let input = document.getElementById("txt_fast");
+		let content = input.value.trim();
+		content = content.replace(/:/g, ":\n");
+		content = content.replace(/;/g, "\n");
+		content = content.replace(/шт\. /g, "шт.\n");
+		content = content.replace(/\t/g, "");
+		content = content.replace(/\s{2,}/g, "\n");
+		input.value = content;
+	}
 	function replaceTrim() {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
@@ -1117,9 +1136,22 @@ function updateLineNumbers() {
   }
 }
 
-function copyMidLine() {
-  const dashCount = 104; // Количество дефисов для копирования
-  const textToCopy = '≡'.repeat(dashCount); // Генерируем строку с нужным количеством дефисов
+function copyMidLineL1() {
+  const dashCount = 138; // Количество дефисов для копирования
+  const textToCopy = '·'.repeat(dashCount); // Генерируем строку с нужным количеством дефисов
+  navigator.clipboard.writeText(textToCopy)
+	.then(() => {
+	  console.log('Текст скопирован в буфер обмена: ' + textToCopy);
+	  // Здесь можно добавить дополнительные действия после копирования
+	})
+	.catch((error) => {
+	  console.error('Не удалось скопировать текст: ', error);
+	  // Здесь можно добавить обработку ошибки, если не удалось скопировать текст
+	});
+}
+function copyMidLineL2() {
+  const dashCount = 48; // Количество дефисов для копирования
+  const textToCopy = '▬'.repeat(dashCount); // Генерируем строку с нужным количеством дефисов
   navigator.clipboard.writeText(textToCopy)
     .then(() => {
       console.log('Текст скопирован в буфер обмена: ' + textToCopy);
@@ -1130,22 +1162,9 @@ function copyMidLine() {
       // Здесь можно добавить обработку ошибки, если не удалось скопировать текст
     });
 }
-function copyMidLineStars() {
+function copyMidLineL3() {
   const dashCount = 87; // Количество дефисов для копирования
   const textToCopy = '■'.repeat(dashCount); // Генерируем строку с нужным количеством дефисов
-  navigator.clipboard.writeText(textToCopy)
-    .then(() => {
-      console.log('Текст скопирован в буфер обмена: ' + textToCopy);
-      // Здесь можно добавить дополнительные действия после копирования
-    })
-    .catch((error) => {
-      console.error('Не удалось скопировать текст: ', error);
-      // Здесь можно добавить обработку ошибки, если не удалось скопировать текст
-    });
-}
-function copyMidLineDots() {
-  const dashCount = 75; // Количество дефисов для копирования
-  const textToCopy = '…'.repeat(dashCount); // Генерируем строку с нужным количеством дефисов
   navigator.clipboard.writeText(textToCopy)
     .then(() => {
       console.log('Текст скопирован в буфер обмена: ' + textToCopy);
@@ -1311,8 +1330,8 @@ function replaceTxt37() {
 	let input = document.getElementById("txt_fast");
 	let content = input.value	
 	content = content.replace(/\*{1,}/g, "x");
-	content = content.replace(/\s{1,}(х|x){1,}\s{1,}/gi, "x");
-	content = content.replace(/(\s{1,}|)(х|x){1,}(?=\d+)/gi, "x");
+	content = content.replace(/\s{1,}(х|x|×){1,}\s{1,}/gi, "x");
+	content = content.replace(/(\s{1,}|)(х|x|×){1,}(?=\d+)/gi, "x");
 	input.value = content;
 }
 function replaceTxt372() {
@@ -1351,6 +1370,12 @@ function replaceComma2() {
 	let input = document.getElementById("txt_fast");
 	let content = input.value
 	content = content.replace(/;/g, "");
+	input.value = content;
+}
+function replaceBracket() {
+	let input = document.getElementById("txt_fast");
+	let content = input.value
+	content = content.replace(/\(|\)/g, "");
 	input.value = content;
 }
 
