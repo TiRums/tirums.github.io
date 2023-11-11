@@ -259,19 +259,20 @@
 		display: flex;
 		flex-direction: column;
 		gap: 3px;
+		background: #222; padding: 1px 2px 0 1px; font-weight: bold;
 	}
-	#btn_fast button {
-		height: 18px;
+	#btn_fast button { font-weight: bold; font-size: 11px; color: rgba(0, 0, 0, 0.75);
+		height: 16px;
 		border: 0;
 		border-radius: 0;
 
 	}
 	#btn_fast h2 {
-		color: #aaa;
-		font-size: 15px;
-		margin: 0;
+		font-size: 13px;
+		margin: 5px 0 0;
 		text-align: center;
-
+		color: #999;
+		text-transform: uppercase;
 	}
 	/*** BLOCK - END ***/
 	/*** BLOCK - START ***/
@@ -321,8 +322,8 @@
 	#replace_input61:focus, #replace_input62:focus,
 	#replace_input71:focus, #replace_input72:focus,
 	#replace_input81:focus, #replace_input82:focus {background: #ebc9ae;}
-	#replace_button6, #replace_button7, #replace_button8 {background: #bd885d;}
-	#replace_button6:hover, #replace_button7:hover, #replace_button8:hover {background: #996d49;}
+	#replace_button6, #replace_button7, #replace_button8 {background: linear-gradient(to top,#9c704b,#bb8a63);}
+	#replace_button6:hover, #replace_button7:hover, #replace_button8:hover {background:linear-gradient(to top,#bb8a63,#dfab80);}
 
 	#gen_button, #replace_button, 
 	#replace_button1, #replace_button2, #replace_button3,
@@ -334,37 +335,44 @@
 		margin: 0;
 	}
 	.gen_lines button {
+		box-sizing: border-box;
 		display:block;
 		flex: 1;
 		height:18px !important;
 		padding: 0;
 		margin: 0;
 		cursor: pointer;
+		border-bottom1: 1px solid rgba(0, 0, 0, 0.85) !important;
+		border-top1: 1px solid rgba(0, 0, 0, 0.85) !important;
+		
 	}
+	.gen_lines button:hover {transform1: scaleY(1.1);} 
 
-	.geLi_1 button {background-color: #d3ab61;}
-	.geLi_1 button:hover {background-color: #aa894a;}
+	.geLi_1 button {background: linear-gradient(to top,#aa894a,#c2a062);}
+	.geLi_1 button:hover {background: linear-gradient(to top,#d3ab61,#e6c079);}
 
-	.geLi_2 button {background-color: #a8c47f;}
-	.geLi_2 button:hover {background-color: #789153;}
+	.geLi_2 button {background: linear-gradient(to top,#778f51,#a3be79);color: rgba(0, 0, 0, 0.75);}
+	.geLi_2 button:hover {background: linear-gradient(to top,#a3be79,#c0db93);}
 
-	.geLi_3 button {background-color: #6d98c9;}
-	.geLi_3 button:hover {background-color: #486f9b;}
+	.geLi_3 button {background: linear-gradient(to top,#486f9b,#6a94c4);}
+	.geLi_3 button:hover {background: linear-gradient(to top,#6a94c4,#84afe0);}
 
-	.geLi_4 button {background-color: #c980c9;}
-	.geLi_4 button:hover {background-color: #965696;}
+	.geLi_4 button {background: linear-gradient(to top,#a360a3,#bb76bb);}
+	.geLi_4 button:hover {background: linear-gradient(to top,#bb76bb,#d48fd4);}
 
-	.geLi_5 button {background-color: #222;color:#888;}
-	.geLi_5 button:hover {background-color: #111;color:#888;}
+	.geLi_5 button {background: linear-gradient(to top,#030303,#111);color:#888 !important;}
+	.geLi_5 button:hover {background: linear-gradient(to top,#181818,#242424);color:#ccc !important;}
 
-	.geLi_6 button {background-color: #5f3a3a;}
-	.geLi_6 button:hover {background-color: #a15353;}
+	.geLi_6 button {background: linear-gradient(to top,#5f3a3a,#5f3a3a);}
+	.geLi_6 button:hover {background:linear-gradient(to top,#a15353,#a15353);}
 
-	.geLi_7 button {width:100% !important;height:18px !important;background-color: #5f3a3a;}
-	.geLi_7 button:hover {background-color: #a15353;}
+	.geLi_7 button {width:100% !important;height:18px !important;background: #5f3a3a;}
+	.geLi_7 button:hover {background: #a15353;}	
 	/*** BLOCK - END ***/
 	#wrap_txt {
 		display: flex;
+		position: relative;
+
 	}
 	
 	#nums {
@@ -378,7 +386,14 @@
 		padding: 8px !important;
 		font-size: 12px !important;
 		line-height: 1.2 !important;
+		position: relative;
 	} 
+	#txt_fast_lines_count {
+		position: absolute;
+		top:5px; right: 5px; 
+		background:#fff;color:#999;
+		font-size: 12px; font-weight: bold;
+	}	
 
 #btn_fast hr {
 	margin: 6px 0;
@@ -401,7 +416,7 @@ div.gen_symbols input {
 }
 
 div.free_inputs {
-	margin: 10px 0 0;
+	margin: 5px 0 0;
 	display: flex;
 	flex-direction: column;
 	gap: 1px;
@@ -550,7 +565,8 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 			<div id="ta_fast">
 				<div id='wrap_txt'>
 					<div id='nums'></div>
-					<textarea id="txt_fast" placeholder="31" scrolling="auto"></textarea>
+					<textarea id="txt_fast" placeholder="31" scrolling="auto" oninput="countLines()"></textarea>
+					<div id="txt_fast_lines_count"></div>
 				</div>
 			</div>
 			<div id="btn_fast">
@@ -606,9 +622,18 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button  onclick="fastRepInpClear()">Х</button>
 				</div>
 				<div class="gen_lines geLi_5">
+					<button id='replace_button34' onclick="repTxtToLowCaseRu()">п</button>
+					<button id='replace_button34' onclick="repTxtToUpCaseRu()">П</button>
+					<button id='replace_button34' onclick="repTxtToLowCaseEn()">r</button>
+					<button id='replace_button34' onclick="repTxtToUpCaseEn()">R</button>
+					<button id='replace_button34' onclick="repTxtBigFirst()">Aa</button>
+				</div>
+				<div class="gen_lines geLi_5">
+					<button id='replace_button34' onclick="repTxtAZ()">AZ</button>
+					<button id='replace_button34' onclick="repTxtZA()">ZA</button>
 				</div>
 				
-				<h2>Текст</h2>
+				<h2 id="h2_text">Текст</h2>
 				<div class="gen_lines geLi_2">					
 					<button  onclick="repTxtBase()">Txt</button>
 					<button  onclick="repTxtBaseP()">Txt<b>P</b></button>
@@ -630,7 +655,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button id='replace_button34' onclick="replaceTxt34()">мм</button>
 					<button id='replace_button34' onclick="replaceTxt35()">mm</button>
 				</div>
-				<h2>Список</h2>
+				<h2 id="h2_text">Список</h2>
 				<div class="gen_lines geLi_2">
 					<button  onclick="repTxtBaseList()">TL</button>					
 					<button  onclick="repTxtBaseListPlus1()">TL1</button>
@@ -646,18 +671,18 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button  onclick="repTxtBaseListPair()">:;</button>					
 					
 				</div>
-				<h2>Дробить</h2>				
+				<h2 id="h2_split">Дробить</h2>				
 				<div class="gen_lines geLi_4">
-					<button  onclick="replaceDivide()">":;"</button>
-					<button  onclick="replaceDivide2()">","</button>
-					<button  onclick="replaceDivide3()">"."</button>
-					<button  onclick="replaceDivide4()">"/"</button>
-					<button  onclick="replaceDivide5()">"Tab"</button>
+					<button  onclick="replaceDivide()">:;</button>
+					<button  onclick="replaceDivide2()">,</button>
+					<button  onclick="replaceDivide3()">.</button>
+					<button  onclick="replaceDivide4()">/</button>
+					<button  onclick="replaceDivide5()">Tab</button>
 				</div>
 				<div class="gen_lines geLi_4">
 					<button  onclick="replaceDivide6()">: шт.</button>	
 				</div>
-				<h2>Комплектация</h2>
+				<h2 id="h2_complect">Комплектация</h2>
 				<div class="gen_lines geLi_3">
 					<button  onclick="replaceComplectation()">;</button>
 					<button  onclick="replaceComplectationS()">/</button>
@@ -666,20 +691,13 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button  onclick="replaceComplectation3()">,</button>	
 				</div>
 				
-				<h2>Разное</h2>
+				<h2 id="h2_diff">Разное</h2>
 				<div class="gen_lines geLi_5">
 					<button id='replace_button31' onclick="replaceTxt31()">L55</button>					
 					<button id="txt_midline" onclick="copyMidLineL1()">···</button>
 					<button id="txt_midline" onclick="copyMidLineL2()">▬</button>
 					<button id="txt_midline" onclick="copyMidLineL3()">■■■</button>
 				</div>	
-				<hr>
-				<div class="gen_lines geLi_6">					
-					<button id='replace_buttonClear' onclick="replaceTxtClear()">Очистить</button>
-				</div>					
-				<div class="free_inputs">
-					<input type="text" onclick="this.select();">
-				</div>
 				<div class="free_inputs">
 					<div class="free_inputs_duo">
 						<input type="text" onclick="this.select();">
@@ -731,6 +749,10 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<input type="text" id="GS_input" onclick="this.select();" value="±">
 					<input type="text" id="GS_input" onclick="this.select();" value="…">
 				</div>
+				<hr>
+				<div class="gen_lines geLi_6">					
+					<button id='replace_buttonClear' onclick="replaceTxtClear()">Очистить</button>
+				</div>					
 			</div>
 		</div>
 		
@@ -1409,6 +1431,158 @@ function fastFreeInpClear() {
 		input.value = '';
 	});
 }
+
+function repTxtToLowCaseRu() {
+	// Получаем текст из элемента Textarea
+	var textarea = document.getElementById("txt_fast");
+	var text = textarea.value;
+
+	// Заменяем все русские буквы в нижнем регистре на верхний регистр
+	text = text.replace(/[А-Я]/g, function(match) {
+	return match.toLowerCase();
+	});
+
+	// Записываем измененный текст обратно в элемент Textarea
+	textarea.value = text;
+}
+function repTxtToUpCaseRu() {
+	// Получаем текст из элемента Textarea
+	var textarea = document.getElementById("txt_fast");
+	var text = textarea.value;
+
+	// Заменяем все русские буквы в нижнем регистре на верхний регистр
+	text = text.replace(/[а-я]/g, function(match) {
+	return match.toUpperCase();
+	});
+
+	// Записываем измененный текст обратно в элемент Textarea
+	textarea.value = text;
+}
+function repTxtToLowCaseEn() {
+	// Получаем текст из элемента Textarea
+	var textarea = document.getElementById("txt_fast");
+	var text = textarea.value;
+
+	// Заменяем все русские буквы в нижнем регистре на верхний регистр
+	text = text.replace(/[A-Z]/g, function(match) {
+	return match.toLowerCase();
+	});
+
+	// Записываем измененный текст обратно в элемент Textarea
+	textarea.value = text;
+}
+function repTxtToUpCaseEn() {
+	// Получаем текст из элемента Textarea
+	var textarea = document.getElementById("txt_fast");
+	var text = textarea.value;
+
+	// Заменяем все русские буквы в нижнем регистре на верхний регистр
+	text = text.replace(/[a-z]/g, function(match) {
+	return match.toUpperCase();
+	});
+
+	// Записываем измененный текст обратно в элемент Textarea
+	textarea.value = text;
+}
+function repTxtBigFirst() {
+	var textarea = document.getElementById("txt_fast");
+            var text = textarea.value;
+            
+            // Разделяем текст на абзацы
+            var paragraphs = text.split(/\n/);
+
+            // Обходим каждый абзац
+            for (var i = 0; i < paragraphs.length; i++) {
+                var paragraph = paragraphs[i];
+
+                // Разделяем абзац на предложения
+                var sentences = paragraph.split('. ');
+
+                // Обходим каждое предложение в абзаце
+                for (var j = 0; j < sentences.length; j++) {
+                    var sentence = sentences[j];
+
+                    // Убираем лишние пробелы и символы перевода строки
+                    sentence = sentence.trim();
+
+                    // Заменяем первую букву на заглавную
+                    sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1);
+
+                    // Заменяем предложение в абзаце
+                    sentences[j] = sentence;
+                }
+
+                // Заменяем абзац в тексте
+                paragraphs[i] = sentences.join('. ');
+            }
+
+            // Объединяем абзацы обратно в текст
+            var newText = paragraphs.join('\n');
+
+            // Заменяем содержимое текстового поля обновленным текстом
+            textarea.value = newText;
+}
+
+function repTxtAZ() {
+	// Получаем значение из текстового поля
+	var textareaValue = document.getElementById('txt_fast').value;
+
+	// Очищаем и обрезаем пробелы у всего текста
+    textareaValue = textareaValue.trim();
+
+	// Разбиваем текст на строки
+	var lines = textareaValue.split('\n');
+
+	// Очищаем и обрезаем пробелы у каждой строки
+    lines = lines.map(function(line) {
+        return line.trim();
+    });
+
+	// Сортируем строки по возрастанию
+	lines.sort();
+
+	// Обновляем текстовое поле отсортированными строками
+	document.getElementById('txt_fast').value = lines.join('\n');
+}
+function repTxtZA() {
+    // Получаем значение из текстового поля
+    var textareaValue = document.getElementById('txt_fast').value;
+
+    // Очищаем и обрезаем пробелы у всего текста
+    textareaValue = textareaValue.trim();
+
+    // Разбиваем текст на строки
+    var lines = textareaValue.split('\n');
+
+    // Очищаем и обрезаем пробелы у каждой строки
+    lines = lines.map(function(line) {
+        return line.trim();
+    });
+
+    // Сортируем строки по убыванию
+    lines.sort(function(a, b) {
+        return b.localeCompare(a);
+    });
+
+    // Обновляем текстовое поле отсортированными строками
+    document.getElementById('txt_fast').value = lines.join('\n');
+}
+
+function countLines() {
+    var text = document.getElementById('txt_fast').value;
+    var lines = text.split('\n');
+
+    var exception1 = '··········································································································································';
+    var exception2 = '▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬';
+    var exception3 = '■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■';
+
+    var filteredLines = lines.filter(function(line) {
+        return line.trim() !== '' && line.indexOf(exception1) === -1 && line.indexOf(exception2) === -1 && line.indexOf(exception3) === -1;
+    });
+
+    document.getElementById('txt_fast_lines_count').innerText = filteredLines.length;
+}
+
 
 </script>
 </body>
