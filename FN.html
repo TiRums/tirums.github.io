@@ -390,9 +390,9 @@
 	} 
 	#txt_fast_lines_count {
 		position: absolute;
-		top:5px; right: 5px; 
+		top: 3px; right: 5px; 
 		background:#fff;color:#999;
-		font-size: 12px; font-weight: bold;
+		font-size: 13px; font-weight: bold;
 	}	
 
 #btn_fast hr {
@@ -431,9 +431,6 @@ div.free_inputs input {
 	margin: 0 0px;
 	border:0;
 	border-radius: 0;
-}
-div.free_inputs div:nth-child(5) {
-	margin-bottom: 3px;
 }
 div.free_inputs input:focus {
 	border: 0;
@@ -631,6 +628,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 				<div class="gen_lines geLi_5">
 					<button id='replace_button34' onclick="repTxtAZ()">AZ</button>
 					<button id='replace_button34' onclick="repTxtZA()">ZA</button>
+					<button id='replace_button34' onclick="repTxtNAZ()">NAZ</button>
 				</div>
 				
 				<h2 id="h2_text">Текст</h2>
@@ -1566,6 +1564,34 @@ function repTxtZA() {
 
     // Обновляем текстовое поле отсортированными строками
     document.getElementById('txt_fast').value = lines.join('\n');
+}
+function repTxtNAZ() {
+	// Получаем значение из текстового поля
+	var textareaValue = document.getElementById('txt_fast').value;
+
+	// Этап 1: Очистка trim() всего текста перед разбиением на строки
+	textareaValue = textareaValue.trim();
+
+	// Этап 2: Разбиваем текст на строки
+	var lines = textareaValue.split('\n');
+
+	// Этап 3: Очистка trim() каждой строки перед сортировкой
+	lines = lines.map(function(line) {
+	return line.trim();
+	});
+
+	// Этап 4: Сортируем строки по первому слову после первого пробела
+	lines.sort(function(a, b) {
+	// Получаем первое слово после первого пробела в каждой строке
+	var firstWordA = a.split(' ')[1] || '';
+	var firstWordB = b.split(' ')[1] || '';
+
+	// Сравниваем первые слова
+	return firstWordA.localeCompare(firstWordB);
+	});
+
+	// Обновляем текстовое поле отсортированными строками
+	document.getElementById('txt_fast').value = lines.join('\n');
 }
 
 function countLines() {
