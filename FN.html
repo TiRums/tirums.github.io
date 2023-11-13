@@ -629,6 +629,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button id='replace_button34' onclick="repTxtAZ()">AZ</button>
 					<button id='replace_button34' onclick="repTxtZA()">ZA</button>
 					<button id='replace_button34' onclick="repTxtNAZ()">NAZ</button>
+					<button id='replace_button34' onclick="repTxtNZA()">NZA</button>
 				</div>
 				
 				<h2 id="h2_text">Текст</h2>
@@ -1566,32 +1567,60 @@ function repTxtZA() {
     document.getElementById('txt_fast').value = lines.join('\n');
 }
 function repTxtNAZ() {
-	// Получаем значение из текстового поля
-	var textareaValue = document.getElementById('txt_fast').value;
+    // Получаем значение из текстового поля
+    var textareaValue = document.getElementById('txt_fast').value;
 
-	// Этап 1: Очистка trim() всего текста перед разбиением на строки
-	textareaValue = textareaValue.trim();
+    // Этап 1: Очистка trim() всего текста перед разбиением на строки
+    textareaValue = textareaValue.trim();
 
-	// Этап 2: Разбиваем текст на строки
-	var lines = textareaValue.split('\n');
+    // Этап 2: Разбиваем текст на строки
+    var lines = textareaValue.split('\n');
 
-	// Этап 3: Очистка trim() каждой строки перед сортировкой
-	lines = lines.map(function(line) {
-	return line.trim();
-	});
+    // Этап 3: Очистка trim() каждой строки перед сортировкой
+    lines = lines.map(function(line) {
+        return line.trim();
+    });
 
-	// Этап 4: Сортируем строки по первому слову после первого пробела
-	lines.sort(function(a, b) {
-	// Получаем первое слово после первого пробела в каждой строке
-	var firstWordA = a.split(' ')[1] || '';
-	var firstWordB = b.split(' ')[1] || '';
+    // Этап 4: Сортируем строки по всей части строки после первого пробела
+    lines.sort(function(a, b) {
+        // Получаем всю часть строки после первого пробела в каждой строке
+        var restOfLineA = a.substring(a.indexOf(' ') + 1);
+        var restOfLineB = b.substring(b.indexOf(' ') + 1);
 
-	// Сравниваем первые слова
-	return firstWordA.localeCompare(firstWordB);
-	});
+        // Сравниваем строки
+        return restOfLineA.localeCompare(restOfLineB);
+    });
 
-	// Обновляем текстовое поле отсортированными строками
-	document.getElementById('txt_fast').value = lines.join('\n');
+    // Обновляем текстовое поле отсортированными строками
+    document.getElementById('txt_fast').value = lines.join('\n');
+}
+function repTxtNZA() {
+    // Получаем значение из текстового поля
+    var textareaValue = document.getElementById('txt_fast').value;
+
+    // Этап 1: Очистка trim() всего текста перед разбиением на строки
+    textareaValue = textareaValue.trim();
+
+    // Этап 2: Разбиваем текст на строки
+    var lines = textareaValue.split('\n');
+
+    // Этап 3: Очистка trim() каждой строки перед сортировкой
+    lines = lines.map(function(line) {
+        return line.trim();
+    });
+
+    // Этап 4: Сортируем строки по убыванию по всей части строки после первого пробела
+    lines.sort(function(a, b) {
+        // Получаем всю часть строки после первого пробела в каждой строке
+        var restOfLineA = a.substring(a.indexOf(' ') + 1);
+        var restOfLineB = b.substring(b.indexOf(' ') + 1);
+
+        // Сравниваем строки в обратном порядке для сортировки по убыванию
+        return restOfLineB.localeCompare(restOfLineA);
+    });
+
+    // Обновляем текстовое поле отсортированными строками
+    document.getElementById('txt_fast').value = lines.join('\n');
 }
 
 function countLines() {
