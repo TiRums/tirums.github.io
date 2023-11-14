@@ -1083,9 +1083,25 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 		input.value = content;
 	}
 	function replaceTrim() {
-		let input = document.getElementById("txt_fast");
-		let content = input.value.trim();
-		input.value = content;
+		// Получаем элемент textarea
+		var textarea = document.getElementById('txt_fast');
+
+		// Получаем текст из textarea
+		var text = textarea.value;
+
+		// Применяем trim() ко всему тексту
+		var trimmedText = text.trim();
+
+		// Разбиваем текст на строки
+		var lines = trimmedText.split('\n');
+
+		// Применяем trim() к каждой строке отдельно
+		var trimmedLines = lines.map(function(line) {
+		return line.trim();
+		});
+
+		// Обновляем значение textarea
+		textarea.value = trimmedLines.join('\n');
 	}
 	
 	function txtFastHtmlClear() {
