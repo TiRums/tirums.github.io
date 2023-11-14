@@ -390,7 +390,13 @@
 	} 
 	#txt_fast_lines_count {
 		position: absolute;
-		top: 3px; right: 5px; 
+		top: 3px; right: 20px; 
+		background:#fff;color:#999;
+		font-size: 13px; font-weight: bold;
+	}	
+	#txt_fast_lines_select {
+		position: absolute;
+		top: 3px; right: 3px; 
 		background:#fff;color:#999;
 		font-size: 13px; font-weight: bold;
 	}	
@@ -563,7 +569,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 				<div id='wrap_txt'>
 					<div id='nums'></div>
 					<textarea id="txt_fast" placeholder="31" scrolling="auto" oninput="countLines()"></textarea>
-					<div id="txt_fast_lines_count"></div>
+					<div id="txt_fast_lines_count"></div><input type="checkbox"  id="txt_fast_lines_select">
 				</div>
 			</div>
 			<div id="btn_fast">
@@ -759,7 +765,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 <!-- CONTENT END -->
 
 
-<script>
+<script defer>
 	/*** INPUTS-LI - START ***/
 	// Получаем все textarea и li элементы на странице по их id
 	const inputs = document.querySelectorAll('textarea[id^="input"]');
@@ -1385,6 +1391,7 @@ function replaceComma() {
 	let input = document.getElementById("txt_fast");
 	let content = input.value
 	content = content.replace(/, /g, " ");
+	content = content.replace(/,\n/g, "\n");
 	input.value = content;
 }
 function replaceComma2() {
@@ -1637,6 +1644,73 @@ function countLines() {
 
     document.getElementById('txt_fast_lines_count').innerText = filteredLines.length;
 }
+
+// -------------------------------------------------------------------------------
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    var checkbox = document.querySelector('input[type="checkbox"]');
+    var textarea = document.getElementById('txt_fast');
+
+    textarea.addEventListener('click', function (event) {
+        if (checkbox.checked) {
+            var start = textarea.selectionStart;
+            var end = textarea.selectionEnd;
+
+            // Получаем координаты клика
+            var clickX = event.clientX;
+            var clickY = event.clientY;
+
+            // Получаем информацию о символе под кликом
+            var charIndex = textarea.selectionStart;
+            var lineStart = textarea.value.lastIndexOf('\n', charIndex - 1) + 1;
+            var lineEnd = textarea.value.indexOf('\n', charIndex);
+            if (lineEnd === -1) {
+                lineEnd = textarea.value.length;
+            }
+
+            var lineText = textarea.value.substring(lineStart, lineEnd);
+
+            // Определяем, был ли клик в самое начало строки перед первым символом
+            var firstNonSpaceIndex = lineStart + lineText.search(/\S/);
+
+            if (charIndex <= firstNonSpaceIndex) {
+                // Клик был в самом начале строки перед первым символом, ничего не выделяем
+                textarea.setSelectionRange(charIndex, charIndex);
+                return;
+            }
+
+            // Определяем, был ли клик по первому слову строки
+            var firstWordMatch = lineText.match(/^\S+/);
+            if (firstWordMatch) {
+                var firstWord = firstWordMatch[0];
+                var firstWordEnd = lineStart + lineText.indexOf(firstWord) + firstWord.length;
+
+                if (charIndex < firstWordEnd) {
+                    // Клик был по первому слову строки, выделяем его
+                    textarea.setSelectionRange(lineStart, firstWordEnd);
+                } else {
+                    // Клик был в любом другом месте строки, выделяем всю строку
+                    textarea.setSelectionRange(lineStart, lineEnd);
+                }
+            }
+        }
+    });
+
+    checkbox.addEventListener('change', function () {
+        // Если checkbox не отмечен, убираем обработчик клика
+        if (!checkbox.checked) {
+            textarea.removeEventListener('click', handleTextareaClick);
+        }
+    });
+});
+
+
+
+
+
 
 
 </script>
