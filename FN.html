@@ -297,6 +297,7 @@
 		height: 18px;
 		outline:none;
 		flex-shrink: 0;
+		font-size: 11px;
 	}
 	div.gen_lines input:focus {
 		background: #f0e9dd;
@@ -433,10 +434,10 @@ div.free_inputs input {
 	height: 18px;
 	line-height: 18px;
 	padding: 0 4px;
-	font-size: 12px;
 	margin: 0 0px;
 	border:0;
 	border-radius: 0;
+	font-size: 11px !important;
 }
 div.free_inputs input:focus {
 	border: 0;
@@ -1675,10 +1676,6 @@ document.addEventListener('DOMContentLoaded', function () {
             var start = textarea.selectionStart;
             var end = textarea.selectionEnd;
 
-            // Получаем координаты клика
-            var clickX = event.clientX;
-            var clickY = event.clientY;
-
             // Получаем информацию о символе под кликом
             var charIndex = textarea.selectionStart;
             var lineStart = textarea.value.lastIndexOf('\n', charIndex - 1) + 1;
@@ -1690,27 +1687,36 @@ document.addEventListener('DOMContentLoaded', function () {
             var lineText = textarea.value.substring(lineStart, lineEnd);
 
             // Определяем, был ли клик в самое начало строки перед первым символом
-            var firstNonSpaceIndex = lineStart + lineText.search(/\S/);
-
-            if (charIndex <= firstNonSpaceIndex) {
+            if (charIndex === lineStart) {
                 // Клик был в самом начале строки перед первым символом, ничего не выделяем
-                textarea.setSelectionRange(charIndex, charIndex);
+                textarea.setSelectionRange(lineStart, lineStart);
+                return;
+            }
+
+            // Определяем, был ли клик перед последним символом строки, самый конец строки
+            if (charIndex === lineEnd) {
+                // Клик был после последнего символа строки, ничего не выделяем
+                textarea.setSelectionRange(lineEnd, lineEnd);
                 return;
             }
 
             // Определяем, был ли клик по первому слову строки
             var firstWordMatch = lineText.match(/^\S+/);
-            if (firstWordMatch) {
-                var firstWord = firstWordMatch[0];
-                var firstWordEnd = lineStart + lineText.indexOf(firstWord) + firstWord.length;
+            if (!firstWordMatch) {
+                // Не было выбрано первое слово строки, выделяем всю строку
+                textarea.setSelectionRange(lineStart, lineEnd);
+                return;
+            }
 
-                if (charIndex < firstWordEnd) {
-                    // Клик был по первому слову строки, выделяем его
-                    textarea.setSelectionRange(lineStart, firstWordEnd);
-                } else {
-                    // Клик был в любом другом месте строки, выделяем всю строку
-                    textarea.setSelectionRange(lineStart, lineEnd);
-                }
+            var firstWord = firstWordMatch[0];
+            var firstWordEnd = lineStart + lineText.indexOf(firstWord) + firstWord.length;
+
+            if (charIndex < firstWordEnd) {
+                // Клик был по первому слову строки, выделяем его
+                textarea.setSelectionRange(lineStart, firstWordEnd);
+            } else {
+                // Клик был в любом другом месте строки, выделяем всю строку
+                textarea.setSelectionRange(lineStart, lineEnd);
             }
         }
     });
