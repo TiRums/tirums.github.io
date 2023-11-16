@@ -457,6 +457,9 @@ div.free_inputs_duo>input:nth-child(1) {
 button[onclick="fastRepInpClear()"] {background: #7a2727; color: #f0b7b7}
 button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 
+.block_active {display:flex !important;}
+.block_hidden {display:none !important;}
+
 </style>
 
 <script language="JavaScript">
@@ -497,7 +500,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 	<!-- CONTENT -->
 	<div class="content">
 	<!-- GROUP1 -->
-		<div id="page1">
+		<div id="page1" class="block_active">
 			<div class="sub_pages">
 				<div class="ta_wrap"><textarea id="input01" placeholder="01"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
 				<div class="ta_wrap"><textarea id="input02" placeholder="02"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
@@ -555,16 +558,16 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 			</ul>
 		</div>
 
-		<div id="page2">
+		<div id="page2" class="block_hidden">
 			<div class="ta_wrap"><textarea id="ta_duo"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
 			<div class="ta_wrap"><textarea id="ta_duo"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
 		</div>
-		<div id="page3">
+		<div id="page3" class="block_hidden">
 			<div class="ta_wrap"><textarea id="ta_trio"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
 			<div class="ta_wrap"><textarea id="ta_trio"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
 			<div class="ta_wrap"><textarea id="ta_trio"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
 		</div>
-		<div id="page4">
+		<div id="page4" class="block_hidden">
 			<!--<div id="clear_field"></div>-->
 			<div id="ta_fast">
 				<div id='wrap_txt'>
@@ -1730,7 +1733,29 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+// -------------------------------------------------------------------------------
 
+document.addEventListener('DOMContentLoaded', function () {
+    var links = document.querySelectorAll('ul li a');
+
+    links.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            var targetId = link.getAttribute('href').substring(1);
+            var targetElement = document.getElementById(targetId);
+
+            var allBlocks = document.querySelectorAll('.block_active, .block_hidden');
+            allBlocks.forEach(function (block) {
+                block.classList.remove('block_active');
+                block.classList.add('block_hidden');
+            });
+
+            targetElement.classList.remove('block_hidden');
+            targetElement.classList.add('block_active');
+        });
+    });
+});
 
 
 
