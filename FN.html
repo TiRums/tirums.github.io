@@ -500,7 +500,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 	<!-- CONTENT -->
 	<div class="content">
 	<!-- GROUP1 -->
-		<div id="page1" class="block_active">
+		<div id="page1" class="block_hidden">
 			<div class="sub_pages">
 				<div class="ta_wrap"><textarea id="input01" placeholder="01"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
 				<div class="ta_wrap"><textarea id="input02" placeholder="02"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
@@ -567,7 +567,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 			<div class="ta_wrap"><textarea id="ta_trio"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
 			<div class="ta_wrap"><textarea id="ta_trio"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
 		</div>
-		<div id="page4" class="block_hidden">
+		<div id="page4" class="block_active">
 			<!--<div id="clear_field"></div>-->
 			<div id="ta_fast">
 				<div id='wrap_txt'>
@@ -862,18 +862,57 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 		content = content.replace(/\n/g, "\n\n");
 		input.value = content;
 	}
+
 	function repTxtBaseList() {
+		// Вызываем функцию repTxtBase()
 		repTxtBase();
+
+		// Получаем элемент textarea
 		let input = document.getElementById("txt_fast");
-		let content = input.value.trim();		
-		content = content.replace(/\n/g, "\n• ");
-		input.value = content.startsWith("\n•") ? content.trim() : "• " + content.trim();
+
+		// Получаем выделенный текст
+		let selectedText = input.value.substring(input.selectionStart, input.selectionEnd);
+
+		// Проверяем, выделен ли текст
+		if (selectedText) {
+			// Выделен текст, работаем только с ним
+			let content = selectedText.trim();
+
+			// Разбиваем текст на строки и добавляем "\n• " в начало каждой строки, если такого префикса нет
+			content = content.split('\n').map(line => !line.startsWith("• ") ? "• " + line : line).join('\n');
+
+			// Заменяем выделенный текст на новый
+			input.value = input.value.substring(0, input.selectionStart) + content + input.value.substring(input.selectionEnd);
+
+			// Устанавливаем курсор в конец нового текста
+			input.setSelectionRange(input.selectionStart + content.length, input.selectionStart + content.length);
+		} else {
+			// Нет выделенного текста, работаем со всем текстом поля
+			let content = input.value.trim();
+
+			// Разбиваем текст на строки и добавляем "\n• " в начало каждой строки, если такого префикса нет
+			content = content.split('\n').map(line => !line.startsWith("• ") ? "• " + line : line).join('\n');
+
+			// Заменяем весь текст на новый
+			input.value = content;
+
+			// Устанавливаем курсор в конец нового текста
+			input.setSelectionRange(content.length, content.length);
+		}
 	}
+
 	function repTxtBaseListPro() {
+		// Вызываем функцию repTxtBaseList()
 		repTxtBaseList();
-		// Получаем текст из текстового поля
+
+		// Получаем элемент textarea
 		var textarea = document.getElementById("txt_fast");
-		var text = textarea.value;
+
+		// Получаем выделенный текст, если он есть
+		var selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+
+		// Если выделенный текст отсутствует или пуст, работаем со всем текстом поля
+		var text = selectedText.trim() || textarea.value.trim();
 
 		// Разделяем текст на строки
 		var lines = text.split('\n');
@@ -883,21 +922,61 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 
 		// Проходимся по каждой строке
 		for (var i = 0; i < lines.length; i++) {
-		if (regex.test(lines[i])) {
-			// Если в конце строки есть двоеточие или двоеточие с пробелами, заменяем "• " на "\n\n"
-			lines[i] = lines[i].replace(/^• /, '\n');
-		}
+			if (regex.test(lines[i])) {
+				// Если в конце строки есть двоеточие или двоеточие с пробелами, заменяем "• " на "\n\n"
+				lines[i] = lines[i].replace(/^• /, '\n');
+			}
 		}
 
-		// Обновляем текст в текстовом поле
-		textarea.value = lines.join('\n').trim();
+		// Если выделенный текст был, заменяем его отредактированными строками
+		if (selectedText) {
+			var start = textarea.selectionStart;
+			var end = textarea.selectionEnd;
+			var prefix = textarea.value.substring(0, start);
+			var suffix = textarea.value.substring(end);
+			textarea.value = prefix + lines.join('\n') + suffix;
+			textarea.setSelectionRange(start, start + lines.join('\n').length);
+		} else {
+			// В противном случае вставляем измененный текст на место выделенного
+			textarea.value = lines.join('\n').trim();
+
+			// Устанавливаем курсор в начало обработанного текста
+			var newCursorPosition = textarea.value.length;
+			textarea.setSelectionRange(newCursorPosition, newCursorPosition);
+		}
 	}
 	function repTxtBaseListPlus() {
-		let input = document.getElementById("txt_fast");
-		let content = input.value.trim();
-		content = content.replace(/• /, "\n");
-		input.value = content.trim();
-	}
+    // Получаем элемент textarea
+    let textarea = document.getElementById("txt_fast");
+
+    // Получаем выделенный текст, если он есть
+    let selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+
+    // Если выделенный текст отсутствует или пуст, работаем со всем текстом поля
+    let content = selectedText.trim() || textarea.value.trim();
+
+    // Заменяем первое вхождение "• " на "\n\n"
+    content = content.replace(/• /, "\n");
+
+    // Если выделенный текст был, заменяем его отредактированным текстом
+    if (selectedText) {
+        let start = textarea.selectionStart;
+        let end = textarea.selectionEnd;
+        let prefix = textarea.value.substring(0, start);
+        let suffix = textarea.value.substring(end);
+        textarea.value = prefix + content.trim() + suffix;
+        textarea.setSelectionRange(start, start + content.trim().length);
+    } else {
+        // В противном случае вставляем измененный текст на место выделенного
+        textarea.value = content.trim();
+
+        // Устанавливаем курсор в начало обработанного текста
+        textarea.setSelectionRange(0, content.trim().length);
+    }
+}
+
+
+
 	function repTxtBaseListPlus1() {
 		repTxtBaseList();
 		repTxtBaseListPlus();
@@ -1550,35 +1629,51 @@ function repTxtBigFirst() {
 }
 
 function repTxtAZ() {
-	// Получаем значение из текстового поля
-	var textareaValue = document.getElementById('txt_fast').value;
+    // Получаем элемент textarea
+    var textarea = document.getElementById('txt_fast');
 
-	// Очищаем и обрезаем пробелы у всего текста
-    textareaValue = textareaValue.trim();
+    // Получаем выделенный текст, если он есть
+    var selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
 
-	// Разбиваем текст на строки
-	var lines = textareaValue.split('\n');
+    // Если выделенный текст отсутствует или пуст, работаем со всем текстом поля
+    var textToProcess = selectedText.trim() || textarea.value.trim();
 
-	// Очищаем и обрезаем пробелы у каждой строки
+    // Разбиваем текст на строки
+    var lines = textToProcess.split('\n');
+
+    // Очищаем и обрезаем пробелы у каждой строки
     lines = lines.map(function(line) {
         return line.trim();
     });
 
-	// Сортируем строки по возрастанию
-	lines.sort();
+    // Сортируем строки по возрастанию
+    lines.sort();
 
-	// Обновляем текстовое поле отсортированными строками
-	document.getElementById('txt_fast').value = lines.join('\n');
+    // Если выделенный текст был, заменяем его отсортированными строками
+    if (selectedText) {
+        var start = textarea.selectionStart;
+        var end = textarea.selectionEnd;
+        var prefix = textarea.value.substring(0, start);
+        var suffix = textarea.value.substring(end);
+        textarea.value = prefix + lines.join('\n') + suffix;
+        textarea.setSelectionRange(start, start + lines.join('\n').length);
+    } else {
+        // В противном случае обновляем текстовое поле отсортированными строками
+        textarea.value = lines.join('\n');
+    }
 }
 function repTxtZA() {
-    // Получаем значение из текстового поля
-    var textareaValue = document.getElementById('txt_fast').value;
+    // Получаем элемент textarea
+    var textarea = document.getElementById('txt_fast');
 
-    // Очищаем и обрезаем пробелы у всего текста
-    textareaValue = textareaValue.trim();
+    // Получаем выделенный текст, если он есть
+    var selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+
+    // Если выделенный текст отсутствует или пуст, работаем со всем текстом поля
+    var textToProcess = selectedText.trim() || textarea.value.trim();
 
     // Разбиваем текст на строки
-    var lines = textareaValue.split('\n');
+    var lines = textToProcess.split('\n');
 
     // Очищаем и обрезаем пробелы у каждой строки
     lines = lines.map(function(line) {
@@ -1590,18 +1685,34 @@ function repTxtZA() {
         return b.localeCompare(a);
     });
 
-    // Обновляем текстовое поле отсортированными строками
-    document.getElementById('txt_fast').value = lines.join('\n');
+    // Если выделенный текст был, заменяем его отсортированными строками
+    if (selectedText) {
+        var start = textarea.selectionStart;
+        var end = textarea.selectionEnd;
+        var prefix = textarea.value.substring(0, start);
+        var suffix = textarea.value.substring(end);
+        textarea.value = prefix + lines.join('\n') + suffix;
+        textarea.setSelectionRange(start, start + lines.join('\n').length);
+    } else {
+        // В противном случае обновляем текстовое поле отсортированными строками
+        textarea.value = lines.join('\n');
+    }
 }
 function repTxtNAZ() {
-    // Получаем значение из текстового поля
-    var textareaValue = document.getElementById('txt_fast').value;
+    // Получаем элемент textarea
+    var textarea = document.getElementById('txt_fast');
+
+    // Получаем выделенный текст, если он есть
+    var selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+
+    // Если выделенный текст отсутствует или пуст, работаем со всем текстом поля
+    var textToProcess = selectedText.trim() || textarea.value.trim();
 
     // Этап 1: Очистка trim() всего текста перед разбиением на строки
-    textareaValue = textareaValue.trim();
+    textToProcess = textToProcess.trim();
 
     // Этап 2: Разбиваем текст на строки
-    var lines = textareaValue.split('\n');
+    var lines = textToProcess.split('\n');
 
     // Этап 3: Очистка trim() каждой строки перед сортировкой
     lines = lines.map(function(line) {
@@ -1618,18 +1729,34 @@ function repTxtNAZ() {
         return restOfLineA.localeCompare(restOfLineB);
     });
 
-    // Обновляем текстовое поле отсортированными строками
-    document.getElementById('txt_fast').value = lines.join('\n');
+    // Если выделенный текст был, заменяем его отсортированными строками
+    if (selectedText) {
+        var start = textarea.selectionStart;
+        var end = textarea.selectionEnd;
+        var prefix = textarea.value.substring(0, start);
+        var suffix = textarea.value.substring(end);
+        textarea.value = prefix + lines.join('\n') + suffix;
+        textarea.setSelectionRange(start, start + lines.join('\n').length);
+    } else {
+        // В противном случае обновляем текстовое поле отсортированными строками
+        textarea.value = lines.join('\n');
+    }
 }
 function repTxtNZA() {
-    // Получаем значение из текстового поля
-    var textareaValue = document.getElementById('txt_fast').value;
+    // Получаем элемент textarea
+    var textarea = document.getElementById('txt_fast');
+
+    // Получаем выделенный текст, если он есть
+    var selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+
+    // Если выделенный текст отсутствует или пуст, работаем со всем текстом поля
+    var textToProcess = selectedText.trim() || textarea.value.trim();
 
     // Этап 1: Очистка trim() всего текста перед разбиением на строки
-    textareaValue = textareaValue.trim();
+    textToProcess = textToProcess.trim();
 
     // Этап 2: Разбиваем текст на строки
-    var lines = textareaValue.split('\n');
+    var lines = textToProcess.split('\n');
 
     // Этап 3: Очистка trim() каждой строки перед сортировкой
     lines = lines.map(function(line) {
@@ -1646,8 +1773,18 @@ function repTxtNZA() {
         return restOfLineB.localeCompare(restOfLineA);
     });
 
-    // Обновляем текстовое поле отсортированными строками
-    document.getElementById('txt_fast').value = lines.join('\n');
+    // Если выделенный текст был, заменяем его отсортированными строками
+    if (selectedText) {
+        var start = textarea.selectionStart;
+        var end = textarea.selectionEnd;
+        var prefix = textarea.value.substring(0, start);
+        var suffix = textarea.value.substring(end);
+        textarea.value = prefix + lines.join('\n') + suffix;
+        textarea.setSelectionRange(start, start + lines.join('\n').length);
+    } else {
+        // В противном случае обновляем текстовое поле отсортированными строками
+        textarea.value = lines.join('\n');
+    }
 }
 
 function countLines() {
