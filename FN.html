@@ -815,6 +815,28 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 	function repTxtBase() {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
+		let sLine1="··········································································································································";
+		let sLine2="▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬";
+		let sLine3="■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■";
+
+		// Удаляем повторные строки
+		let lines = content.split("\n");
+		// Цикл-проверка
+		let i = 0;
+		while (i < lines.length) {
+			if (lines[i] === sLine1 || lines[i] === sLine2 || lines[i] === sLine3) {
+			while (i + 1 < lines.length && (lines[i + 1] === sLine1 || lines[i + 1] === sLine2 || lines[i + 1] === sLine3)) {
+				lines.splice(i + 1, 1);
+			}
+			i++;
+			} else {
+			i++;
+			}
+		}
+		// Возвращаем результат
+		content = lines.join("\n");
+	
+		
 		content = content.replace(/\"{2,}/g, "");
 		content = content.replace(/\n+/g, "\n");
 		content = content.replace(/\n\ +/g, "\n");			
