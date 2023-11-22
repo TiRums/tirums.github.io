@@ -815,10 +815,10 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 	function repTxtBase() {
 		let input = document.getElementById("txt_fast");
 		let content = input.value.trim();
+
 		let sLine1="··········································································································································";
 		let sLine2="▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬";
 		let sLine3="■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■";
-
 		// Удаляем повторные строки
 		let lines = content.split("\n");
 		// Цикл-проверка
@@ -836,19 +836,32 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 		// Возвращаем результат
 		content = lines.join("\n");
 	
-		
-		content = content.replace(/\"{2,}/g, "");
-		content = content.replace(/\n+/g, "\n");
-		content = content.replace(/\n\ +/g, "\n");			
-		content = content.replace(/\t+|\ {2,}/g, " ");
-		content = content.replace(/(•\s+|•)/g, "");
-		content = content.replace(/-+|–+|—+/g, "-");			
-		content = content.replace(/\n- |\n– |\n— /g, "\n");						
+		// Разделение текста на строки, очистка и форматирование каждой строки
+		let formattedContent = content.split('\n')
+			.map(line => line.trim()
+				.replace(/\"{2,}/g, '')
+				.replace(/\(\)/g, '')
+				.replace(/\s+/g, ' ')
+				.replace(/\t+/g, ' ')
+				.replace(/•\s+|•/g, '')
+				.replace(/-+|–+|—+/g, "-")
+				.replace(/-/g, "\n")
+			)
+			.filter(line => line !== '')
+			.join('\n');
+
+		//content = content.replace(/\"{2,}/g, "");
+		//content = content.replace(/\n+/g, "\n");
+		//content = content.replace(/\n\ +/g, "\n");			
+		//content = content.replace(/\t+|\ {2,}/g, " ");
+		//content = content.replace(/(•\s+|•)/g, "");
+		//content = content.replace(/-+|–+|—+/g, "-");			
+		//content = content.replace(/\n- |\n– |\n— /g, "\n");						
 
 		//content = content.replace(/(^|\.\s+)([a-zа-яё])/g, function(match, p1, p2) {
 			//	return p1 + p2.toUpperCase();
 		//});
-		input.value = content;
+		input.value = formattedContent;
 		repTxtAa();
 	}
 	function repTxtAa() {
