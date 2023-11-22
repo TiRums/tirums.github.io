@@ -1881,7 +1881,7 @@ function countLines() {
 	var made = total - more;
 
 	document.getElementById('ta_stats_rside_more').innerText = more;
-	document.getElementById('ta_stats_rside_made').innerText = made;
+	document.getElementById('ta_stats_rside_made').innerText = made<0?0:made;
 }
 
 // -------------------------------------------------------------------------------
