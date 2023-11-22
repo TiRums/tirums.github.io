@@ -247,7 +247,7 @@
 		width: 700px;
 		min-width: 500px;
 		overflow: hidden;
-		height: calc(100vh - 60px);
+		height: calc(100vh - 78px);
 		outline: none;
 		resize: horizontal;
 		font-family: Calibri, serif;
@@ -369,38 +369,69 @@
 
 	.geLi_7 button {width:100% !important;height:18px !important;background: #5f3a3a;}
 	.geLi_7 button:hover {background: #a15353;}	
-	/*** BLOCK - END ***/
-	#wrap_txt {
-		display: flex;
-		position: relative;
+/*** BLOCK - END ***/
+#wrap_txt {
+	display: flex;
+	position: relative;
 
-	}
+}
+
+#textarea_block {
+	display: flex;
+	flex-direction: column;
+}
+
+#ta_stats {
+	display: flex;
+	height: 18px;
+	justify-content: space-between;
+	align-items: center;
+	background: #222;
+}
+
+#ta_stats_lside {
+	display: flex; padding: 0 6px; gap:6px;
+	justify-content: flex-start; align-items: center;
 	
-	#nums {
-		padding: 9px 3px 0 0 !important;
-		color: #ccc;
-		font-size: 12px !important;
-		line-height: 1.2 !important;
-		
-	}
-	#txt_fast {
-		padding: 8px !important;
-		font-size: 12px !important;
-		line-height: 1.2 !important;
-		position: relative;
-	} 
-	#txt_fast_lines_count {
-		position: absolute;
-		top: 3px; right: 20px; 
-		background:#fff;color:#999;
-		font-size: 13px; font-weight: bold;
-	}	
-	#txt_fast_lines_select {
-		position: absolute;
-		top: 3px; right: 3px; 
-		background:#fff;color:#999;
-		font-size: 13px; font-weight: bold;
-	}	
+
+}
+#ta_stats_rside {
+	display: flex; padding: 0 6px; gap:6px;
+	justify-content: flex-end; align-items: center;
+
+}
+
+#ta_stats_rside_made {color:greenyellow;}
+#ta_stats_rside_more {color:red;}
+#ta_stats_rside_total {
+	width: 36px; height: 13px;
+	padding: 0; line-height: 11px;
+	text-align: center;border:none;outline:none;font-size: 11px;}
+
+#nums {
+	width: 28px;
+	text-align: right;
+	padding: 28px 3px 0 0 !important;
+	color: #ccc;
+	font-size: 12px !important;
+	line-height: 1.2 !important;
+	
+}
+#txt_fast {
+	padding: 8px !important;
+	font-size: 12px !important;
+	line-height: 1.2 !important;
+	position: relative;
+} 
+#txt_fast_lines_count {
+	background1:#fff;color:#fff;
+	font-size: 13px; font-weight: bold;
+}	
+#txt_fast_lines_select {
+	background:#fff;color:#999;
+	font-size: 13px; font-weight: bold;
+	border: 1px solid red;
+}	
 
 #btn_fast hr {
 	margin: 6px 0;
@@ -572,8 +603,20 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 			<div id="ta_fast">
 				<div id='wrap_txt'>
 					<div id='nums'></div>
-					<textarea id="txt_fast" placeholder="31" scrolling="auto" oninput="countLines()"></textarea>
-					<div id="txt_fast_lines_count"></div><input type="checkbox"  id="txt_fast_lines_select">
+					<div id="textarea_block">
+						<div id="ta_stats">
+							<div id="ta_stats_lside">
+								<input type="checkbox"  id="txt_fast_lines_select">
+								<div id="txt_fast_lines_count"></div>
+							</div>
+							<div id="ta_stats_rside">
+								<div id="ta_stats_rside_made"></div>
+								<div id="ta_stats_rside_more"></div>
+								<input id="ta_stats_rside_total" type="text" value="0">
+							</div>
+						</div>
+						<textarea id="txt_fast" placeholder="31" scrolling="auto" oninput="countLines()"></textarea>						
+					</div>
 				</div>
 			</div>
 			<div id="btn_fast">
@@ -820,7 +863,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 		let sLine2="▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬";
 		let sLine3="■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■";
 		// Удаляем повторные строки
-		let lines = content.split("\n");
+		let lines = content.split("\n").filter(line => line !== '');
 		// Цикл-проверка
 		let i = 0;
 		while (i < lines.length) {
@@ -838,6 +881,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 	
 		// Разделение текста на строки, очистка и форматирование каждой строки
 		let formattedContent = content.split('\n')
+			.filter(line => line !== '')
 			.map(line => line.trim()
 				.replace(/\"{2,}/g, '')
 				.replace(/\(\)/g, '')
@@ -845,9 +889,8 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 				.replace(/\t+/g, ' ')
 				.replace(/•\s+|•/g, '')
 				.replace(/-+|–+|—+/g, "-")
-				.replace(/-/g, "\n")
+				.replace(/- /g, "\n")
 			)
-			.filter(line => line !== '')
 			.join('\n');
 
 		//content = content.replace(/\"{2,}/g, "");
@@ -1825,16 +1868,20 @@ function repTxtNZA() {
 function countLines() {
     var text = document.getElementById('txt_fast').value;
     var lines = text.split('\n');
-
     var exception1 = '··········································································································································';
     var exception2 = '▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬';
     var exception3 = '■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■';
-
     var filteredLines = lines.filter(function(line) {
         return line.trim() !== '' && line.indexOf(exception1) === -1 && line.indexOf(exception2) === -1 && line.indexOf(exception3) === -1;
     });
-
     document.getElementById('txt_fast_lines_count').innerText = filteredLines.length;
+
+	var more = filteredLines.length;
+	var total = document.getElementById('ta_stats_rside_total').value;
+	var made = total - more;
+
+	document.getElementById('ta_stats_rside_more').innerText = more;
+	document.getElementById('ta_stats_rside_made').innerText = made;
 }
 
 // -------------------------------------------------------------------------------
