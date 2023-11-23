@@ -705,7 +705,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button id='replace_button34' onclick="replaceTxt372()">x</button>
 					<button id='replace_button34' onclick="replaceTxt38()">"</button>
 					<button id='replace_button34' onclick="replaceTxt34()">мм</button>
-					<button id='replace_button34' onclick="replaceTxt35()">mm</button>
+					<button id='replace_button34' onclick="replaceTxt35()">вт</button>
 				</div>
 				<h2 id="h2_text">Список</h2>
 				<div class="gen_lines geLi_2">
@@ -797,7 +797,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button id='freeInputs_buttonClear' onclick="fastFreeInpClear()">Х</button>	
 				</div>
 				<div class="gen_symbols">
-					<input type="text" id="GS_input" onclick="this.select();" value="°">
+					<input type="text" id="GS_input" onclick="this.select();" value="°C">
 					<input type="text" id="GS_input" onclick="this.select();" value="±">
 					<input type="text" id="GS_input" onclick="this.select();" value="…">
 				</div>
@@ -1523,13 +1523,15 @@ function replaceTxt33() {
 function replaceTxt34() {
 	let input = document.getElementById("txt_fast");
 	let content = input.value
-	content = content.replace(/\s{0,}мм/g, " мм");
+	content = content.replace(/(\d)(\s{0,})(мм|ММ|mm)/g, " мм")
+					.replace(/\s{0,}мм/g, " мм");
 	input.value = content;
 }
 function replaceTxt35() {
 	let input = document.getElementById("txt_fast");
 	let content = input.value
-	content = content.replace(/\s{0,}mm/g, " мм");
+	content = content.replace(/(\d)(\s{0,})(вт|W)/gi, " Вт")
+					.replace(/\s{0,}Вт/gi, " Вт");
 	input.value = content;
 }
 function replaceTxt36() {
@@ -1564,12 +1566,6 @@ function replaceTxt39() {
 	let input = document.getElementById("txt_fast");
 	let content = input.value
 	content = content.replace(/_{1,}/g, " ");
-	input.value = content;
-}
-function replaceTxt34() {
-	let input = document.getElementById("txt_fast");
-	let content = input.value
-	content = content.replace(/мм/g, " мм");
 	input.value = content;
 }
 function replaceComma() {
