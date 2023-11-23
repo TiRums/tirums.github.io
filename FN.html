@@ -1507,10 +1507,18 @@ function repTxtEnRu() {
 }
 function replaceTxt33() {
 	let input = document.getElementById("txt_fast");
-	let content = input.value
-	content = content.replace(/\t{1,}/g, " ");
-	content = content.replace(/  +/g, " ");	
-	input.value = content;
+	let content = input.value.trim();
+	let lines = content.split("\n").filter(line => line !== '');
+	let formattedContent = content.split('\n')
+			.filter(line => line !== '')
+			.map(line => line.trim()
+			.replace(/\s+/g, ' ')
+			.replace(/\t+/g, ' ')
+			.replace(/-+|–+|—+/g, "-")
+			)
+			.filter(line => line !== '')
+			.join('\n');
+	input.value = formattedContent;
 }
 function replaceTxt34() {
 	let input = document.getElementById("txt_fast");
