@@ -342,12 +342,8 @@
 		height:18px !important;
 		padding: 0;
 		margin: 0;
-		cursor: pointer;
-		border-bottom1: 1px solid rgba(0, 0, 0, 0.85) !important;
-		border-top1: 1px solid rgba(0, 0, 0, 0.85) !important;
-		
-	}
-	.gen_lines button:hover {transform1: scaleY(1.1);} 
+		cursor: pointer;		
+	} 
 
 	.geLi_1 button {background: linear-gradient(to top,#aa894a,#c2a062);}
 	.geLi_1 button:hover {background: linear-gradient(to top,#d3ab61,#e6c079);}
@@ -491,6 +487,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 .block_active {display:flex !important;}
 .block_hidden {display:none !important;}
 
+.geLi_5 #repTxtTButton {flex: 21%;}
 </style>
 
 <script language="JavaScript">
@@ -664,8 +661,8 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 				</div>
 
 				<div class="gen_lines geLi_5">
-					<button onclick="repTxtTotalRep()">TRep</button>
-					<button onclick="repTxtTotalList()">TList</button>
+					<button id="repTxtTButton" onclick="repTxtTotalRep()">TRep</button>
+					<button id="repTxtTButton" onclick="repTxtTotalList()">TList</button>
 					<button onclick="fastRepInpClear()">Х</button>
 				</div>
 				<div class="gen_lines geLi_5">
@@ -1424,7 +1421,7 @@ function replaceTxtLineBreaks() {
     if (beforeText) {
         var regex = new RegExp(beforeText, 'g');
         text = text.replace(regex, '\n' + beforeText);
-    }
+    }	
 
     // Если поле "После" не пустое, выполняем замену
     if (afterText) {
@@ -1435,6 +1432,42 @@ function replaceTxtLineBreaks() {
     // Обновляем текст в текстовом поле
     textArea.value = text;
 }
+function repTxtTotalRep() {
+	let input = document.getElementById("txt_fast");
+	let content = input.value;
+
+	let replacements = [
+		[document.getElementById("replace_input11").value, document.getElementById("replace_input12").value],
+		[document.getElementById("replace_input21").value, document.getElementById("replace_input22").value],
+		[document.getElementById("replace_input31").value, document.getElementById("replace_input32").value],
+		[document.getElementById("replace_input41").value, document.getElementById("replace_input42").value],
+		[document.getElementById("replace_input51").value, document.getElementById("replace_input52").value]
+	];
+
+	for (let [from, to] of replacements) {
+		content = content.replaceAll(from, to);
+	}
+
+	input.value = content;
+}
+function repTxtTotalList() {
+	let input = document.getElementById("txt_fast");
+	let content = input.value;
+
+	let replacements = [		
+		[document.getElementById("replace_input61").value, document.getElementById("replace_input62").value],
+		[document.getElementById("replace_input71").value, document.getElementById("replace_input72").value],
+		[document.getElementById("replace_input81").value, document.getElementById("replace_input82").value]
+	];
+
+	for (let [bef, aft] of replacements) {
+		if(bef) content = content.replaceAll(bef, "\n" + bef);
+		if(aft) content = content.replaceAll(aft, aft + "\n");
+	}
+
+	input.value = content;
+}
+
 
 function replaceTxtDuplicate() {
 	var textarea = document.getElementById("txt_fast");
@@ -1518,6 +1551,17 @@ function replaceTxt33() {
 			.filter(line => line !== '')
 			.join('\n');
 	input.value = formattedContent;
+}
+function repTxtClearRight() {
+	var inputText = document.getElementById("txt_fast").value;
+    var lines = inputText.split('\n');
+
+    lines = lines.map(line => {
+        let [firstPart, ...restParts] = line.split(' ');
+        return firstPart;
+    });
+
+    document.getElementById("txt_fast").value = lines.join('\n');
 }
 /*function replaceTxt34() {
 	let input = document.getElementById("txt_fast");
