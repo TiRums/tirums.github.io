@@ -664,12 +664,17 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 				</div>
 
 				<div class="gen_lines geLi_5">
+					<button onclick="repTxtTotalRep()">TRep</button>
+					<button onclick="repTxtTotalList()">TList</button>
+					<button onclick="fastRepInpClear()">Х</button>
+				</div>
+				<div class="gen_lines geLi_5">
 					<button id='replace_button34' onclick="replaceTxt39()">_</button>
 					<button id='replace_comma' onclick="replaceComma()">,</button>
 					<button id='replace_comma2' onclick="replaceComma2()">;</button>
 					<button id='replace_comma' onclick="replaceBracket()">()</button>
 					<button  onclick="noMore()">…</button>
-					<button  onclick="fastRepInpClear()">Х</button>
+					<button  onclick="repTxtClearRight()">CR</button>
 				</div>
 				<div class="gen_lines geLi_5">
 					<button id='replace_button34' onclick="repTxtToLowCaseRu()">п</button>
@@ -705,7 +710,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button id='replace_button34' onclick="replaceTxt372()">x</button>
 					<button id='replace_button34' onclick="replaceTxt38()">"</button>
 					<button id='replace_button34' onclick="replaceTxt34()">мм</button>
-					<button id='replace_button34' onclick="replaceTxt35()">mm</button>
+					<button id='replace_button34' onclick="replaceTxt35()">Вт</button>
 				</div>
 				<h2 id="h2_text">Список</h2>
 				<div class="gen_lines geLi_2">
@@ -786,12 +791,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<div class="free_inputs_duo">
 						<input type="text" onclick="this.select();">
 						<input type="text" onclick="this.select();">
-					</div>
-					<div class="free_inputs_duo">
-						<input type="text" onclick="this.select();">
-						<input type="text" onclick="this.select();">
-					</div>
-					
+					</div>					
 				</div>
 				<div class="gen_lines geLi_7">	
 					<button id='freeInputs_buttonClear' onclick="fastFreeInpClear()">Х</button>	
@@ -888,10 +888,9 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 				.replace(/\s+/g, ' ')
 				.replace(/\t+/g, ' ')
 				.replace(/•\s+|•/g, '')
-				.replace(/-+|–+|—+/g, "-")
-				.replace(/- /g, "\n")
+				.replace(/-+|–+|—+/g, "-")				
 			)
-			.join('\n');
+			.join('\n').replace(/\n- /g, "\n");
 
 		//content = content.replace(/\"{2,}/g, "");
 		//content = content.replace(/\n+/g, "\n");
@@ -1520,19 +1519,35 @@ function replaceTxt33() {
 			.join('\n');
 	input.value = formattedContent;
 }
-function replaceTxt34() {
+/*function replaceTxt34() {
 	let input = document.getElementById("txt_fast");
 	let content = input.value	
 	//content = content.replace(/( {0,})(мм)/gi, " мм");
 	content = content.replace(/(\d)( {0,})(мм)/gi, "$1 мм");
 	input.value = content;
+}*/
+function replaceTxt34() {
+	var inputText = document.getElementById("txt_fast").value;
+    var lines = inputText.split('\n');
+
+    lines = lines.map(line => {
+        let [firstPart, ...restParts] = line.split(' ');
+        return firstPart + ' ' + restParts.join(' ').replace(/(\d)( {0,})(мм|mm)/gi, "$1 мм");
+    });
+
+    document.getElementById("txt_fast").value = lines.join('\n');
 }
 
 function replaceTxt35() {
-	let input = document.getElementById("txt_fast");
-	let content = input.value
-	content = content.replace(/(\d)( {0,})(mm)/gi, "$1 мм");
-	input.value = content;
+	var inputText = document.getElementById("txt_fast").value;
+    var lines = inputText.split('\n');
+
+    lines = lines.map(line => {
+        let [firstPart, ...restParts] = line.split(' ');
+        return firstPart + ' ' + restParts.join(' ').replace(/(\d)( {0,})(вт|w)/gi, "$1 Вт");
+    });
+
+    document.getElementById("txt_fast").value = lines.join('\n');
 }
 function replaceTxt36() {
 	let input = document.getElementById("txt_fast");
