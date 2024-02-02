@@ -420,9 +420,15 @@
 	position: relative;
 } 
 #txt_fast_lines_count {
-	background1:#fff;color:#fff;
+	color:#fff;
 	font-size: 13px; font-weight: bold;
 }	
+#txt_fast_symbols_count {
+	padding-left: 30px;
+	display: flex;
+	font-size: 13px; font-weight: bold;
+}#txt_fast_symbols_count_clear {color:#fff;}	
+#txt_fast_symbols_count_total {color:#ccc;}	
 #txt_fast_lines_select {
 	background:#fff;color:#999;
 	font-size: 13px; font-weight: bold;
@@ -605,7 +611,11 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 						<div id="ta_stats">
 							<div id="ta_stats_lside">
 								<input type="checkbox"  id="txt_fast_lines_select">
-								<div id="txt_fast_lines_count"></div>
+								<div id="txt_fast_lines_count" title="Кол-во строк"></div>
+								<div id="txt_fast_symbols_count">
+									<div id="txt_fast_symbols_count_clear" title="Кол-во символов без пробелов"></div>
+									<div id="txt_fast_symbols_count_total" title="Кол-во символов с пробелами"></div>
+								</div>
 							</div>
 							<div id="ta_stats_rside">
 								<div id="ta_stats_rside_made"></div>
@@ -1918,6 +1928,9 @@ function countLines() {
         return line.trim() !== '' && line.indexOf(exception1) === -1 && line.indexOf(exception2) === -1 && line.indexOf(exception3) === -1;
     });
     document.getElementById('txt_fast_lines_count').innerText = filteredLines.length;
+    document.getElementById('txt_fast_symbols_count_clear').innerText = text.replace(/[\s·▬■]/g, "").length;
+    document.getElementById('txt_fast_symbols_count_total').innerText = "/"+text.replace(/[·▬■]/g, "").length;
+
 
 	var more = filteredLines.length;
 	var total = document.getElementById('ta_stats_rside_total').value;
