@@ -20,7 +20,7 @@
 		font-size: 13px;
 	}
 	textarea {		
-		padding: 20px 30px;
+		padding: 20px;
 	}
 	/*** BASE - END ***/
 
@@ -117,7 +117,7 @@
 		outline: none;
 		resize: horizontal;
 		font-family: Calibri, serif;
-		font-size: 14px;
+		font-size: 13px;
 	}
 	.ta_wrap {position: relative;}
 	.ta_buttons {
@@ -192,7 +192,7 @@
 	#ta_duo, #ta_trio {
 		display: flex;
 		border: 1px solid #222;
-		background: #ccc;
+		background: #fefefe;
 		width: 100%;
 		max-width: 100%;
 		height: calc(100vh - 60px);
@@ -488,6 +488,8 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 .block_hidden {display:none !important;}
 
 .geLi_5 #repTxtTButton {flex: 21%;}
+.geLi_5 #repTxtTButton:nth-child(1) {flex: 21%; color:#c8a562 !important;}
+.geLi_5 #repTxtTButton:nth-child(2) {flex: 21%; color:#c57c41 !important;}
 </style>
 
 <script language="JavaScript">
@@ -660,8 +662,8 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 				</div>
 
 				<div class="gen_lines geLi_5">
-					<button id="repTxtTButton" onclick="repTxtTotalRep()">TRep</button>
-					<button id="repTxtTButton" onclick="repTxtTotalList()">TList</button>
+					<button id="repTxtTButton" onclick="repTxtTotalRep()" title="Применить все поля замены">TRep</button>
+					<button id="repTxtTButton" onclick="repTxtTotalList()" title="Применить все поля списка">TList</button>
 					<button onclick="fastRepInpClear()">Х</button>
 				</div>
 				<div class="gen_lines geLi_5">
