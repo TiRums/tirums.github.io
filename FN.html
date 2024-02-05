@@ -403,7 +403,22 @@
 	width: 36px; height: 13px;
 	padding: 0; line-height: 11px;
 	text-align: center;border:none;outline:none;font-size: 11px;}
-
+.ta_stats_rside_copyclear {
+	display: flex;
+	gap:3px;
+}
+.ta_stats_rside_copyclear button { 
+	width: 36px;
+	height: 16px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	outline: none;
+	cursor: pointer;
+	opacity: 0.65;
+	color: #f1f1f1;
+}
+.ta_stats_rside_copyclear button:hover {opacity: 1.35;}
 #nums {
 	width: 28px;
 	text-align: right;
@@ -621,6 +636,10 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 								<div id="ta_stats_rside_made"></div>
 								<div id="ta_stats_rside_more"></div>
 								<input id="ta_stats_rside_total" type="text" value="0">
+								<div class="ta_stats_rside_copyclear">
+									<button id="btn_copy" title="Copy" onclick="txtFastCopy()">C</button>
+									<button id="btn_clear" title="Clear" onclick="txtFastClear()">X</button>					
+								</div>
 							</div>
 						</div>
 						<textarea id="txt_fast" placeholder="31" scrolling="auto" oninput="countLines()"></textarea>						
@@ -808,11 +827,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<input type="text" id="GS_input" onclick="this.select();" value="°C">
 					<input type="text" id="GS_input" onclick="this.select();" value="±">
 					<input type="text" id="GS_input" onclick="this.select();" value="…">
-				</div>
-				<hr>
-				<div class="gen_lines geLi_6">					
-					<button id='replace_buttonClear' onclick="replaceTxtClear()">Очистить</button>
-				</div>					
+				</div>			
 			</div>
 		</div>
 		
@@ -861,6 +876,18 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 			listItem.textContent = '';
 		});
 	});
+	
+	// Кнопка коппирования на странице быстрой обработки текста
+	function txtFastCopy() {
+		var textField = document.getElementById("txt_fast");
+		textField.select();
+		document.execCommand("copy");
+	}
+	function txtFastClear() {
+		var textField = document.getElementById("txt_fast");
+		textField.value = "";
+	}
+
 	/*** CopyClearButtons - END ***/
 
 	function repTxtBase() {
