@@ -409,13 +409,14 @@
 }
 .ta_stats_rside_copyclear button { 
 	width: 36px;
-	height: 16px;
+	height: 14px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	outline: none;
 	cursor: pointer;
-	opacity: 0.65;
+	opacity: 0.85;
+	font-size: 13px;
 	color: #f1f1f1;
 }
 .ta_stats_rside_copyclear button:hover {opacity: 1.35;}
@@ -442,7 +443,8 @@
 	padding-left: 30px;
 	display: flex;
 	font-size: 13px; font-weight: bold;
-}#txt_fast_symbols_count_clear {color:#fff;}	
+}
+#txt_fast_symbols_count_clear {color:#fff;}	
 #txt_fast_symbols_count_total {color:#ccc;}	
 #txt_fast_lines_select {
 	background:#fff;color:#999;
@@ -533,10 +535,10 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 		<span class="menu">
 			<li><input type="text" id="hdr_input" onclick="this.select();"></li>
 			<li><input type="text" id="hdr_input2"></li>
-			<li><a href="#page1"></a></li>
-			<li><a href="#page2"></a></li>
-			<li><a href="#page3"></a></li>
-			<li><a href="#page4"></a></li>
+			<li><a href="#" onclick="changePages(1)"></a></li>
+			<li><a href="#" onclick="changePages(2)"></a></li>
+			<li><a href="#" onclick="changePages(3)"></a></li>
+			<li><a href="#" onclick="changePages(4)"></a></li>
 		</span>
 		<span class="main_buttons">
 			<button id="but_save"  title="Save All" onClick="SaveDesc(this.form)">S</button>
@@ -550,7 +552,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 	<!-- CONTENT -->
 	<div class="content">
 	<!-- GROUP1 -->
-		<div id="page1" class="block_hidden">
+		<div id="page1" class="blockPage block_hidden">
 			<div class="sub_pages">
 				<div class="ta_wrap"><textarea id="input01" placeholder="01"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
 				<div class="ta_wrap"><textarea id="input02" placeholder="02"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear"  ondblclick="this.select();">X</button></div></div>
@@ -608,16 +610,16 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 			</ul>
 		</div>
 
-		<div id="page2" class="block_hidden">
+		<div id="page2" class="blockPage block_hidden">
 			<div class="ta_wrap"><textarea id="ta_duo"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
 			<div class="ta_wrap"><textarea id="ta_duo"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
 		</div>
-		<div id="page3" class="block_hidden">
+		<div id="page3" class="blockPage block_hidden">
 			<div class="ta_wrap"><textarea id="ta_trio"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
 			<div class="ta_wrap"><textarea id="ta_trio"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
 			<div class="ta_wrap"><textarea id="ta_trio"></textarea><div class="ta_buttons"><button id="btn_copy" title="Copy">C</button><button id="btn_clear" title="Clear">X</button></div></div>
 		</div>
-		<div id="page4" class="block_active">
+		<div id="page4" class="blockPage block_active">
 			<!--<div id="clear_field"></div>-->
 			<div id="ta_fast">
 				<div id='wrap_txt'>
@@ -2036,28 +2038,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // -------------------------------------------------------------------------------
+// Переключалки страниц
+function changePages(num) {
+	document.querySelectorAll('.blockPage').forEach(page => {
+		page.classList.toggle('block_hidden', page.id !== `page${num}`);
+		page.classList.toggle('block_active', page.id == `page${num}`);
+	});
+}
 
-document.addEventListener('DOMContentLoaded', function () {
-    var links = document.querySelectorAll('ul li a');
 
-    links.forEach(function (link) {
-        link.addEventListener('click', function (event) {
-            event.preventDefault();
-
-            var targetId = link.getAttribute('href').substring(1);
-            var targetElement = document.getElementById(targetId);
-
-            var allBlocks = document.querySelectorAll('.block_active, .block_hidden');
-            allBlocks.forEach(function (block) {
-                block.classList.remove('block_active');
-                block.classList.add('block_hidden');
-            });
-
-            targetElement.classList.remove('block_hidden');
-            targetElement.classList.add('block_active');
-        });
-    });
-});
 
 </script>
 </body>
