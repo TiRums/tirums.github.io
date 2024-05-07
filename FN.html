@@ -513,6 +513,44 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 .geLi_5 #repTxtTButton {flex: 21%;}
 .geLi_5 #repTxtTButton:nth-child(1) {flex: 21%; color:#c8a562 !important;}
 .geLi_5 #repTxtTButton:nth-child(2) {flex: 21%; color:#c57c41 !important;}
+
+#page5 {width: 100%;max-width: 100%;}
+.soc_elements_all h2 {
+	width: 100%;
+	background: #131313;
+	color: #50657c;
+	padding: 5px 10px;
+}
+.social_element {
+	display: flex;
+	margin-bottom: 3px;
+}
+.soc_element_input {
+	display: flex;
+	flex-direction: column;
+}
+.soc_element_output {
+	display: flex;
+	flex-direction: row;
+}
+.social_element textarea {
+	padding: 5px;
+	border: 2px solid #232323;
+	resize: horizontal;
+}
+.social_element textarea:focus {outline: none;}
+.soc_title,
+.soc_tags {
+	width: 500px;
+}
+.soc_title {height:30px; background: #7997b8;}
+.soc_tags  {height:60px; background: #a8bfd8;}
+.soc_out_yt_main,
+.soc_out_yt_tags,
+.soc_out_full {
+	width: 200px;
+	height: 90px;
+}
 </style>
 
 <script language="JavaScript">
@@ -539,6 +577,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 			<li><a href="#" onclick="changePages(2)"></a></li>
 			<li><a href="#" onclick="changePages(3)"></a></li>
 			<li><a href="#" onclick="changePages(4)"></a></li>
+			<li><a href="#" onclick="changePages(5)"></a></li>
 		</span>
 		<span class="main_buttons">
 			<button id="but_save"  title="Save All" onClick="SaveDesc(this.form)">S</button>
@@ -829,7 +868,97 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<input type="text" id="GS_input" onclick="this.select();" value="°C">
 					<input type="text" id="GS_input" onclick="this.select();" value="±">
 					<input type="text" id="GS_input" onclick="this.select();" value="…">
+					<input type="text" id="GS_input" onclick="this.select();" value="#">
 				</div>			
+			</div>
+		</div>
+		<div id="page5" class="blockPage block_hidden">
+			<div class="social">
+				<div class="social_header">
+					<button id="btn_Soc_Clear" title="Clear" onClick="Soc_Clear()">Clear</button>
+					<button id="btn_Soc_Create" title="Create" onClick="Soc_Create()">Create</button>
+				</div>
+				<div class="soc_elements_all">
+					<h2>ch1</h2>
+					<div class="social_element">
+						<div class="soc_element_input">
+							<textarea class="soc_title" type="text" placeholder="Заголовок"></textarea>
+							<textarea class="soc_tags" placeholder="Теги"></textarea>						
+						</div>
+						<div class="soc_element_output">
+							<textarea class="soc_out_yt_main" type="text" placeholder="Заголовок+Теги"></textarea>
+							<textarea class="soc_out_yt_tags" placeholder="Теги"></textarea>
+							<textarea class="soc_out_full" placeholder="Ссылка/Заголовок/Теги"></textarea>
+						</div>
+					</div>
+					<div class="social_element">
+						<div class="soc_element_input">
+							<textarea class="soc_title" type="text" placeholder="Заголовок"></textarea>
+							<textarea class="soc_tags" placeholder="Теги"></textarea>						
+						</div>
+						<div class="soc_element_output">
+							<textarea class="soc_out_yt_main" type="text" placeholder="Заголовок+Теги"></textarea>
+							<textarea class="soc_out_yt_tags" placeholder="Теги"></textarea>
+							<textarea class="soc_out_full" placeholder="Ссылка/Заголовок/Теги"></textarea>
+						</div>
+					</div>
+					<div class="social_element">
+						<div class="soc_element_input">
+							<textarea class="soc_title" type="text" placeholder="Заголовок"></textarea>
+							<textarea class="soc_tags" placeholder="Теги"></textarea>						
+						</div>
+						<div class="soc_element_output">
+							<textarea class="soc_out_yt_main" type="text" placeholder="Заголовок+Теги"></textarea>
+							<textarea class="soc_out_yt_tags" placeholder="Теги"></textarea>
+							<textarea class="soc_out_full" placeholder="Ссылка/Заголовок/Теги"></textarea>
+						</div>
+					</div>
+					<div class="social_element">
+						<div class="soc_element_input">
+							<textarea class="soc_title" type="text" placeholder="Заголовок"></textarea>
+							<textarea class="soc_tags" placeholder="Теги"></textarea>						
+						</div>
+						<div class="soc_element_output">
+							<textarea class="soc_out_yt_main" type="text" placeholder="Заголовок+Теги"></textarea>
+							<textarea class="soc_out_yt_tags" placeholder="Теги"></textarea>
+							<textarea class="soc_out_full" placeholder="Ссылка/Заголовок/Теги"></textarea>
+						</div>
+					</div>
+					<div class="social_element">
+						<div class="soc_element_input">
+							<textarea class="soc_title" type="text" placeholder="Заголовок"></textarea>
+							<textarea class="soc_tags" placeholder="Теги"></textarea>						
+						</div>
+						<div class="soc_element_output">
+							<textarea class="soc_out_yt_main" type="text" placeholder="Заголовок+Теги"></textarea>
+							<textarea class="soc_out_yt_tags" placeholder="Теги"></textarea>
+							<textarea class="soc_out_full" placeholder="Ссылка/Заголовок/Теги"></textarea>
+						</div>
+					</div>
+					<h2>ch2</h2>
+					<div class="social_element">
+						<div class="soc_element_input">
+							<textarea class="soc_title" type="text" placeholder="Заголовок"></textarea>
+							<textarea class="soc_tags" placeholder="Теги"></textarea>						
+						</div>
+						<div class="soc_element_output">
+							<textarea class="soc_out_yt_main" type="text" placeholder="Заголовок+Теги"></textarea>
+							<textarea class="soc_out_yt_tags" placeholder="Теги"></textarea>
+							<textarea class="soc_out_full" placeholder="Ссылка/Заголовок/Теги"></textarea>
+						</div>
+					</div>
+					<div class="social_element">
+						<div class="soc_element_input">
+							<textarea class="soc_title" type="text" placeholder="Заголовок"></textarea>
+							<textarea class="soc_tags" placeholder="Теги"></textarea>						
+						</div>
+						<div class="soc_element_output">
+							<textarea class="soc_out_yt_main" type="text" placeholder="Заголовок+Теги"></textarea>
+							<textarea class="soc_out_yt_tags" placeholder="Теги"></textarea>
+							<textarea class="soc_out_full" placeholder="Ссылка/Заголовок/Теги"></textarea>
+						</div>
+					</div>
+				</div>				
 			</div>
 		</div>
 		
@@ -2047,7 +2176,65 @@ function changePages(num) {
 }
 
 
+function Soc_Clear() {
+	var textareas = document.querySelectorAll('.soc_elements_all textarea');
+    textareas.forEach(function(textarea) {
+        textarea.value = '';
+    });
+    var socialElements = document.querySelectorAll('.soc_elements_all .social_element');
+    socialElements.forEach(function(element, index) {
+        var soc_tags = element.querySelector('.soc_tags');
+        var soc_out_full = element.querySelector('.soc_out_full');
 
+		if (index >= 0 && index < 5) soc_tags.value = '#юмор #приколы # # # # # # # # # # # # # #';
+		if (index === 5) soc_tags.value = '#фильм #фильмнавечер #кино #кинонавечер # # # # # # # # # # # # # #';
+		if (index === 6) soc_tags.value = '#фильм #кино #премьера #трейлер # # # # # # # # # # # # #';
+
+    });
+}
+function Soc_Create() {
+    var socialElements = document.querySelectorAll('.soc_elements_all .social_element');
+    socialElements.forEach(function(element, index) {
+        var soc_title = element.querySelector('.soc_title');
+        var soc_tags = element.querySelector('.soc_tags');
+        var soc_out_yt_main = element.querySelector('.soc_out_yt_main');
+        var soc_out_yt_tags = element.querySelector('.soc_out_yt_tags');
+        var soc_out_full = element.querySelector('.soc_out_full');
+        
+        soc_out_yt_main.value = soc_title.value+'\n\n'+soc_tags.value;
+		soc_out_yt_tags.value = soc_tags.value.replace(/ #/g, ', ').replace(/#/g, '');
+
+		if (index >= 0 && index < 5) {
+			soc_out_yt_tags.value = soc_out_yt_tags.value.replace(/юмор, приколы, /g, '')
+		}
+		if (index === 5) {
+			soc_out_yt_tags.value = soc_out_yt_tags.value.replace(/фильм, фильмнавечер, кино, кинонавечер, /g, '')
+		}
+		if (index === 6) {
+			soc_out_yt_tags.value = soc_out_yt_tags.value.replace(/фильм, кино, премьера, трейлер, /g, '')
+		}
+
+		if (index >= 0 && index < 5) {
+			soc_out_yt_main.value = soc_title.value+'\n\n'+soc_tags.value;
+			soc_out_full.value = 'Лучшие видео-подборки без цензуры:\nhttps://t.me/ViPiTok'
+								+'\n\n'+soc_title.value+'\n'+soc_tags.value;
+		}
+		if (index >= 5 && index < 7) {
+			soc_out_yt_main.value = soc_title.value+'\n\n'+soc_tags.value;
+			soc_out_full.value = 'Все видео-обзоры:\nhttps://t.me/OneMinuteCinema'
+								+'\n\n'+soc_title.value+'\n'+soc_tags.value;
+		}
+    });
+}
+document.querySelectorAll('.social_element').forEach(element => {
+    const outputs = element.querySelectorAll('.soc_out_yt_main, .soc_out_yt_tags, .soc_out_full');
+    outputs.forEach(output => {
+        output.addEventListener('focus', () => {
+            output.select();
+            document.execCommand('copy');
+        });
+    });
+});
 </script>
 </body>
 </html>
