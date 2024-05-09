@@ -514,24 +514,17 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 .geLi_5 #repTxtTButton:nth-child(1) {flex: 21%; color:#c8a562 !important;}
 .geLi_5 #repTxtTButton:nth-child(2) {flex: 21%; color:#c57c41 !important;}
 
-#page5 {width: 100%;max-width: 100%;}
+#page5 {width: fit-content;max-width: 100%;}
 .soc_elements_all h2 {
 	width: 100%;
 	background: #131313;
 	color: #50657c;
 	padding: 5px 10px;
 }
+
 .social_element {
 	display: flex;
 	margin-bottom: 3px;
-}
-.soc_element_input {
-	display: flex;
-	flex-direction: column;
-}
-.soc_element_output {
-	display: flex;
-	flex-direction: row;
 }
 .social_element textarea {
 	padding: 5px;
@@ -539,18 +532,49 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 	resize: horizontal;
 }
 .social_element textarea:focus {outline: none;}
+
+.soc_element_input {
+	display: flex;
+	flex-direction: column;
+}
 .soc_title,
 .soc_tags {
 	width: 500px;
+	min-width: 500px;
 }
 .soc_title {height:30px; background: #7997b8;}
 .soc_tags  {height:60px; background: #a8bfd8;}
-.soc_out_yt_main,
-.soc_out_yt_tags,
-.soc_out_full {
-	width: 200px;
-	height: 90px;
+
+.soc_element_output {
+	display: flex;
+	flex-direction: row;
 }
+.soc_element_output textarea {width: 200px;min-width: 200px;}
+.soc_element_output textarea:focus {background: #e7e9d7;}
+
+.social_header {
+	display: flex;
+	align-items: center;
+	padding: 5px;
+	gap:2px;
+}
+.social_header button {
+	width: 50px;
+	height: 30px;
+	border: 0;
+	border-radius: 0;
+}
+.social_header button:hover {
+	cursor: pointer;
+}
+.social_header input {width:20px;height: 20px;border:0;outline: none;text-align: center;}
+.social_header input:nth-of-type(1) {margin-left: 50px;}
+
+#btn_Soc_Clear {background: #973a3a;}
+#btn_Soc_Clear:hover {background: #bd4d4d;}
+#btn_Soc_Create {background:#50973a;}
+#btn_Soc_Create:hover {background:#68bd4e;}
+
 </style>
 
 <script language="JavaScript">
@@ -877,85 +901,87 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 				<div class="social_header">
 					<button id="btn_Soc_Clear" title="Clear" onClick="Soc_Clear()">Clear</button>
 					<button id="btn_Soc_Create" title="Create" onClick="Soc_Create()">Create</button>
+					<input id="inp_Soc_Create" type="text" onclick="this.select();" value=" #">
+					<input id="inp_Soc_Create" type="text" onclick="this.select();" value='"'>
 				</div>
 				<div class="soc_elements_all">
 					<h2>ch1</h2>
 					<div class="social_element">
 						<div class="soc_element_input">
-							<textarea class="soc_title" type="text" placeholder="Заголовок"></textarea>
-							<textarea class="soc_tags" placeholder="Теги"></textarea>						
+							<textarea class="soc_title" type="text"></textarea>
+							<textarea class="soc_tags"></textarea>						
 						</div>
 						<div class="soc_element_output">
-							<textarea class="soc_out_yt_main" type="text" placeholder="Заголовок+Теги"></textarea>
-							<textarea class="soc_out_yt_tags" placeholder="Теги"></textarea>
-							<textarea class="soc_out_full" placeholder="Ссылка/Заголовок/Теги"></textarea>
+							<textarea class="soc_out_yt_main" type="text"></textarea>
+							<textarea class="soc_out_yt_tags"></textarea>
+							<textarea class="soc_out_full"></textarea>
 						</div>
 					</div>
 					<div class="social_element">
 						<div class="soc_element_input">
-							<textarea class="soc_title" type="text" placeholder="Заголовок"></textarea>
-							<textarea class="soc_tags" placeholder="Теги"></textarea>						
+							<textarea class="soc_title" type="text"></textarea>
+							<textarea class="soc_tags"></textarea>						
 						</div>
 						<div class="soc_element_output">
-							<textarea class="soc_out_yt_main" type="text" placeholder="Заголовок+Теги"></textarea>
-							<textarea class="soc_out_yt_tags" placeholder="Теги"></textarea>
-							<textarea class="soc_out_full" placeholder="Ссылка/Заголовок/Теги"></textarea>
+							<textarea class="soc_out_yt_main" type="text"></textarea>
+							<textarea class="soc_out_yt_tags"></textarea>
+							<textarea class="soc_out_full"></textarea>
 						</div>
 					</div>
 					<div class="social_element">
 						<div class="soc_element_input">
-							<textarea class="soc_title" type="text" placeholder="Заголовок"></textarea>
-							<textarea class="soc_tags" placeholder="Теги"></textarea>						
+							<textarea class="soc_title" type="text"></textarea>
+							<textarea class="soc_tags"></textarea>						
 						</div>
 						<div class="soc_element_output">
-							<textarea class="soc_out_yt_main" type="text" placeholder="Заголовок+Теги"></textarea>
-							<textarea class="soc_out_yt_tags" placeholder="Теги"></textarea>
-							<textarea class="soc_out_full" placeholder="Ссылка/Заголовок/Теги"></textarea>
+							<textarea class="soc_out_yt_main" type="text"></textarea>
+							<textarea class="soc_out_yt_tags"></textarea>
+							<textarea class="soc_out_full"></textarea>
 						</div>
 					</div>
 					<div class="social_element">
 						<div class="soc_element_input">
-							<textarea class="soc_title" type="text" placeholder="Заголовок"></textarea>
-							<textarea class="soc_tags" placeholder="Теги"></textarea>						
+							<textarea class="soc_title" type="text"></textarea>
+							<textarea class="soc_tags"></textarea>						
 						</div>
 						<div class="soc_element_output">
-							<textarea class="soc_out_yt_main" type="text" placeholder="Заголовок+Теги"></textarea>
-							<textarea class="soc_out_yt_tags" placeholder="Теги"></textarea>
-							<textarea class="soc_out_full" placeholder="Ссылка/Заголовок/Теги"></textarea>
+							<textarea class="soc_out_yt_main" type="text"></textarea>
+							<textarea class="soc_out_yt_tags"></textarea>
+							<textarea class="soc_out_full"></textarea>
 						</div>
 					</div>
 					<div class="social_element">
 						<div class="soc_element_input">
-							<textarea class="soc_title" type="text" placeholder="Заголовок"></textarea>
-							<textarea class="soc_tags" placeholder="Теги"></textarea>						
+							<textarea class="soc_title" type="text"></textarea>
+							<textarea class="soc_tags"></textarea>						
 						</div>
 						<div class="soc_element_output">
-							<textarea class="soc_out_yt_main" type="text" placeholder="Заголовок+Теги"></textarea>
-							<textarea class="soc_out_yt_tags" placeholder="Теги"></textarea>
-							<textarea class="soc_out_full" placeholder="Ссылка/Заголовок/Теги"></textarea>
+							<textarea class="soc_out_yt_main" type="text"></textarea>
+							<textarea class="soc_out_yt_tags"></textarea>
+							<textarea class="soc_out_full"></textarea>
 						</div>
 					</div>
 					<h2>ch2</h2>
 					<div class="social_element">
 						<div class="soc_element_input">
-							<textarea class="soc_title" type="text" placeholder="Заголовок"></textarea>
-							<textarea class="soc_tags" placeholder="Теги"></textarea>						
+							<textarea class="soc_title" type="text"></textarea>
+							<textarea class="soc_tags"></textarea>						
 						</div>
 						<div class="soc_element_output">
-							<textarea class="soc_out_yt_main" type="text" placeholder="Заголовок+Теги"></textarea>
-							<textarea class="soc_out_yt_tags" placeholder="Теги"></textarea>
-							<textarea class="soc_out_full" placeholder="Ссылка/Заголовок/Теги"></textarea>
+							<textarea class="soc_out_yt_main" type="text"></textarea>
+							<textarea class="soc_out_yt_tags"></textarea>
+							<textarea class="soc_out_full"></textarea>
 						</div>
 					</div>
 					<div class="social_element">
 						<div class="soc_element_input">
-							<textarea class="soc_title" type="text" placeholder="Заголовок"></textarea>
-							<textarea class="soc_tags" placeholder="Теги"></textarea>						
+							<textarea class="soc_title" type="text"></textarea>
+							<textarea class="soc_tags"></textarea>						
 						</div>
 						<div class="soc_element_output">
-							<textarea class="soc_out_yt_main" type="text" placeholder="Заголовок+Теги"></textarea>
-							<textarea class="soc_out_yt_tags" placeholder="Теги"></textarea>
-							<textarea class="soc_out_full" placeholder="Ссылка/Заголовок/Теги"></textarea>
+							<textarea class="soc_out_yt_main" type="text"></textarea>
+							<textarea class="soc_out_yt_tags"></textarea>
+							<textarea class="soc_out_full"></textarea>
 						</div>
 					</div>
 				</div>				
@@ -2201,28 +2227,30 @@ function Soc_Create() {
         var soc_out_yt_tags = element.querySelector('.soc_out_yt_tags');
         var soc_out_full = element.querySelector('.soc_out_full');
         
-        soc_out_yt_main.value = soc_title.value+'\n\n'+soc_tags.value;
-		soc_out_yt_tags.value = soc_tags.value.replace(/ #/g, ', ').replace(/#/g, '');
-
-		if (index >= 0 && index < 5) {
-			soc_out_yt_tags.value = soc_out_yt_tags.value.replace(/юмор, приколы, /g, '')
-		}
-		if (index === 5) {
-			soc_out_yt_tags.value = soc_out_yt_tags.value.replace(/фильм, фильмнавечер, кино, кинонавечер, /g, '')
-		}
-		if (index === 6) {
-			soc_out_yt_tags.value = soc_out_yt_tags.value.replace(/фильм, кино, премьера, трейлер, /g, '')
-		}
-
-		if (index >= 0 && index < 5) {
+		if (soc_title.value !== '') {
 			soc_out_yt_main.value = soc_title.value+'\n\n'+soc_tags.value;
-			soc_out_full.value = 'Лучшие видео-подборки без цензуры:\nhttps://t.me/ViPiTok'
-								+'\n\n'+soc_title.value+'\n'+soc_tags.value;
-		}
-		if (index >= 5 && index < 7) {
-			soc_out_yt_main.value = soc_title.value+'\n\n'+soc_tags.value;
-			soc_out_full.value = 'Все видео-обзоры:\nhttps://t.me/OneMinuteCinema'
-								+'\n\n'+soc_title.value+'\n'+soc_tags.value;
+			soc_out_yt_tags.value = soc_tags.value.replace(/ #/g, ', ').replace(/#/g, '');
+		
+			if (index >= 0 && index < 5) {
+				soc_out_yt_tags.value = soc_out_yt_tags.value.replace(/юмор, приколы, /g, '')
+			}
+			if (index === 5) {
+				soc_out_yt_tags.value = soc_out_yt_tags.value.replace(/фильм, фильмнавечер, кино, кинонавечер, /g, '')
+			}
+			if (index === 6) {
+				soc_out_yt_tags.value = soc_out_yt_tags.value.replace(/фильм, кино, премьера, трейлер, /g, '')
+			}
+
+			if (index >= 0 && index < 5) {
+				soc_out_yt_main.value = soc_title.value+'\n\n'+soc_tags.value;
+				soc_out_full.value = 'Лучшие видео-подборки без цензуры:\nhttps://t.me/ViPiTok'
+									+'\n\n'+soc_title.value+'\n'+soc_tags.value;
+			}
+			if (index >= 5 && index < 7) {
+				soc_out_yt_main.value = soc_title.value+'\n\n'+soc_tags.value;
+				soc_out_full.value = 'Все видео-обзоры:\nhttps://t.me/OneMinuteCinema'
+									+'\n\n'+soc_title.value+'\n'+soc_tags.value;
+			}
 		}
     });
 }
