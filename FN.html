@@ -2235,9 +2235,9 @@ function Soc_Create() {
 
 		if (soc_title.value !== '') {
 			var soc_tags_clear = soc_tags.value.replace(/# /g, '').replace(/ #$/, '');
-			soc_out_yt_main.value = soc_title.value+'\n\n'+soc_tags_clear;
-			soc_out_yt_tags.value = soc_tags_clear.value.replace(/ #/g, ', ')
-														.replace(/#/g, '');
+			//soc_out_yt_main.value = soc_tags_clear.value;
+			soc_out_yt_tags.value = soc_tags_clear.replace(/ #/g, ', ')
+												  .replace(/#/g, '');
 		
 			if (index >= 0 && index < 5) {
 				soc_out_yt_tags.value = soc_out_yt_tags.value.replace(/юмор, приколы, /g, '')
@@ -2250,14 +2250,14 @@ function Soc_Create() {
 			}
 
 			if (index >= 0 && index < 5) {
-				soc_out_yt_main.value = soc_title.value+' \n\n'+soc_tags.value;
+				soc_out_yt_main.value = soc_title.value+' \n\n'+soc_tags_clear;
 				soc_out_full.value = 'Лучшие видео-подборки без цензуры:\nhttps://t.me/ViPiTok'
-									+'\n\n'+soc_title.value+'\n'+soc_tags.value;
+									+'\n\n'+soc_title.value+'\n'+soc_tags_clear;
 			}
 			if (index >= 5 && index < 7) {
-				soc_out_yt_main.value = soc_title.value+' \n\n'+soc_tags.value;
+				soc_out_yt_main.value = soc_title.value+' \n\n'+soc_tags_clear;
 				soc_out_full.value = 'Все видео-обзоры:\nhttps://t.me/OneMinuteCinema'
-									+'\n\n'+soc_title.value+'\n'+soc_tags.value;
+									+'\n\n'+soc_title.value+'\n'+soc_tags_clear;
 			}
 		}
     });
