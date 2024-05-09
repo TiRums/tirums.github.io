@@ -2215,9 +2215,9 @@ function Soc_Clear() {
         var soc_tags = element.querySelector('.soc_tags');
         var soc_out_full = element.querySelector('.soc_out_full');
 
-		if (index >= 0 && index < 5) soc_tags.value = '#юмор #приколы # # # # # # # # # # # # # #';
-		if (index === 5) soc_tags.value = '#фильм #фильмнавечер #кино #кинонавечер # # # # # # # # # # # # # #';
-		if (index === 6) soc_tags.value = '#фильм #кино #премьера #трейлер # # # # # # # # # # # # #';
+		if (index >= 0 && index < 5) soc_tags.value = 'юмор приколы ';
+		if (index === 5) soc_tags.value = 'фильм фильмнавечер кино кинонавечер ';
+		if (index === 6) soc_tags.value = 'фильм кино премьера трейлер ';
 
     });
 }
@@ -2234,7 +2234,7 @@ function Soc_Create() {
 		soc_tags.value = soc_tags.value.replace(/\s+/g, ' ').trim();
 
 		if (soc_title.value !== '') {
-			var soc_tags_clear = soc_tags.value.replace(/# /g, '').replace(/ #$/, '');
+			var soc_tags_clear = '#'+soc_tags.value.replace(/ /g, ' #');
 			//soc_out_yt_main.value = soc_tags_clear.value;
 			soc_out_yt_tags.value = soc_tags_clear.replace(/ #/g, ', ')
 												  .replace(/#/g, '');
