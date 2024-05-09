@@ -523,13 +523,14 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 }
 
 .social_element {
+	width: 1300px;
 	display: flex;
 	margin-bottom: 3px;
 }
 .social_element textarea {
 	padding: 5px;
 	border: 2px solid #232323;
-	resize: horizontal;
+	resize: none;
 }
 .social_element textarea:focus {outline: none;}
 
@@ -542,15 +543,17 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 	width: 500px;
 	min-width: 500px;
 }
-.soc_title {height:30px; background: #7997b8;}
-.soc_tags  {height:60px; background: #a8bfd8;}
+.soc_title {height:30px; background: #6f90b4; color: #000;}
+.soc_tags  {height:60px; background: #a8bfd8; color: #232323;}
 
 .soc_element_output {
-	display: flex;
+	width:100%;
+	display:flex;
+	justify-content:flex-start;
 	flex-direction: row;
 }
-.soc_element_output textarea {width: 200px;min-width: 200px;}
-.soc_element_output textarea:focus {background: #e7e9d7;}
+.soc_element_output textarea {flex:1; transition: 0.3s;}
+.soc_element_output textarea:focus {flex:3; background: #e7e9d7;}
 
 .social_header {
 	display: flex;
@@ -560,14 +563,14 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 }
 .social_header button {
 	width: 50px;
-	height: 30px;
+	height: 20px;
 	border: 0;
 	border-radius: 0;
 }
 .social_header button:hover {
 	cursor: pointer;
 }
-.social_header input {width:20px;height: 20px;border:0;outline: none;text-align: center;}
+.social_header input {width:20px;height: 16px;border:0;outline: none;text-align: center; background: #d4d4d4;}
 .social_header input:nth-of-type(1) {margin-left: 50px;}
 
 #btn_Soc_Clear {background: #973a3a;}
@@ -2227,9 +2230,14 @@ function Soc_Create() {
         var soc_out_yt_tags = element.querySelector('.soc_out_yt_tags');
         var soc_out_full = element.querySelector('.soc_out_full');
         
+		soc_title.value = soc_title.value.replace(/\s+/g, ' ').trim();
+		soc_tags.value = soc_tags.value.replace(/\s+/g, ' ').trim();
+
 		if (soc_title.value !== '') {
-			soc_out_yt_main.value = soc_title.value+'\n\n'+soc_tags.value;
-			soc_out_yt_tags.value = soc_tags.value.replace(/ #/g, ', ').replace(/#/g, '');
+			var soc_tags_clear = soc_tags.value.replace(/# /g, '').replace(/ #$/, '');
+			soc_out_yt_main.value = soc_title.value+'\n\n'+soc_tags_clear;
+			soc_out_yt_tags.value = soc_tags_clear.value.replace(/ #/g, ', ')
+														.replace(/#/g, '');
 		
 			if (index >= 0 && index < 5) {
 				soc_out_yt_tags.value = soc_out_yt_tags.value.replace(/юмор, приколы, /g, '')
@@ -2238,16 +2246,16 @@ function Soc_Create() {
 				soc_out_yt_tags.value = soc_out_yt_tags.value.replace(/фильм, фильмнавечер, кино, кинонавечер, /g, '')
 			}
 			if (index === 6) {
-				soc_out_yt_tags.value = soc_out_yt_tags.value.replace(/фильм, кино, премьера, трейлер, /g, '')
+				soc_out_yt_tags.value = soc_out_yt_tags.value.replace(/фильм, кино, премьера, трейлер, /g, '')															 
 			}
 
 			if (index >= 0 && index < 5) {
-				soc_out_yt_main.value = soc_title.value+'\n\n'+soc_tags.value;
+				soc_out_yt_main.value = soc_title.value+' \n\n'+soc_tags.value;
 				soc_out_full.value = 'Лучшие видео-подборки без цензуры:\nhttps://t.me/ViPiTok'
 									+'\n\n'+soc_title.value+'\n'+soc_tags.value;
 			}
 			if (index >= 5 && index < 7) {
-				soc_out_yt_main.value = soc_title.value+'\n\n'+soc_tags.value;
+				soc_out_yt_main.value = soc_title.value+' \n\n'+soc_tags.value;
 				soc_out_full.value = 'Все видео-обзоры:\nhttps://t.me/OneMinuteCinema'
 									+'\n\n'+soc_title.value+'\n'+soc_tags.value;
 			}
