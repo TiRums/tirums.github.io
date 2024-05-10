@@ -578,6 +578,18 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 #btn_Soc_Create {background:#50973a;}
 #btn_Soc_Create:hover {background:#68bd4e;}
 
+#txt_fast {display:block;}
+#txt_hidden {display:none;}
+#txt_block_selector {
+	display: flex; gap: 1px;
+}
+#txt_block_selector button {
+	width: 24px; height: 15px; line-height: 10px;
+	padding: 0; margin: 0; border: 0;
+	cursor: pointer;
+	background: #ccc;
+}
+#txt_block_selector button:hover {background: #999;}
 </style>
 
 <script language="JavaScript">
@@ -700,17 +712,36 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 									<div id="txt_fast_symbols_count_total" title="Кол-во символов с пробелами"></div>
 								</div>
 							</div>
+							<div id="txt_block_selector">
+								<button onClick="txt_block_change(1)">1</button>				
+								<button onClick="txt_block_change(2)">2</button>				
+								<button onClick="txt_block_change(3)">3</button>				
+								<button onClick="txt_block_change(4)">4</button>				
+								<button onClick="txt_block_change(5)">5</button>
+								<button onClick="txt_block_change(6)">6</button>
+								<button onClick="txt_block_change(7)">7</button>
+								<button onClick="txt_block_change(8)">8</button>
+							</div>
 							<div id="ta_stats_rside">
 								<div id="ta_stats_rside_made"></div>
 								<div id="ta_stats_rside_more"></div>
 								<input id="ta_stats_rside_total" type="text" value="0">
 								<div class="ta_stats_rside_copyclear">
 									<button id="btn_copy" title="Copy" onclick="txtFastCopy()">C</button>
-									<button id="btn_clear" title="Clear" onclick="txtFastClear()">X</button>					
+									<button id="btn_clear" title="Clear" onclick="txtFastClear()">X</button>													
 								</div>
 							</div>
 						</div>
-						<textarea id="txt_fast" placeholder="31" scrolling="auto" oninput="countLines()"></textarea>						
+						<div id="all_blocks">
+							<textarea id="txt_fast"   placeholder="1" scrolling="auto" oninput="countLines()"></textarea>						
+							<textarea id="txt_hidden" placeholder="2" scrolling="auto" oninput="countLines()"></textarea>						
+							<textarea id="txt_hidden" placeholder="3" scrolling="auto" oninput="countLines()"></textarea>						
+							<textarea id="txt_hidden" placeholder="4" scrolling="auto" oninput="countLines()"></textarea>						
+							<textarea id="txt_hidden" placeholder="5" scrolling="auto" oninput="countLines()"></textarea>
+							<textarea id="txt_hidden" placeholder="6" scrolling="auto" oninput="countLines()"></textarea>
+							<textarea id="txt_hidden" placeholder="7" scrolling="auto" oninput="countLines()"></textarea>
+							<textarea id="txt_hidden" placeholder="8" scrolling="auto" oninput="countLines()"></textarea>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -2271,6 +2302,11 @@ document.querySelectorAll('.social_element').forEach(element => {
         });
     });
 });
+
+function txt_block_change(num) {
+  const blocks = document.getElementById('all_blocks').querySelectorAll('textarea');
+  blocks.forEach((block, i) => block.id = i === num - 1 ? 'txt_fast' : 'txt_hidden');
+}
 </script>
 </body>
 </html>
