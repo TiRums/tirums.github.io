@@ -590,6 +590,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 	background: #ccc;
 }
 #txt_block_selector button:hover {background: #999;}
+#btn_active {background: #6c9cb7 !important;}
 </style>
 
 <script language="JavaScript">
@@ -713,14 +714,14 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 								</div>
 							</div>
 							<div id="txt_block_selector">
-								<button onClick="txt_block_change(1)">1</button>				
-								<button onClick="txt_block_change(2)">2</button>				
-								<button onClick="txt_block_change(3)">3</button>				
-								<button onClick="txt_block_change(4)">4</button>				
-								<button onClick="txt_block_change(5)">5</button>
-								<button onClick="txt_block_change(6)">6</button>
-								<button onClick="txt_block_change(7)">7</button>
-								<button onClick="txt_block_change(8)">8</button>
+								<button id="btn_active" onClick="txt_block_change(1)">1</button>				
+								<button id="btn_passive" onClick="txt_block_change(2)">2</button>				
+								<button id="btn_passive" onClick="txt_block_change(3)">3</button>				
+								<button id="btn_passive" onClick="txt_block_change(4)">4</button>				
+								<button id="btn_passive" onClick="txt_block_change(5)">5</button>
+								<button id="btn_passive" onClick="txt_block_change(6)">6</button>
+								<button id="btn_passive" onClick="txt_block_change(7)">7</button>
+								<button id="btn_passive" onClick="txt_block_change(8)">8</button>
 							</div>
 							<div id="ta_stats_rside">
 								<div id="ta_stats_rside_made"></div>
@@ -2306,6 +2307,8 @@ document.querySelectorAll('.social_element').forEach(element => {
 function txt_block_change(num) {
   const blocks = document.getElementById('all_blocks').querySelectorAll('textarea');
   blocks.forEach((block, i) => block.id = i === num - 1 ? 'txt_fast' : 'txt_hidden');
+  const btn_blocks = document.getElementById('txt_block_selector').querySelectorAll('button');
+  btn_blocks.forEach((block, i) => block.id = i === num - 1 ? 'btn_active' : 'btn_passive');
 }
 </script>
 </body>
