@@ -544,7 +544,7 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 	min-width: 500px;
 }
 .soc_title {height:30px; background: #6f90b4; color: #000;}
-.soc_tags  {height:60px; background: #a8bfd8; color: #232323;}
+.soc_tags  {height:40px; background: #a8bfd8; color: #232323; padding: 2px 5px !important;}
 
 .soc_element_output {
 	width:100%;
@@ -996,7 +996,18 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 							<textarea class="soc_out_full"></textarea>
 						</div>
 					</div>
-					<h2>ch2</h2>
+					<h2>ch+</h2>
+					<div class="social_element">
+						<div class="soc_element_input">
+							<textarea class="soc_title" type="text"></textarea>
+							<textarea class="soc_tags"></textarea>						
+						</div>
+						<div class="soc_element_output">
+							<textarea class="soc_out_yt_main" type="text"></textarea>
+							<textarea class="soc_out_yt_tags"></textarea>
+							<textarea class="soc_out_full"></textarea>
+						</div>
+					</div>
 					<div class="social_element">
 						<div class="soc_element_input">
 							<textarea class="soc_title" type="text"></textarea>
@@ -2247,9 +2258,8 @@ function Soc_Clear() {
         var soc_tags = element.querySelector('.soc_tags');
         var soc_out_full = element.querySelector('.soc_out_full');
 
-		if (index >= 0 && index < 5) soc_tags.value = 'юмор приколы ';
-		if (index === 5) soc_tags.value = 'фильм фильмнавечер кино кинонавечер ';
-		if (index === 6) soc_tags.value = 'фильм кино премьера трейлер ';
+		if (index >= 0 && index < 8) soc_tags.value = 'shorts ';
+		//if (index === 5) soc_tags.value = 'фильм фильмнавечер кино кинонавечер ';
 
     });
 }
@@ -2266,30 +2276,16 @@ function Soc_Create() {
 		soc_tags.value = soc_tags.value.replace(/\s+/g, ' ').trim();
 
 		if (soc_title.value !== '') {
-			var soc_tags_clear = '#'+soc_tags.value.replace(/ /g, ' #');
+			var soc_tags_clear = '#'+soc_tags.value.replace(/ /g, ' #').replace(/-/g, '').toLowerCase();
 			//soc_out_yt_main.value = soc_tags_clear.value;
-			soc_out_yt_tags.value = soc_tags_clear.replace(/ #/g, ', ')
-												  .replace(/#/g, '');
+			soc_out_yt_tags.value = soc_tags.value.replace(/ /g, ', ')
+												  .replace(/#/g, '')
+												  .replace(/-/g, ' ')+",";
 		
-			if (index >= 0 && index < 5) {
-				soc_out_yt_tags.value = soc_out_yt_tags.value.replace(/юмор, приколы, /g, '')
-			}
-			if (index === 5) {
-				soc_out_yt_tags.value = soc_out_yt_tags.value.replace(/фильм, фильмнавечер, кино, кинонавечер, /g, '')
-			}
-			if (index === 6) {
-				soc_out_yt_tags.value = soc_out_yt_tags.value.replace(/фильм, кино, премьера, трейлер, /g, '')															 
-			}
-
-			if (index >= 0 && index < 5) {
-				soc_out_yt_main.value = soc_title.value+' \n\n'+soc_tags_clear;
-				soc_out_full.value = 'Лучшие видео-подборки без цензуры:\nhttps://t.me/ViPiTok'
-									+'\n\n'+soc_title.value+'\n'+soc_tags_clear;
-			}
-			if (index >= 5 && index < 7) {
-				soc_out_yt_main.value = soc_title.value+' \n\n'+soc_tags_clear;
-				soc_out_full.value = 'Все видео-обзоры:\nhttps://t.me/OneMinuteCinema'
-									+'\n\n'+soc_title.value+'\n'+soc_tags_clear;
+			if (index >= 0 && index < 8) {
+				soc_out_yt_tags.value = soc_out_yt_tags.value.replace(/shorts, |shorts/g, '')
+				soc_out_yt_main.value = soc_title.value+' '+soc_tags_clear;
+				soc_out_full.value = soc_title.value+'\n\n'+soc_tags_clear.replace(/#shorts/g, '').trim();
 			}
 		}
     });
