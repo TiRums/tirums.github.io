@@ -591,6 +591,15 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 }
 #txt_block_selector button:hover {background: #999;}
 #btn_active {background: #6c9cb7 !important;}
+
+.social_header button:nth-of-type(3) {margin-left: 20px;}
+#btn_Group_Tags {
+	width: fit-content; padding: 2px 5px;
+	background: #131313; color: #888;
+	transition: 0.3s;
+	border-radius: 6px;
+	&:hover {background: #999; color: #131313;}
+}
 </style>
 
 <script language="JavaScript">
@@ -938,9 +947,10 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button id="btn_Soc_Create" title="Create" onClick="Soc_Create()">Create</button>
 					<input id="inp_Soc_Create" type="text" onclick="this.select();" value=" #">
 					<input id="inp_Soc_Create" type="text" onclick="this.select();" value='"'>
-					<button id="" title="Group" onClick="copyToClipboard('111 ')">Group1</button>
-					<button id="" title="Group" onClick="copyToClipboard('222 ')">Group2</button>
-					<button id="" title="Group" onClick="copyToClipboard('333 ')">Group3</button>
+					<button id="btn_Group_Tags" title="#VIDICUT" onClick="copyToClipboard('111 ')">#VIDICUT</button>
+					<button id="btn_Group_Tags" title="#ViPiTok" onClick="copyToClipboard('222 ')">#ViPiTok</button>
+					<button id="btn_Group_Tags" title="#TechnoLot" onClick="copyToClipboard('333 ')">#TechnoLot</button>
+					<button id="btn_Group_Tags" title="#SHOPIWOOD" onClick="copyToClipboard('444 ')">#SHOPIWOOD</button>
 				</div>
 				<div class="soc_elements_all">
 					<h2>ch1</h2>
