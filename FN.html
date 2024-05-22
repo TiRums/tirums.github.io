@@ -938,6 +938,9 @@ button[onclick="fastRepInpClear()"]:hover {background: #9c3d3d; color: #f0b7b7}
 					<button id="btn_Soc_Create" title="Create" onClick="Soc_Create()">Create</button>
 					<input id="inp_Soc_Create" type="text" onclick="this.select();" value=" #">
 					<input id="inp_Soc_Create" type="text" onclick="this.select();" value='"'>
+					<button id="" title="Group" onClick="copyToClipboard('111 ')">Group1</button>
+					<button id="" title="Group" onClick="copyToClipboard('222 ')">Group2</button>
+					<button id="" title="Group" onClick="copyToClipboard('333 ')">Group3</button>
 				</div>
 				<div class="soc_elements_all">
 					<h2>ch1</h2>
@@ -2305,6 +2308,10 @@ function txt_block_change(num) {
   blocks.forEach((block, i) => block.id = i === num - 1 ? 'txt_fast' : 'txt_hidden');
   const btn_blocks = document.getElementById('txt_block_selector').querySelectorAll('button');
   btn_blocks.forEach((block, i) => block.id = i === num - 1 ? 'btn_active' : 'btn_passive');
+}
+
+function copyToClipboard(text) {
+	navigator.clipboard.writeText(text);
 }
 </script>
 </body>
